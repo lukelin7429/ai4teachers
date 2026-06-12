@@ -298,3 +298,16 @@ pre code { background: none; border: 0; color: inherit; padding: 0; }
 .cmp tbody td { color: var(--ink-2); }
 .cmp tr:last-child th, .cmp tr:last-child td { border-bottom: 0; }
 .cmp .agentcol { background: rgba(37,99,235,.04); }
+
+/* ===================== Course nav (inline table of contents) ===================== */
+.course-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.course-nav a { display: inline-flex; align-items: center; gap: 9px; font-family: var(--sans); font-weight: 600; font-size: 14px; color: var(--ink-2); background: #fff; border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 16px 7px 8px; text-decoration: none; transition: .15s; }
+.course-nav a .n { width: 22px; height: 22px; border-radius: 50%; background: var(--bg-tint); color: var(--blue); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; font-weight: 600; flex: 0 0 auto; }
+.course-nav a:hover { border-color: var(--blue); color: var(--ink); }
+.course-nav a.active { background: var(--grad-brand); color: #fff; border-color: transparent; box-shadow: var(--sh-sm); }
+.course-nav a.active .n { background: rgba(255,255,255,.25); color: #fff; }
+
+/* lessons index (table of contents page) */
+.toc-list { display: grid; gap: 20px; }
+.toc-more { margin-top: 30px; color: var(--muted); font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
+.toc-more .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grad-brand); }
