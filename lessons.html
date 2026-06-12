@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lessons — The Course · AI4Teachers</title>
-<meta name="description" content="The AI4Teachers course contents: from publishing your first website, to producing the HTML with AI, to choosing where it lives.">
+<meta name="description" content="The AI4Teachers course: a Web Design track (publish your own websites with AI) and a Teaching Resources track (games, picture books, worksheets, differentiation, and more).">
 <script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,13 +32,21 @@
   <div class="wrap">
     <span class="kicker"><span class="t-en">The Course</span><span class="t-zh">課程</span></span>
     <h1 style="margin-top:14px"><span class="t-en">Lesson Contents</span><span class="t-zh">課程目錄</span></h1>
-    <p class="lead t-en">From publishing a page, to producing the HTML with AI, to choosing where it lives — here's the whole path, in order. New to this? Start with Lesson 1.</p>
-    <p class="lead t-zh">從發佈一個頁面、到用 AI 產出 HTML、再到選擇網站放在哪裡——這是完整的學習路徑,依序排好。第一次來?從第一課開始。</p>
+    <p class="lead t-en">Two tracks. <strong>Web Design</strong> teaches you to build and publish your own websites with AI. <strong>Teaching Resources</strong> shows you how to make games, picture books, worksheets and more for your classroom. New here? Start with Web Design, Lesson 1.</p>
+    <p class="lead t-zh">兩條軌道。<strong>網頁設計</strong>教你用 AI 建立並發佈自己的網站;<strong>教學資源</strong>教你怎麼用 AI 做出遊戲、繪本、學習單等課堂素材。第一次來?從網頁設計第一課開始。</p>
   </div>
 </section>
 
-<section class="block" style="padding-top:64px">
+<!-- ===== Track 1: Web Design ===== -->
+<section class="block" id="web-design" style="padding-top:64px">
   <div class="wrap">
+    <div class="track-head">
+      <span class="num">A</span>
+      <div>
+        <h2><span class="t-en">Web Design</span><span class="t-zh">網頁設計</span></h2>
+      </div>
+    </div>
+    <p class="section-head" style="margin:-10px 0 30px"><span class="t-en">Make a real website with AI — and put it online yourself.</span><span class="t-zh">用 AI 做出真正的網站——並自己把它放上線。</span></p>
     <div class="toc-list">
 
       <a class="lesson-card" href="lesson-1.html">
@@ -46,8 +54,8 @@
         <div class="meta">
           <span class="level"><span class="t-en">Beginner</span><span class="t-zh">入門</span></span>
           <h3><span class="t-en">Publish Your First Website on GitHub</span><span class="t-zh">把你的第一個網站發佈到 GitHub</span></h3>
-          <p class="t-en">Create a GitHub account, make a repository, upload an AI-made HTML file, and share a live link — all from your browser.</p>
-          <p class="t-zh">註冊 GitHub 帳號、建立 repo、上傳 AI 做的 HTML、發佈可分享的網址——全部在瀏覽器裡完成。</p>
+          <p class="t-en">Create a GitHub account, make a repository, upload an AI-made HTML file, and share a live link.</p>
+          <p class="t-zh">註冊 GitHub 帳號、建立 repo、上傳 AI 做的 HTML、發佈可分享的網址。</p>
         </div>
         <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -57,8 +65,8 @@
         <div class="meta">
           <span class="level" style="background:var(--grad-sky)"><span class="t-en">Intermediate</span><span class="t-zh">進階</span></span>
           <h3><span class="t-en">Where Does the HTML Come From?</span><span class="t-zh">HTML 到底是怎麼來的?</span></h3>
-          <p class="t-en">How AI makes your HTML, and how to manage a 20-page site — explained two ways: agent (Claude Code) vs non-agent (Gemini).</p>
-          <p class="t-zh">AI 怎麼生出 HTML、20 頁的網站怎麼管理——用代理人(Claude Code)與非代理人(Gemini)兩種模式說明。</p>
+          <p class="t-en">How AI makes your HTML, and how to manage a 20-page site — agent (Claude Code) vs non-agent (Gemini).</p>
+          <p class="t-zh">AI 怎麼生出 HTML、20 頁的網站怎麼管理——代理人(Claude Code)與非代理人(Gemini)。</p>
         </div>
         <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -68,14 +76,80 @@
         <div class="meta">
           <span class="level" style="background:var(--grad-teal)"><span class="t-en">Choosing</span><span class="t-zh">怎麼選</span></span>
           <h3><span class="t-en">Why I Don't Use Google Sites</span><span class="t-zh">為什麼我不選用 Google Sites?</span></h3>
-          <p class="t-en">Google Sites is easy — just paste an embed. But for a real, growing site it boxes you in. An honest pros-and-cons comparison.</p>
-          <p class="t-zh">Google Sites 很簡單——貼個 embed 就好。但要做會成長的真網站,它會把你框住。誠實的優缺點比較。</p>
+          <p class="t-en">Google Sites is easy — but for a real, growing site it boxes you in. An honest comparison.</p>
+          <p class="t-zh">Google Sites 很簡單——但要做會成長的真網站,它會把你框住。誠實的比較。</p>
         </div>
         <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
     </div>
-    <p class="toc-more"><span class="dot"></span><span class="t-en">More lessons on the way.</span><span class="t-zh">更多課程陸續增加中。</span></p>
+  </div>
+</section>
+
+<!-- ===== Track 2: Teaching Resources ===== -->
+<section class="block soft" id="teaching-resources">
+  <div class="wrap">
+    <div class="track-head">
+      <span class="num">B</span>
+      <div>
+        <h2><span class="t-en">Teaching Resources</span><span class="t-zh">教學資源</span></h2>
+      </div>
+    </div>
+    <p class="section-head" style="margin:-10px 0 30px"><span class="t-en">Make classroom materials with AI — games, books, worksheets and more.</span><span class="t-zh">用 AI 做課堂素材——遊戲、繪本、學習單等等。</span></p>
+    <div class="toc-list">
+
+      <a class="lesson-card" href="res-games.html">
+        <div class="lesson-tag icon" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v3M4.5 18.5h3"/><path d="M13 4l2.2 5.6L21 12l-5.8 2.4L13 20l-2.2-5.6L5 12l5.8-2.4z"/></svg></div>
+        <div class="meta">
+          <h3><span class="t-en">Interactive Educational Games</span><span class="t-zh">互動式教育遊戲</span></h3>
+          <p class="t-en">Turn a lesson into a game students can click — matching, quizzes, flashcards. Agent vs non-agent.</p>
+          <p class="t-zh">把一課變成學生能點的遊戲——配對、測驗、字卡。代理人與非代理人做法不同。</p>
+        </div>
+        <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="lesson-card" href="res-picture-books.html">
+        <div class="lesson-tag icon" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 4 5v13c4 0 6.5.5 8 1.5"/><path d="M12 6.5C13.5 5.5 16 5 20 5v13c-4 0-6.5.5-8 1.5"/><path d="M12 6.5v13"/></svg></div>
+        <div class="meta">
+          <h3><span class="t-en">Picture Books</span><span class="t-zh">繪本</span></h3>
+          <p class="t-en">Make an illustrated story with Gemini's Picture Book Gem — words and pictures together.</p>
+          <p class="t-zh">用 Gemini 的 Picture Book Gem 做出有插圖的故事——文字和圖畫一起生成。</p>
+        </div>
+        <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="lesson-card" href="res-worksheets.html">
+        <div class="lesson-tag icon" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <div class="meta">
+          <h3><span class="t-en">Worksheets for Every Level</span><span class="t-zh">分級學習單製作</span></h3>
+          <p class="t-en">Generate a worksheet at any level — it's mostly just asking well. A prompt recipe you can reuse.</p>
+          <p class="t-zh">產出任何程度的學習單——其實就是把指令下好。給你可重複用的提示詞配方。</p>
+        </div>
+        <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="lesson-card" href="res-differentiation.html">
+        <div class="lesson-tag icon" style="background:var(--grad-brand)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M8.5 6H13a2 2 0 0 1 2 2v2.5M8.5 18H13a2 2 0 0 0 2-2v-2.5"/></svg></div>
+        <div class="meta">
+          <h3><span class="t-en">Differentiated Teaching</span><span class="t-zh">差異化教學</span></h3>
+          <p class="t-en">One topic, many versions — have AI produce lesson plans and worksheets for different learners.</p>
+          <p class="t-zh">一個主題、多種版本——讓 AI 為不同的學生產出不同的教案與學習單。</p>
+        </div>
+        <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="lesson-card" href="res-resources.html">
+        <div class="lesson-tag icon" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9"/><path d="M12 8S9.5 3 7 4.5 12 8 12 8zM12 8s2.5-5 5-3.5S12 8 12 8z"/></svg></div>
+        <div class="meta">
+          <h3><span class="t-en">Free Resources &amp; Festivals</span><span class="t-zh">免費資源與節慶教學</span></h3>
+          <p class="t-en">You don't have to make everything — ready-made bilingual resources (and festival themes) already exist.</p>
+          <p class="t-zh">不用什麼都自己做——現成的雙語資源(含節慶主題)早就有了。</p>
+        </div>
+        <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+    </div>
+    <p class="toc-more"><span class="dot"></span><span class="t-en">More resources on the way.</span><span class="t-zh">更多資源陸續增加中。</span></p>
   </div>
 </section>
 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Educational Games · AI4Teachers</title>
+<meta name="description" content="Make small interactive games for your class with AI — matching, quizzes, flashcards. The agent and non-agent ways, and a prompt you can copy.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Teaching Resources</span><span class="t-zh">教學資源</span></a> &nbsp;/&nbsp; <span class="t-en">Games</span><span class="t-zh">教育遊戲</span></div>
+    <nav class="course-nav" aria-label="Teaching resources">
+      <a class="active" href="res-games.html"><span class="n">1</span><span class="t-en">Games</span><span class="t-zh">教育遊戲</span></a>
+      <a href="res-picture-books.html"><span class="n">2</span><span class="t-en">Picture books</span><span class="t-zh">繪本</span></a>
+      <a href="res-worksheets.html"><span class="n">3</span><span class="t-en">Worksheets</span><span class="t-zh">學習單</span></a>
+      <a href="res-differentiation.html"><span class="n">4</span><span class="t-en">Differentiation</span><span class="t-zh">差異化</span></a>
+      <a href="res-resources.html"><span class="n">5</span><span class="t-en">Free resources</span><span class="t-zh">免費資源</span></a>
+    </nav>
+    <h1><span class="t-en">Interactive Educational Games</span><span class="t-zh">互動式教育遊戲</span></h1>
+    <p class="lead t-en">A vocabulary matching game, a quick quiz, clickable flashcards — these are just one HTML file each. AI can build them, and you publish them exactly like any other page. Here's what you can make, and how the two kinds of AI handle it differently.</p>
+    <p class="lead t-zh">單字配對遊戲、快速小測驗、可點的字卡——這些每一個都只是一個 HTML 檔。AI 能做出來,你就像發佈其他頁面一樣把它放上線。這一頁告訴你能做什麼,以及兩種 AI 的做法差在哪。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll understand</span><span class="t-zh">你會明白</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> The kinds of games AI can make as a single page</span><span class="t-zh"><b>a</b> AI 能做成單一頁面的遊戲類型</span></li>
+        <li><span class="t-en"><b>b</b> The non-agent way (Gemini) vs the agent way (Claude Code)</span><span class="t-zh"><b>b</b> 非代理人(Gemini)與代理人(Claude Code)的做法</span></li>
+        <li><span class="t-en"><b>c</b> A game prompt you can copy and adapt</span><span class="t-zh"><b>c</b> 一段可複製、可改的遊戲提示詞</span></li>
+        <li><span class="t-en"><b>d</b> How to publish the game (it's just Lesson 1 again)</span><span class="t-zh"><b>d</b> 怎麼發佈遊戲(就是第一課那套)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Part 1 -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">What you can make</span><span class="t-zh">你能做什麼</span></span>
+    <h2><span class="t-en">Small games, big engagement</span><span class="t-zh">小遊戲,大參與</span></h2>
+    <p class="intro"><span class="t-en">Each of these is one self-contained HTML page — no app, no login:</span><span class="t-zh">下面每一種都是一個獨立的 HTML 頁面——不用 App、不用登入:</span></p>
+    <ul class="plist" style="max-width:780px">
+      <li class="y"><span class="t-en"><strong>Matching</strong> — pair words with pictures or meanings</span><span class="t-zh"><strong>配對</strong>——把單字和圖片或意思配起來</span></li>
+      <li class="y"><span class="t-en"><strong>Multiple-choice quiz</strong> — tap the right answer, see a score</span><span class="t-zh"><strong>選擇題測驗</strong>——點正確答案、顯示分數</span></li>
+      <li class="y"><span class="t-en"><strong>Flashcards</strong> — flip to check, shuffle the deck</span><span class="t-zh"><strong>字卡</strong>——翻面檢查、洗牌</span></li>
+      <li class="y"><span class="t-en"><strong>Drag-and-drop sorting</strong> — sort words into groups</span><span class="t-zh"><strong>拖放分類</strong>——把單字拖進不同的組別</span></li>
+      <li class="y"><span class="t-en"><strong>Spelling / fill-in</strong> — type the missing word</span><span class="t-zh"><strong>拼字 / 填空</strong>——打出缺少的字</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Part 2 -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Two ways to build it</span><span class="t-zh">兩種做法</span></span>
+    <h2><span class="t-en">Non-agent vs agent</span><span class="t-zh">非代理人 vs 代理人</span></h2>
+    <p class="intro"><span class="t-en">Same idea as Lesson 2 — the difference is whether you place the files or the AI does.</span><span class="t-zh">和第二課同樣的觀念——差別在於是你放檔案,還是 AI 幫你放。</span></p>
+    <div class="modes">
+      <div class="mode is-nonagent">
+        <div class="mode-head">
+          <div class="lbl"><span class="t-en">Non-agent · Gemini</span><span class="t-zh">非代理人 · Gemini</span></div>
+          <h3><span class="t-en">One game, in the chat</span><span class="t-zh">一個遊戲,在對話裡</span></h3>
+        </div>
+        <div class="mode-body">
+          <p><span class="t-en">Describe the game; Gemini returns one HTML file in the chat. You copy it into <code>index.html</code> and publish it. To change it, ask again and re-paste. Perfect for a single game page.</span><span class="t-zh">描述遊戲;Gemini 在對話裡給你一個 HTML 檔。你把它複製進 <code>index.html</code> 再發佈。要修改就再問一次、重貼。最適合單一個遊戲頁。</span></p>
+          <ul class="plist">
+            <li class="y"><span class="t-en">Free and fast for one game</span><span class="t-zh">做一個遊戲免費又快</span></li>
+            <li class="n"><span class="t-en">Bigger or linked games get tedious to manage</span><span class="t-zh">較大或多個相連的遊戲就難管理</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode is-agent">
+        <div class="mode-head">
+          <div class="lbl"><span class="t-en">Agent · Claude Code</span><span class="t-zh">代理人 · Claude Code</span></div>
+          <h3><span class="t-en">A set of games, wired in</span><span class="t-zh">一整組遊戲,接進網站</span></h3>
+        </div>
+        <div class="mode-body">
+          <p><span class="t-en">Describe a whole game centre; the agent builds several games, a shared style and menu, saves the files, and can publish to GitHub. Tweaks like "make the timer 30s" apply across them.</span><span class="t-zh">描述一整個遊戲中心;代理人會做好幾個遊戲、共用樣式與選單、存好檔案,還能發佈到 GitHub。像「把計時改成 30 秒」這種調整會一次套用。</span></p>
+          <ul class="plist">
+            <li class="y"><span class="t-en">Best for many games kept consistent</span><span class="t-zh">最適合多個遊戲、保持一致</span></li>
+            <li class="n"><span class="t-en">Needs setup, often a paid plan</span><span class="t-zh">要安裝設定,常需付費方案</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 3 -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Copy this</span><span class="t-zh">直接複製</span></span>
+    <h2><span class="t-en">A game prompt that works</span><span class="t-zh">一段好用的遊戲提示詞</span></h2>
+    <p class="intro"><span class="t-en">Paste this into Gemini (or any AI), then change the words in <strong>bold</strong>:</span><span class="t-zh">把這段貼進 Gemini(或任何 AI),再改掉<strong>粗體</strong>的字:</span></p>
+    <pre><code>Make a single, self-contained HTML file: a
+<strong>vocabulary matching</strong> game for <strong>10 animal words</strong>,
+for <strong>grade 3</strong> English learners.
+Big colourful buttons, works on a phone, shows a
+score, and plays a happy sound on a correct match.
+Put all CSS and JavaScript inside the one file —
+no external files. Name it index.html.</code></pre>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Tip:</strong><strong class="t-zh">小訣竅:</strong>
+        <span class="t-en"> the magic words are <em>"single, self-contained HTML file"</em> — that keeps everything in one file you can upload in one step.</span>
+        <span class="t-zh"> 關鍵字是 <em>「single, self-contained HTML file」</em>——這樣所有東西都在同一個檔案裡,你一步就能上傳。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 4 -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Put it online</span><span class="t-zh">放上線</span></span>
+    <h2><span class="t-en">Publishing a game = Lesson 1</span><span class="t-zh">發佈遊戲 = 第一課</span></h2>
+    <p class="intro"><span class="t-en">A game is just an <code>index.html</code>. Upload it to a GitHub repo and turn on Pages — exactly the steps from Lesson 1 — and you have a link to share with your class.</span><span class="t-zh">遊戲就是一個 <code>index.html</code>。把它上傳到 GitHub repo、開啟 Pages——就是第一課的步驟——你就有一條可以分享給全班的連結。</span></p>
+    <a class="btn btn-ghost" href="lesson-1.html"><span class="t-en">↗ Review Lesson 1: publishing</span><span class="t-zh">↗ 複習第一課:發佈</span></a>
+  </div>
+</section>
+
+<!-- Recap -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">Quick recap</span><span class="t-zh">快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Many classroom games are just one HTML page</span><span class="t-zh">很多課堂遊戲就只是一個 HTML 頁</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Non-agent (Gemini): great for one game in the chat</span><span class="t-zh">非代理人(Gemini):做一個遊戲很合適</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Agent (Claude Code): best for a whole set, kept consistent</span><span class="t-zh">代理人(Claude Code):最適合一整組、保持一致</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Ask for a "single, self-contained HTML file"</span><span class="t-zh">記得要求「single, self-contained HTML file」</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Publish it the Lesson 1 way</span><span class="t-zh">用第一課的方式發佈</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lessons.html"><span class="t-en">← All lessons</span><span class="t-zh">← 回課程目錄</span></a>
+      <a class="btn btn-accent" href="res-picture-books.html"><span class="t-en">Next: Picture Books →</span><span class="t-zh">下一個:繪本 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+</body>
+</html>
