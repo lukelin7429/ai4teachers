@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2 — Where Does the HTML Come From? (AI: Agent vs Non-Agent) · AI4Teachers</title>
+<meta name="description" content="How AI produces your HTML, and how to manage a big site (20 pages, a shared menu) — explained through two ways of working: agent-based (Claude Code, Codex) and non-agent (Gemini).">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lesson-1.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 2 · Intermediate</span><span class="t-zh">第二課 · 進階</span></div>
+    <h1><span class="t-en">Where Does the HTML Come From?</span><span class="t-zh">HTML 到底是怎麼來的?</span></h1>
+    <p class="lead t-en">In Lesson 1 you published a website. But who actually writes the HTML? The answer is AI — and there are two very different ways it can help you. The difference becomes obvious the moment your site grows from one page to twenty.</p>
+    <p class="lead t-zh">第一課你把網站發佈出去了。但 HTML 到底是誰寫的?答案是 AI——而 AI 幫你的方式有兩種,差別很大。等你的網站從一頁變成二十頁,這個差別就會立刻浮現。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll understand</span><span class="t-zh">你會明白</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Where your HTML actually comes from</span><span class="t-zh"><b>a</b> 你的 HTML 究竟從哪裡來</span></li>
+        <li><span class="t-en"><b>b</b> Two ways AI works: agent vs non-agent</span><span class="t-zh"><b>b</b> AI 工作的兩種模式:代理人 vs 非代理人</span></li>
+        <li><span class="t-en"><b>c</b> How to manage a big site — 20 pages, one shared menu of buttons</span><span class="t-zh"><b>c</b> 如何管理大網站——20 頁、一個共用的按鈕選單</span></li>
+        <li><span class="t-en"><b>d</b> Which way fits you right now</span><span class="t-zh"><b>d</b> 現在的你,適合哪一種</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part 1 — the challenge ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">The real challenge</span><span class="t-zh">真正的難題</span></span>
+    <h2><span class="t-en">It's not one page — it's twenty working together</span><span class="t-zh">難的不是一頁,而是二十頁要彼此配合</span></h2>
+    <p class="intro"><span class="t-en">Picture a website with 20 pages and a menu of 4–5 buttons at the top of every page. That's the moment people freeze. One page is easy — the hard part is keeping all 20 in step:</span><span class="t-zh">想像一個有 20 頁的網站,每一頁最上面都有一排 4~5 個按鈕的選單。很多人就是在這裡卡住。一頁很簡單——難的是讓 20 頁彼此一致:</span></p>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <ul class="plist" style="margin:0">
+          <li class="n" style="padding-left:24px"><span class="t-en">Every page needs the <strong>same menu</strong> (those 4–5 buttons)</span><span class="t-zh">每一頁都要有<strong>相同的選單</strong>(那 4~5 個按鈕)</span></li>
+          <li class="n" style="padding-left:24px"><span class="t-en">Every page must <strong>link to the others</strong> correctly</span><span class="t-zh">每一頁都要正確<strong>連到其他頁</strong></span></li>
+          <li class="n" style="padding-left:24px"><span class="t-en">All pages should <strong>share one look</strong> (one stylesheet)</span><span class="t-zh">所有頁面要<strong>長得一樣</strong>(共用一個樣式檔)</span></li>
+          <li class="n" style="padding-left:24px"><span class="t-en">All the files must <strong>get into GitHub</strong></span><span class="t-zh">所有檔案都要<strong>進到 GitHub</strong></span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="intro" style="margin-top:26px"><span class="t-en">How easily you handle all this depends a lot on <strong>which kind of AI</strong> you use. There are two.</span><span class="t-zh">這一切處理起來輕不輕鬆,很大程度取決於你用的是<strong>哪一種 AI</strong>。共有兩種。</span></p>
+  </div>
+</section>
+
+<!-- ===== Part 2 — two modes ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Two ways AI helps</span><span class="t-zh">AI 幫你的兩種方式</span></span>
+    <h2><span class="t-en">Agent vs Non-Agent</span><span class="t-zh">代理人 vs 非代理人</span></h2>
+    <p class="intro"><span class="t-en">Both write good HTML. The difference is <strong>who manages the files</strong> — you, or the AI.</span><span class="t-zh">兩種都能寫出好的 HTML。差別在於<strong>誰來管理檔案</strong>——是你,還是 AI。</span></p>
+
+    <div class="modes">
+      <!-- Non-agent -->
+      <div class="mode is-nonagent">
+        <div class="mode-head">
+          <div class="lbl"><span class="t-en">Non-agent</span><span class="t-zh">非代理人</span></div>
+          <h3><span class="t-en">The chat way</span><span class="t-zh">對話式</span></h3>
+          <p><span class="t-en">You chat, it hands you code. e.g. <strong>Gemini</strong>, ChatGPT (free), Claude.ai chat.</span><span class="t-zh">你聊天,它給你程式碼。例如 <strong>Gemini</strong>、ChatGPT(免費)、Claude.ai 對話。</span></p>
+        </div>
+        <div class="mode-body">
+          <h4><span class="t-en">What it is</span><span class="t-zh">這是什麼</span></h4>
+          <p><span class="t-en">The AI writes code inside the chat window. You copy it out, paste it into a file on your computer, and save. The AI never touches your files or GitHub — you do all of that yourself.</span><span class="t-zh">AI 在對話視窗裡寫程式碼。你把它複製出來、貼進電腦裡的檔案、存檔。AI 不會碰你的檔案或 GitHub——這些都由你自己來。</span></p>
+          <h4><span class="t-en">Your 20-page site</span><span class="t-zh">你的 20 頁網站</span></h4>
+          <p><span class="t-en">You ask for each page, copy each one into its own <code>.html</code> file, and keep the menu identical across all 20 yourself. Then you upload everything to GitHub the Lesson 1 way.</span><span class="t-zh">你一頁一頁地問,把每一頁分別複製到自己的 <code>.html</code> 檔,並自己讓 20 頁的選單保持一模一樣。然後用第一課的方法,把全部檔案上傳到 GitHub。</span></p>
+          <h4><span class="t-en">Good &amp; watch out</span><span class="t-zh">優點與要注意</span></h4>
+          <ul class="plist">
+            <li class="y"><span class="t-en">Free, nothing to install, works in any browser</span><span class="t-zh">免費、不用安裝、任何瀏覽器都能用</span></li>
+            <li class="y"><span class="t-en">Perfect for learning and small sites</span><span class="t-zh">非常適合學習和小型網站</span></li>
+            <li class="n"><span class="t-en">You copy-paste every page by hand</span><span class="t-zh">每一頁都要自己複製貼上</span></li>
+            <li class="n"><span class="t-en">Keeping 20 pages consistent is up to you</span><span class="t-zh">20 頁要一致,全靠你自己顧</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Agent -->
+      <div class="mode is-agent">
+        <div class="mode-head">
+          <div class="lbl"><span class="t-en">Agent-based</span><span class="t-zh">代理人</span></div>
+          <h3><span class="t-en">The assistant way</span><span class="t-zh">助理式</span></h3>
+          <p><span class="t-en">It works on your files directly. e.g. <strong>Claude Code</strong>, OpenAI Codex.</span><span class="t-zh">它直接動你的檔案。例如 <strong>Claude Code</strong>、OpenAI Codex。</span></p>
+        </div>
+        <div class="mode-body">
+          <h4><span class="t-en">What it is</span><span class="t-zh">這是什麼</span></h4>
+          <p><span class="t-en">The AI works right on your computer (or workspace). It can create files and folders, edit many pages at once, and even make your GitHub repo and publish it for you.</span><span class="t-zh">AI 直接在你的電腦(或工作區)裡運作。它能建立檔案和資料夾、一次編輯很多頁,甚至幫你建立 GitHub repo 並發佈。</span></p>
+          <h4><span class="t-en">Your 20-page site</span><span class="t-zh">你的 20 頁網站</span></h4>
+          <p><span class="t-en">You describe the site once. It builds all 20 pages with the same menu and one shared style — and can push them to GitHub. Want to change a button? One instruction updates all 20 pages.</span><span class="t-zh">你只要描述一次。它就把 20 頁都建好,選單相同、共用同一套樣式——還能推上 GitHub。想改一個按鈕?一句話就同時更新 20 頁。</span></p>
+          <h4><span class="t-en">Good &amp; watch out</span><span class="t-zh">優點與要注意</span></h4>
+          <ul class="plist">
+            <li class="y"><span class="t-en">Handles big, multi-page sites with ease</span><span class="t-zh">輕鬆處理大型、多頁的網站</span></li>
+            <li class="y"><span class="t-en">Keeps every page consistent automatically</span><span class="t-zh">自動讓每一頁保持一致</span></li>
+            <li class="y"><span class="t-en">Can manage files and GitHub for you</span><span class="t-zh">能幫你管理檔案和 GitHub</span></li>
+            <li class="n"><span class="t-en">Usually needs setup, and often a paid plan</span><span class="t-zh">通常要先安裝設定,而且常需付費方案</span></li>
+            <li class="n"><span class="t-en">A little more technical to start</span><span class="t-zh">入門稍微技術一點</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part 3 — comparison table ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Side by side</span><span class="t-zh">一張表看懂</span></span>
+    <h2><span class="t-en">At a glance</span><span class="t-zh">快速對照</span></h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="t-en">Non-agent (e.g. Gemini)</span><span class="t-zh">非代理人(例如 Gemini)</span></th>
+            <th class="agentcol"><span class="t-en">Agent (e.g. Claude Code)</span><span class="t-zh">代理人(例如 Claude Code)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="t-en">Where the code appears</span><span class="t-zh">程式碼出現在哪</span></th>
+            <td><span class="t-en">In the chat — you copy it out</span><span class="t-zh">在對話裡——你自己複製出來</span></td>
+            <td class="agentcol"><span class="t-en">Directly in your files</span><span class="t-zh">直接寫進你的檔案</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Who creates the files</span><span class="t-zh">誰建立檔案</span></th>
+            <td><span class="t-en">You, by hand</span><span class="t-zh">你,手動</span></td>
+            <td class="agentcol"><span class="t-en">The AI</span><span class="t-zh">AI</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">20 pages, same menu</span><span class="t-zh">20 頁、相同選單</span></th>
+            <td><span class="t-en">You keep them matching</span><span class="t-zh">你自己維持一致</span></td>
+            <td class="agentcol"><span class="t-en">Done automatically</span><span class="t-zh">自動完成</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Publishing to GitHub</span><span class="t-zh">發佈到 GitHub</span></th>
+            <td><span class="t-en">You upload (Lesson 1)</span><span class="t-zh">你自己上傳(第一課)</span></td>
+            <td class="agentcol"><span class="t-en">The AI can publish it</span><span class="t-zh">AI 可以幫你發佈</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Cost</span><span class="t-zh">費用</span></th>
+            <td><span class="t-en">Usually free</span><span class="t-zh">通常免費</span></td>
+            <td class="agentcol"><span class="t-en">Often a paid plan</span><span class="t-zh">常需付費方案</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Best for</span><span class="t-zh">最適合</span></th>
+            <td><span class="t-en">Learning, small sites</span><span class="t-zh">學習、小型網站</span></td>
+            <td class="agentcol"><span class="t-en">Big or growing sites</span><span class="t-zh">大型或會長大的網站</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part 4 — managing a big site ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">The mental model</span><span class="t-zh">管理大網站的訣竅</span></span>
+    <h2><span class="t-en">Four habits that make 20 pages feel simple</span><span class="t-zh">讓 20 頁變簡單的四個習慣</span></h2>
+    <p class="intro"><span class="t-en">Whichever AI you use, these four habits keep a big site under control:</span><span class="t-zh">不管你用哪一種 AI,這四個習慣都能讓大網站好管理:</span></p>
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">One shared stylesheet</span><span class="t-zh">一個共用的樣式檔</span></span>
+        <span class="step-d"><span class="t-en">Keep a single <code>styles.css</code>. Every page links to it, so all 20 pages share one look. Change it once, and every page updates together.</span><span class="t-zh">維持單一個 <code>styles.css</code>。每一頁都連到它,所以 20 頁共用同一個外觀。改一次,所有頁面一起更新。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">One menu, copied everywhere</span><span class="t-zh">一個選單,到處共用</span></span>
+        <span class="step-d"><span class="t-en">Your 4–5 buttons are the <strong>same block of code</strong> at the top of every page. (An agent does this for you; in chat mode, keep one "master" copy you paste into each page.)</span><span class="t-zh">你那 4~5 個按鈕,在每一頁頂部都是<strong>同一段程式碼</strong>。(代理人會幫你做;對話模式下,自己留一份「母版」貼到每一頁。)</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Simple, consistent file names</span><span class="t-zh">簡單、一致的檔名</span></span>
+        <span class="step-d"><span class="t-en"><code>index.html</code> is always the home page. Use clear lowercase names like <code>about.html</code>, <code>lessons.html</code>. Link between pages using those file names.</span><span class="t-zh"><code>index.html</code> 永遠是首頁。其他用清楚的小寫檔名,例如 <code>about.html</code>、<code>lessons.html</code>。頁面之間就用這些檔名互相連結。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">One folder = your repo</span><span class="t-zh">一個資料夾 = 你的 repo</span></span>
+        <span class="step-d"><span class="t-en">All your <code>.html</code> files and <code>styles.css</code> live in one folder. That whole folder is exactly what goes to GitHub.</span><span class="t-zh">你所有的 <code>.html</code> 檔和 <code>styles.css</code> 都放在同一個資料夾。整個資料夾就是要上 GitHub 的東西。</span></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== Part 5 — which to use ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">So which one?</span><span class="t-zh">那我該用哪個?</span></span>
+    <h2><span class="t-en">Start where you're comfortable</span><span class="t-zh">從你自在的地方開始</span></h2>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19"/></svg>
+      <div>
+        <p><span class="t-en">If you're starting out with free tools, <strong>Gemini (non-agent) is genuinely fine</strong> for a few pages — and a great way to learn. As your site grows toward 10–20 pages, or you get tired of keeping everything in sync by hand, an <strong>agent like Claude Code saves enormous time</strong>. Most teachers start with the chat way and move to an agent when the site gets bigger. There's no wrong choice.</span><span class="t-zh">如果你剛起步、用的是免費工具,<strong>Gemini(非代理人)做幾頁是完全夠的</strong>——也是很好的學習方式。等你的網站長到 10~20 頁,或你受不了一頁頁手動同步時,<strong>像 Claude Code 這樣的代理人能省下大量時間</strong>。多數老師都是先用對話式,等網站變大再轉用代理人。沒有錯的選擇。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recap ===== -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">Quick recap</span><span class="t-zh">快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Your HTML is written by AI — you don't type it from scratch</span><span class="t-zh">你的 HTML 是 AI 寫的——不用從零手打</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en"><strong>Non-agent</strong> (Gemini): code in the chat, you manage the files</span><span class="t-zh"><strong>非代理人</strong>(Gemini):程式碼在對話裡,檔案你自己管</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en"><strong>Agent</strong> (Claude Code): it manages files and can publish for you</span><span class="t-zh"><strong>代理人</strong>(Claude Code):它管檔案,還能幫你發佈</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Big sites stay simple: one stylesheet, one menu, clear names, one folder</span><span class="t-zh">大網站保持簡單:一個樣式檔、一個選單、清楚檔名、一個資料夾</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Pick the way that fits you today — you can switch later</span><span class="t-zh">挑現在適合你的方式——之後隨時能換</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lesson-1.html"><span class="t-en">← Lesson 1</span><span class="t-zh">← 第一課</span></a>
+      <a class="btn btn-accent" href="contact.html"><span class="t-en">Questions? Contact me</span><span class="t-zh">有問題?聯絡我</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+</body>
+</html>
