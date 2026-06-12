@@ -86,9 +86,10 @@ html.lang-zh h1, html.lang-zh h2, html.lang-zh h3 { font-weight: 700; }
 .nav { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; gap: 18px; padding: 14px 28px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--ink); text-decoration: none; }
 .brand-mark {
-  width: 32px; height: 32px; border-radius: 10px;
-  background: var(--grad-brand); color: #fff; display: grid; place-items: center;
-  font-family: var(--sans); font-weight: 800; font-size: 12px; box-shadow: var(--sh-sm);
+  width: 32px; height: 32px; border-radius: 9px;
+  background: url('favicon.svg') center / 100% 100% no-repeat;
+  font-size: 0; line-height: 0; color: transparent;
+  box-shadow: var(--sh-sm);
 }
 .nav-right { margin-left: auto; display: flex; align-items: center; gap: 4px; }
 .nav-right a { color: var(--ink-2); text-decoration: none; font-size: 15px; font-weight: 600; padding: 8px 14px; border-radius: 10px; transition: .15s; }
