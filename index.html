@@ -1,42 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="lang-en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI4Teachers — Learn AI the way teachers use it</title>
 <meta name="description" content="A teacher sharing how to use AI to build teaching websites, design courses, and make quizzes. Practical, classroom-ready, no coding needed.">
-<script>(function(){try{var l=localStorage.getItem('ai4t-lang')||'en';document.documentElement.className='lang-'+l;}catch(e){document.documentElement.className='lang-en';}})();</script>
-<style>html.lang-en .zh{display:none}html.lang-zh .en{display:none}</style>
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="lang-en">
+<body>
 
 <header class="site-header">
   <nav class="nav">
     <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
-    <div class="nav-links">
-      <a href="index.html"><span class="en">Home</span><span class="zh">首頁</span></a>
-      <a href="lesson-1.html"><span class="en">Lessons</span><span class="zh">課程</span></a>
-      <a class="cta" href="contact.html"><span class="en">Contact</span><span class="zh">聯絡</span></a>
-      <button class="lang-btn" data-lang-toggle aria-label="Switch language">中文</button>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lesson-1.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
     </div>
   </nav>
 </header>
 
 <!-- ===== Hero ===== -->
 <section class="hero">
-  <div class="wrap">
-    <span class="eyebrow"><span class="en">AI for teachers, by a teacher</span><span class="zh">一位老師，寫給老師的 AI</span></span>
-    <h1 class="en">Learn AI the way <span class="grad">teachers</span> actually use it.</h1>
-    <h1 class="zh">用<span class="grad">老師</span>真正用得上的方式，學 AI。</h1>
-    <p class="lead en">I'm Luke — an educator sharing how I use AI to build teaching websites, design my own courses, and create quizzes. No coding background needed. Just practical skills you can take straight into the classroom.</p>
-    <p class="lead zh">我是 Luke，一位老師。我想跟你分享我如何用 AI 來架設教學網站、設計自己的課程、製作小考題目。你不需要任何程式背景，學到的都是能立刻帶回課堂用的技能。</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="lesson-1.html"><span class="en">Start Lesson 1 →</span><span class="zh">開始第一課 →</span></a>
-      <a class="btn btn-ghost" href="contact.html"><span class="en">Say hello</span><span class="zh">跟我聊聊</span></a>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker"><span class="t-en">AI for teachers, by a teacher</span><span class="t-zh">一位老師，寫給老師</span></span>
+      <h1 class="t-en">Learn AI the way<br>teachers <span class="soft">actually use it.</span></h1>
+      <h1 class="t-zh">用老師真正<br>用得上的<span class="soft">方式學 AI。</span></h1>
+      <p class="lead t-en">I'm Luke — a teacher sharing how I use AI to build teaching websites, design my own courses, and make quizzes. No coding. Just skills you can take straight into the classroom.</p>
+      <p class="lead t-zh">我是 Luke，一位老師。我想分享自己如何用 AI 架設教學網站、設計課程、製作小考。不用寫程式，學到的都能立刻帶進課堂。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="lesson-1.html"><span class="t-en">Start Lesson 1</span><span class="t-zh">開始第一課</span>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="contact.html"><span class="t-en">Say hello</span><span class="t-zh">跟我聊聊</span></a>
+      </div>
+    </div>
+
+    <!-- browser-window mockup -->
+    <div class="window" aria-hidden="true">
+      <div class="window-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="url">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          teacher-anna.github.io
+        </span>
+      </div>
+      <div class="window-body">
+        <span class="mini-kicker">My Class · Grade 4</span>
+        <h4 class="t-en">Welcome to English Club</h4>
+        <h4 class="t-zh">Welcome to English Club</h4>
+        <p class="t-en">A little site I built with AI — lessons, songs, and weekly words for my students.</p>
+        <p class="t-zh">我用 AI 做的小網站——課程、歌曲，還有每週單字，給我的學生。</p>
+        <span class="pill">View this week →</span>
+        <div class="row"><span class="chip" style="flex:2"></span><span class="chip" style="flex:1"></span><span class="chip" style="flex:1.4"></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -45,21 +71,19 @@
 <section class="block">
   <div class="wrap">
     <div class="about">
-      <div class="avatar">LL</div>
-      <div class="about-body">
-        <div class="section-head" style="margin-bottom:18px">
-          <h2 class="en">Hi, I'm Luke</h2>
-          <h2 class="zh">嗨，我是 Luke</h2>
-        </div>
-        <p class="en">I'm a teacher and the founder of <strong>My Culture Connect</strong> (人師教育協會), a nonprofit that brings free English education to rural schools in Taiwan. I spend my days between three things I love — running the association, teaching, and creating learning materials.</p>
-        <p class="en">Lately I've fallen for something new: using AI as a teaching partner. It changed how fast I can build things for my students — and I think every teacher deserves to feel that. So I made this little site to pass it on.</p>
-        <p class="zh">我是一位老師，也是 <strong>人師教育協會</strong>（My Culture Connect）的創辦人——一個在台灣偏鄉提供免費英語教育的非營利組織。我的日常在三件我熱愛的事之間：經營協會、教學、製作教材。</p>
-        <p class="zh">最近我迷上了一件新事：把 AI 當作教學的夥伴。它讓我為學生製作教材的速度完全不一樣了——我覺得每位老師都值得體會這種感覺。所以做了這個小網站，想把它傳下去。</p>
-        <div class="role-tags">
-          <span class="tag"><span class="en">Educator</span><span class="zh">教育工作者</span></span>
-          <span class="tag"><span class="en">AI Instructor</span><span class="zh">AI 講師</span></span>
-          <span class="tag"><span class="en">Founder · My Culture Connect</span><span class="zh">人師教育協會 創辦人</span></span>
-        </div>
+      <div class="mono-badge">LL</div>
+      <span class="kicker"><span class="t-en">About</span><span class="t-zh">關於我</span></span>
+      <h2 style="font-size:clamp(28px,4vw,40px);margin:14px 0 22px">
+        <span class="t-en">Hi, I'm Luke.</span><span class="t-zh">嗨，我是 Luke。</span>
+      </h2>
+      <p class="t-en">I'm a teacher and the founder of <strong>My Culture Connect</strong>, a nonprofit that brings free English education to rural schools in Taiwan. My days move between three things I love — running the association, teaching, and creating learning materials.</p>
+      <p class="t-en">Lately I've fallen for something new: using AI as a teaching partner. It changed how fast I can build things for my students — and I think every teacher deserves to feel that. So I made this site to pass it on.</p>
+      <p class="t-zh">我是一位老師，也是 <strong>人師教育協會</strong>（My Culture Connect）的創辦人——一個在台灣偏鄉提供免費英語教育的非營利組織。我的日常在三件我熱愛的事之間：經營協會、教學、製作教材。</p>
+      <p class="t-zh">最近我迷上了一件新事：把 AI 當作教學的夥伴。它讓我為學生做教材的速度完全不一樣了——我覺得每位老師都值得體會這種感覺。所以做了這個網站，想把它傳下去。</p>
+      <div class="tags">
+        <span class="tag"><span class="t-en">Educator</span><span class="t-zh">教育工作者</span></span>
+        <span class="tag"><span class="t-en">AI Instructor</span><span class="t-zh">AI 講師</span></span>
+        <span class="tag"><span class="t-en">Founder · My Culture Connect</span><span class="t-zh">人師教育協會 創辦人</span></span>
       </div>
     </div>
   </div>
@@ -69,32 +93,28 @@
 <section class="block soft">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="en">What I love sharing</h2>
-      <h2 class="zh">我最想分享的</h2>
-      <p class="en">Three things AI helps me do every week — and I'll show you exactly how.</p>
-      <p class="zh">這三件事，AI 每週都在幫我——我會一步步教你怎麼做。</p>
+      <span class="kicker"><span class="t-en">What I share</span><span class="t-zh">我分享什麼</span></span>
+      <h2><span class="t-en">Three things AI helps me do</span><span class="t-zh">AI 每週幫我做的三件事</span></h2>
+      <p><span class="t-en">Every week, in real classrooms — and I'll show you exactly how.</span><span class="t-zh">每一週，都在真實的課堂裡發生——我會一步步教你怎麼做。</span></p>
     </div>
     <div class="grid cols-3">
-      <div class="card">
-        <div class="ico">🌐</div>
-        <h3 class="en">Teaching websites</h3>
-        <h3 class="zh">教學網站</h3>
-        <p class="en">Build clean, bilingual class websites with AI — and put them online for free, with no code.</p>
-        <p class="zh">用 AI 做出乾淨、雙語的班級網站，免費發佈上線，完全不用寫程式。</p>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg></div>
+        <h3><span class="t-en">Teaching websites</span><span class="t-zh">教學網站</span></h3>
+        <p class="t-en">Build clean, bilingual class websites with AI — and put them online for free, with no code.</p>
+        <p class="t-zh">用 AI 做出乾淨、雙語的班級網站，免費發佈上線，完全不用寫程式。</p>
       </div>
-      <div class="card">
-        <div class="ico">🎓</div>
-        <h3 class="en">Designing courses</h3>
-        <h3 class="zh">設計課程</h3>
-        <p class="en">Use AI as a thinking partner to plan lessons, build learning paths, and shape your own curriculum.</p>
-        <p class="zh">把 AI 當作思考夥伴，規劃課程、設計學習路徑，打造屬於你自己的教材。</p>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 4 5v13c4 0 6.5.5 8 1.5"/><path d="M12 6.5C13.5 5.5 16 5 20 5v13c-4 0-6.5.5-8 1.5"/><path d="M12 6.5v13"/></svg></div>
+        <h3><span class="t-en">Designing courses</span><span class="t-zh">設計課程</span></h3>
+        <p class="t-en">Use AI as a thinking partner to plan lessons, build learning paths, and shape your own curriculum.</p>
+        <p class="t-zh">把 AI 當思考夥伴，規劃課程、設計學習路徑，打造屬於你自己的教材。</p>
       </div>
-      <div class="card">
-        <div class="ico">✏️</div>
-        <h3 class="en">Making quizzes</h3>
-        <h3 class="zh">製作小考</h3>
-        <p class="en">Turn any lesson into quiz questions and self-check activities in minutes — ready for your students.</p>
-        <p class="zh">幾分鐘內把任何一課變成小考題目和自我檢測活動，直接給學生用。</p>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="m9 13 2 2 4-4"/></svg></div>
+        <h3><span class="t-en">Making quizzes</span><span class="t-zh">製作小考</span></h3>
+        <p class="t-en">Turn any lesson into quiz questions and self-check activities in minutes — ready for your students.</p>
+        <p class="t-zh">幾分鐘內把任何一課變成小考題目和自我檢測，直接給學生用。</p>
       </div>
     </div>
   </div>
@@ -104,42 +124,40 @@
 <section class="block">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="en">Start here</h2>
-      <h2 class="zh">從這裡開始</h2>
-      <p class="en">The course goes from beginner to advanced. Here's the very first step.</p>
-      <p class="zh">課程從入門到進階。這是最開始的第一步。</p>
+      <span class="kicker"><span class="t-en">Start here</span><span class="t-zh">從這裡開始</span></span>
+      <h2><span class="t-en">The first step</span><span class="t-zh">第一步</span></h2>
+      <p><span class="t-en">The course runs from beginner to advanced. This is where it begins.</span><span class="t-zh">課程從入門到進階。一切從這裡開始。</span></p>
     </div>
-    <a class="lesson-card" href="lesson-1.html" style="text-decoration:none;color:inherit">
-      <div class="lesson-num">LESSON<br>01</div>
+    <a class="lesson-card" href="lesson-1.html">
+      <div class="lesson-tag">LESSON<br>01</div>
       <div class="meta">
-        <span class="level">BEGINNER</span>
-        <h3 class="en">Publish Your First Website on GitHub</h3>
-        <h3 class="zh">把你的第一個網站發佈到 GitHub</h3>
-        <p class="en">Create a GitHub account, make your own repository, upload an AI-made HTML file, and share a live link — all from your browser.</p>
-        <p class="zh">註冊 GitHub 帳號、建立自己的 repo、上傳 AI 做的 HTML 檔案、發佈一個可分享的網址——全部在瀏覽器裡完成。</p>
+        <span class="level">Beginner</span>
+        <h3><span class="t-en">Publish Your First Website on GitHub</span><span class="t-zh">把你的第一個網站發佈到 GitHub</span></h3>
+        <p class="t-en">Create a GitHub account, make a repository, upload an AI-made HTML file, and share a live link — all from your browser.</p>
+        <p class="t-zh">註冊 GitHub 帳號、建立 repo、上傳 AI 做的 HTML、發佈可分享的網址——全部在瀏覽器裡完成。</p>
       </div>
-      <span class="btn btn-primary" style="flex:0 0 auto"><span class="en">Open →</span><span class="zh">打開 →</span></span>
+      <span class="arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </a>
   </div>
 </section>
 
 <!-- ===== Contact band ===== -->
 <section class="block soft">
-  <div class="wrap" style="text-align:center">
-    <div class="section-head" style="margin:0 auto 24px">
-      <h2 class="en">Teaching, learning, or just curious?</h2>
-      <h2 class="zh">想一起教學、學習，或單純好奇？</h2>
-      <p class="en" style="margin:0 auto">I'd love to hear from you.</p>
-      <p class="zh" style="margin:0 auto">很歡迎你來信。</p>
-    </div>
-    <a class="btn btn-primary" href="contact.html"><span class="en">Get in touch</span><span class="zh">聯絡我</span></a>
+  <div class="wrap" style="text-align:center;max-width:640px">
+    <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:14px">
+      <span class="t-en">Teaching, learning, or just curious?</span><span class="t-zh">想一起教學、學習，或單純好奇？</span>
+    </h2>
+    <p style="color:var(--muted);font-size:19px;margin:0 0 28px">
+      <span class="t-en">I'd love to hear from you.</span><span class="t-zh">很歡迎你來信。</span>
+    </p>
+    <a class="btn btn-accent" href="contact.html"><span class="t-en">Get in touch</span><span class="t-zh">聯絡我</span></a>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="yr">2026</span> AI4Teachers · Luke Lin</span>
-    <span><a href="contact.html"><span class="en">Contact</span><span class="zh">聯絡</span></a></span>
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a></span>
   </div>
 </footer>
 

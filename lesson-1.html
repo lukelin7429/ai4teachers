@@ -1,58 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="lang-en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lesson 1 — Publish Your First Website on GitHub · AI4Teachers</title>
 <meta name="description" content="Step-by-step: create a GitHub account, make a repository, upload an AI-made HTML file, and publish a live website link. No coding needed.">
-<script>(function(){try{var l=localStorage.getItem('ai4t-lang')||'en';document.documentElement.className='lang-'+l;}catch(e){document.documentElement.className='lang-en';}})();</script>
-<style>html.lang-en .zh{display:none}html.lang-zh .en{display:none}</style>
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="lang-en">
+<body>
 
 <header class="site-header">
   <nav class="nav">
     <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
-    <div class="nav-links">
-      <a href="index.html"><span class="en">Home</span><span class="zh">首頁</span></a>
-      <a href="lesson-1.html"><span class="en">Lessons</span><span class="zh">課程</span></a>
-      <a class="cta" href="contact.html"><span class="en">Contact</span><span class="zh">聯絡</span></a>
-      <button class="lang-btn" data-lang-toggle aria-label="Switch language">中文</button>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lesson-1.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
     </div>
   </nav>
 </header>
 
-<!-- ===== Lesson hero ===== -->
 <section class="lesson-hero">
   <div class="wrap">
-    <div class="crumb"><a href="index.html"><span class="en">Home</span><span class="zh">首頁</span></a> &nbsp;/&nbsp; <span class="en">Lesson 1 · Beginner</span><span class="zh">第一課 · 入門</span></div>
-    <h1 class="en">Publish Your First Website on GitHub</h1>
-    <h1 class="zh">把你的第一個網站發佈到 GitHub</h1>
-    <p class="lead en">By the end of this lesson, you'll take an HTML file made by an AI tool and turn it into a real website with a link you can share with anyone — your students, your school, your family. Everything is done in your web browser. No coding, no installing anything.</p>
-    <p class="lead zh">上完這一課，你會把一個由 AI 工具做出來的 HTML 檔案，變成一個真正的網站，並得到一個可以分享給任何人的連結——你的學生、學校、家人都能打開。全部都在瀏覽器裡完成，不用寫程式、不用安裝任何東西。</p>
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 1 · Beginner</span><span class="t-zh">第一課 · 入門</span></div>
+    <h1><span class="t-en">Publish Your First Website on GitHub</span><span class="t-zh">把你的第一個網站發佈到 GitHub</span></h1>
+    <p class="lead t-en">By the end of this lesson you'll take an HTML file made by an AI tool and turn it into a real website — with a link you can share with your students, your school, or your family. Everything happens in your browser. No coding, nothing to install.</p>
+    <p class="lead t-zh">上完這一課，你會把一個由 AI 工具做出來的 HTML 檔案，變成一個真正的網站，並得到一個可以分享的連結——傳給學生、學校或家人都能打開。全程在瀏覽器裡完成，不用寫程式、不用安裝任何東西。</p>
 
     <div class="goals">
-      <h3 class="en">What you'll be able to do</h3>
-      <h3 class="zh">你將學會</h3>
+      <h3><span class="t-en">What you'll be able to do</span><span class="t-zh">你將學會</span></h3>
       <ul>
-        <li><span class="en"><strong>(a)</strong> Create your own GitHub account</span><span class="zh"><strong>(a)</strong> 註冊一個屬於自己的 GitHub 帳號</span></li>
-        <li><span class="en"><strong>(b)</strong> Make your first repository (a folder for your website)</span><span class="zh"><strong>(b)</strong> 建立你的第一個 repository（放網站的資料夾）</span></li>
-        <li><span class="en"><strong>(c)</strong> Upload an HTML file made by an AI tool</span><span class="zh"><strong>(c)</strong> 上傳 AI 工具生成的 HTML 檔案</span></li>
-        <li><span class="en"><strong>(d)</strong> Publish a live website link and share it</span><span class="zh"><strong>(d)</strong> 發佈一個可分享的網站連結</span></li>
+        <li><span class="t-en"><b>a</b> Create your own GitHub account</span><span class="t-zh"><b>a</b> 註冊一個屬於自己的 GitHub 帳號</span></li>
+        <li><span class="t-en"><b>b</b> Make your first repository (a folder for your website)</span><span class="t-zh"><b>b</b> 建立你的第一個 repository（放網站的資料夾）</span></li>
+        <li><span class="t-en"><b>c</b> Upload an HTML file made by an AI tool</span><span class="t-zh"><b>c</b> 上傳 AI 工具生成的 HTML 檔案</span></li>
+        <li><span class="t-en"><b>d</b> Publish a live website link and share it</span><span class="t-zh"><b>d</b> 發佈一個可分享的網站連結</span></li>
       </ul>
     </div>
 
-    <div class="callout tip" style="margin-top:24px">
-      <span class="ci">🎒</span>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
       <div>
-        <strong class="en">Before we start.</strong>
-        <strong class="zh">開始之前。</strong>
-        <span class="en"> Have ready: a computer with a web browser, an email address you can open during class, and one HTML file (for example, a page you made with an AI tool). If you don't have one yet, that's okay — your teacher will give you a sample file.</span>
-        <span class="zh"> 請準備好：一台有瀏覽器的電腦、一個上課時能收信的 email、以及一個 HTML 檔案（例如你用 AI 工具做的頁面）。如果還沒有也沒關係——老師會給你一個範例檔案。</span>
+        <strong class="t-en">Before we start.</strong><strong class="t-zh">開始之前。</strong>
+        <span class="t-en"> Have ready: a computer with a web browser, an email you can open during class, and one HTML file (for example, a page you made with an AI tool). No file yet? That's fine — your teacher will give you a sample.</span>
+        <span class="t-zh"> 請準備好：一台有瀏覽器的電腦、一個上課時能收信的 email、以及一個 HTML 檔案（例如你用 AI 工具做的頁面）。還沒有檔案也沒關係——老師會給你一個範例。</span>
       </div>
     </div>
   </div>
@@ -61,203 +59,148 @@
 <!-- ===== Part A ===== -->
 <section class="part">
   <div class="wrap">
-    <div class="part-label">PART A</div>
-    <h2 class="en">Create your GitHub account</h2>
-    <h2 class="zh">建立你的 GitHub 帳號</h2>
-    <p class="intro en">GitHub is a free service that stores websites and shares them online. First, let's make your account.</p>
-    <p class="intro zh">GitHub 是一個免費的服務，可以存放網站並把它分享到網路上。我們先來建立你的帳號。</p>
-
+    <span class="kicker">Part A</span>
+    <h2><span class="t-en">Create your GitHub account</span><span class="t-zh">建立你的 GitHub 帳號</span></h2>
+    <p class="intro"><span class="t-en">GitHub is a free service that stores websites and shares them online. First, let's make your account.</span><span class="t-zh">GitHub 是一個免費的服務，可以存放網站並分享到網路上。我們先建立你的帳號。</span></p>
     <ol class="steps">
       <li>
-        <span class="step-t en">Open <code>github.com</code></span>
-        <span class="step-t zh">打開 <code>github.com</code></span>
-        <span class="step-d en">In your browser, go to <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and click <strong>Sign up</strong> in the top-right corner.</span>
-        <span class="step-d zh">在瀏覽器裡前往 <a href="https://github.com" target="_blank" rel="noopener">github.com</a>，點右上角的 <strong>Sign up</strong>（註冊）。</span>
+        <span class="step-t"><span class="t-en">Open <code>github.com</code></span><span class="t-zh">打開 <code>github.com</code></span></span>
+        <span class="step-d"><span class="t-en">In your browser, go to <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and click <strong>Sign up</strong> in the top-right corner.</span><span class="t-zh">在瀏覽器前往 <a href="https://github.com" target="_blank" rel="noopener">github.com</a>，點右上角的 <strong>Sign up</strong>（註冊）。</span></span>
       </li>
       <li>
-        <span class="step-t en">Enter your email, password, and username</span>
-        <span class="step-t zh">輸入 email、密碼和使用者名稱</span>
-        <span class="step-d en">Your <strong>username</strong> will appear in your website link, so pick something simple — for example <code>teacher-anna</code>. Lowercase letters and numbers work best.</span>
-        <span class="step-d zh">你的<strong>使用者名稱</strong>會出現在你的網址裡，所以選一個簡單的——例如 <code>teacher-anna</code>。建議用小寫字母和數字。</span>
+        <span class="step-t"><span class="t-en">Enter your email, password, and username</span><span class="t-zh">輸入 email、密碼和使用者名稱</span></span>
+        <span class="step-d"><span class="t-en">Your <strong>username</strong> will appear in your website link, so pick something simple — like <code>teacher-anna</code>. Lowercase letters and numbers work best.</span><span class="t-zh">你的<strong>使用者名稱</strong>會出現在網址裡，選一個簡單的——例如 <code>teacher-anna</code>。建議用小寫字母和數字。</span></span>
       </li>
       <li>
-        <span class="step-t en">Verify your email</span>
-        <span class="step-t zh">驗證你的 email</span>
-        <span class="step-d en">GitHub sends a code to your email. Open your inbox, copy the code, and paste it back to confirm. (No payment is ever needed — GitHub is free for this.)</span>
-        <span class="step-d zh">GitHub 會寄一組驗證碼到你的信箱。打開信箱、複製驗證碼、貼回去確認即可。（完全不需要付費——這些功能 GitHub 都免費。）</span>
+        <span class="step-t"><span class="t-en">Verify your email</span><span class="t-zh">驗證你的 email</span></span>
+        <span class="step-d"><span class="t-en">GitHub sends a code to your inbox. Copy it and paste it back to confirm. No payment is ever needed — this is free.</span><span class="t-zh">GitHub 會寄一組驗證碼到你的信箱。複製後貼回去確認即可。完全不需付費——這是免費的。</span></span>
       </li>
       <li>
-        <span class="step-t en">You're in! 🎉</span>
-        <span class="step-t zh">完成了！🎉</span>
-        <span class="step-d en">You now have a GitHub account. Keep this browser tab open.</span>
-        <span class="step-d zh">你現在有一個 GitHub 帳號了。先讓這個分頁開著。</span>
+        <span class="step-t"><span class="t-en">You're in.</span><span class="t-zh">完成了。</span></span>
+        <span class="step-d"><span class="t-en">You now have a GitHub account. Keep this browser tab open.</span><span class="t-zh">你現在有 GitHub 帳號了。先讓這個分頁開著。</span></span>
       </li>
     </ol>
-    <div class="shot"><span class="en">📷 Screenshot: GitHub sign-up page</span><span class="zh">📷 截圖位置：GitHub 註冊畫面</span></div>
+    <div class="shot"><span class="t-en">Screenshot — GitHub sign-up page</span><span class="t-zh">截圖位置 — GitHub 註冊畫面</span></div>
   </div>
 </section>
 
 <!-- ===== Part B ===== -->
 <section class="part">
   <div class="wrap">
-    <div class="part-label">PART B</div>
-    <h2 class="en">Create your first repository</h2>
-    <h2 class="zh">建立你的第一個 repository</h2>
-    <p class="intro en">A <em>repository</em> (or "repo") is just a folder that holds your website's files. Let's make one.</p>
-    <p class="intro zh">一個 <em>repository</em>（簡稱 repo）其實就是放網站檔案的資料夾。我們來建立一個。</p>
-
+    <span class="kicker">Part B</span>
+    <h2><span class="t-en">Create your first repository</span><span class="t-zh">建立你的第一個 repository</span></h2>
+    <p class="intro"><span class="t-en">A <em>repository</em> (or "repo") is simply a folder that holds your website's files. Let's make one.</span><span class="t-zh">一個 <em>repository</em>（簡稱 repo）就是放網站檔案的資料夾。我們來建立一個。</span></p>
     <ol class="steps">
       <li>
-        <span class="step-t en">Click the <strong>+</strong> &rarr; <strong>New repository</strong></span>
-        <span class="step-t zh">點右上角的 <strong>+</strong> &rarr; <strong>New repository</strong></span>
-        <span class="step-d en">Find the <strong>+</strong> icon in the top-right corner and choose <strong>New repository</strong>.</span>
-        <span class="step-d zh">在右上角找到 <strong>+</strong> 圖示，選 <strong>New repository</strong>（新增儲存庫）。</span>
+        <span class="step-t"><span class="t-en">Click <strong>+</strong> → <strong>New repository</strong></span><span class="t-zh">點 <strong>+</strong> → <strong>New repository</strong></span></span>
+        <span class="step-d"><span class="t-en">Find the <strong>+</strong> in the top-right corner and choose <strong>New repository</strong>.</span><span class="t-zh">在右上角找到 <strong>+</strong>，選 <strong>New repository</strong>（新增儲存庫）。</span></span>
       </li>
       <li>
-        <span class="step-t en">Name your repository</span>
-        <span class="step-t zh">為 repository 命名</span>
-        <span class="step-d en">Type a simple name like <code>my-first-website</code>. Use lowercase letters and hyphens, no spaces.</span>
-        <span class="step-d zh">輸入一個簡單的名字，例如 <code>my-first-website</code>。請用小寫字母和連字號，不要有空格。</span>
+        <span class="step-t"><span class="t-en">Name your repository</span><span class="t-zh">為 repository 命名</span></span>
+        <span class="step-d"><span class="t-en">Type a simple name like <code>my-first-website</code>. Use lowercase letters and hyphens, no spaces.</span><span class="t-zh">輸入一個簡單的名字，例如 <code>my-first-website</code>。用小寫字母和連字號，不要空格。</span></span>
       </li>
       <li>
-        <span class="step-t en">Choose <strong>Public</strong></span>
-        <span class="step-t zh">選擇 <strong>Public</strong>（公開）</span>
-        <span class="step-d en">Public means people can open your website with the link. This is what we want.</span>
-        <span class="step-d zh">Public 代表別人可以用連結打開你的網站——這正是我們要的。</span>
+        <span class="step-t"><span class="t-en">Choose <strong>Public</strong></span><span class="t-zh">選擇 <strong>Public</strong>（公開）</span></span>
+        <span class="step-d"><span class="t-en">Public means people can open your website with the link. That's what we want.</span><span class="t-zh">Public 代表別人能用連結打開你的網站——這正是我們要的。</span></span>
       </li>
       <li>
-        <span class="step-t en">Tick <strong>Add a README file</strong></span>
-        <span class="step-t zh">勾選 <strong>Add a README file</strong></span>
-        <span class="step-d en">This creates a short description page so your repo isn't empty.</span>
-        <span class="step-d zh">這會建立一個簡短的說明頁，讓你的 repo 不是空的。</span>
+        <span class="step-t"><span class="t-en">Tick <strong>Add a README file</strong></span><span class="t-zh">勾選 <strong>Add a README file</strong></span></span>
+        <span class="step-d"><span class="t-en">This adds a short description page so your repo isn't empty.</span><span class="t-zh">這會加一個簡短的說明頁，讓 repo 不是空的。</span></span>
       </li>
       <li>
-        <span class="step-t en">Click <strong>Create repository</strong></span>
-        <span class="step-t zh">點 <strong>Create repository</strong></span>
-        <span class="step-d en">Done — you now have your own repository.</span>
-        <span class="step-d zh">完成——你現在有了自己的 repository。</span>
+        <span class="step-t"><span class="t-en">Click <strong>Create repository</strong></span><span class="t-zh">點 <strong>Create repository</strong></span></span>
+        <span class="step-d"><span class="t-en">Done — you now have your own repository.</span><span class="t-zh">完成——你現在有了自己的 repository。</span></span>
       </li>
     </ol>
-    <div class="shot"><span class="en">📷 Screenshot: "Create a new repository" form</span><span class="zh">📷 截圖位置：建立新 repository 的表單</span></div>
+    <div class="shot"><span class="t-en">Screenshot — "Create a new repository" form</span><span class="t-zh">截圖位置 — 建立新 repository 的表單</span></div>
   </div>
 </section>
 
 <!-- ===== Part C ===== -->
 <section class="part">
   <div class="wrap">
-    <div class="part-label">PART C</div>
-    <h2 class="en">Upload your HTML file</h2>
-    <h2 class="zh">上傳你的 HTML 檔案</h2>
-    <p class="intro en">Now we add the website file that an AI tool made for you.</p>
-    <p class="intro zh">現在我們把 AI 工具幫你做的網站檔案加進去。</p>
-
+    <span class="kicker">Part C</span>
+    <h2><span class="t-en">Upload your HTML file</span><span class="t-zh">上傳你的 HTML 檔案</span></h2>
+    <p class="intro"><span class="t-en">Now we add the website file an AI tool made for you.</span><span class="t-zh">現在把 AI 工具幫你做的網站檔案加進去。</span></p>
     <div class="callout">
-      <span class="ci">⭐</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
       <div>
-        <strong class="en">Most important rule:</strong>
-        <strong class="zh">最重要的一條規則：</strong>
-        <span class="en"> your main file must be named exactly <code>index.html</code>. That is the name GitHub looks for when opening your website. If your file has another name, rename it to <code>index.html</code> first.</span>
-        <span class="zh"> 你的主檔案名稱必須剛好是 <code>index.html</code>。這是 GitHub 打開網站時會去找的名字。如果你的檔案叫別的名字，請先改名為 <code>index.html</code>。</span>
+        <strong class="t-en">Most important rule:</strong><strong class="t-zh">最重要的一條規則：</strong>
+        <span class="t-en"> your main file must be named exactly <code>index.html</code>. That's the name GitHub looks for when opening your site. If your file has another name, rename it to <code>index.html</code> first.</span>
+        <span class="t-zh"> 你的主檔案名稱必須剛好是 <code>index.html</code>。這是 GitHub 打開網站時會找的名字。如果叫別的名字，請先改名為 <code>index.html</code>。</span>
       </div>
     </div>
-
     <ol class="steps">
       <li>
-        <span class="step-t en">Click <strong>Add file</strong> &rarr; <strong>Upload files</strong></span>
-        <span class="step-t zh">點 <strong>Add file</strong> &rarr; <strong>Upload files</strong></span>
-        <span class="step-d en">Inside your repository, find the <strong>Add file</strong> button and choose <strong>Upload files</strong>.</span>
-        <span class="step-d zh">在你的 repository 裡，找到 <strong>Add file</strong> 按鈕，選 <strong>Upload files</strong>（上傳檔案）。</span>
+        <span class="step-t"><span class="t-en">Click <strong>Add file</strong> → <strong>Upload files</strong></span><span class="t-zh">點 <strong>Add file</strong> → <strong>Upload files</strong></span></span>
+        <span class="step-d"><span class="t-en">Inside your repository, find <strong>Add file</strong> and choose <strong>Upload files</strong>.</span><span class="t-zh">在 repository 裡找到 <strong>Add file</strong>，選 <strong>Upload files</strong>（上傳檔案）。</span></span>
       </li>
       <li>
-        <span class="step-t en">Drag your <code>index.html</code> into the box</span>
-        <span class="step-t zh">把 <code>index.html</code> 拖進上傳框</span>
-        <span class="step-d en">Drag the file from your computer into the upload area — or click <strong>choose your files</strong> to pick it. If your page also has images or other files, drag them in too.</span>
-        <span class="step-d zh">把檔案從電腦拖進上傳區——或點 <strong>choose your files</strong> 選取。如果你的頁面還有圖片或其他檔案，也一起拖進去。</span>
+        <span class="step-t"><span class="t-en">Drag your <code>index.html</code> into the box</span><span class="t-zh">把 <code>index.html</code> 拖進上傳框</span></span>
+        <span class="step-d"><span class="t-en">Drag the file from your computer into the upload area — or click <strong>choose your files</strong>. If your page has images too, drag them in as well.</span><span class="t-zh">把檔案從電腦拖進上傳區——或點 <strong>choose your files</strong>。如果頁面還有圖片，也一起拖進去。</span></span>
       </li>
       <li>
-        <span class="step-t en">Click <strong>Commit changes</strong></span>
-        <span class="step-t zh">點 <strong>Commit changes</strong></span>
-        <span class="step-d en">Scroll down and click the green <strong>Commit changes</strong> button. "Commit" just means "save". Your file is now in GitHub.</span>
-        <span class="step-d zh">往下捲，點綠色的 <strong>Commit changes</strong> 按鈕。「Commit」的意思就是「儲存」。你的檔案現在已經在 GitHub 上了。</span>
+        <span class="step-t"><span class="t-en">Click <strong>Commit changes</strong></span><span class="t-zh">點 <strong>Commit changes</strong></span></span>
+        <span class="step-d"><span class="t-en">Scroll down and click the green <strong>Commit changes</strong> button. "Commit" just means "save". Your file is now on GitHub.</span><span class="t-zh">往下捲，點綠色的 <strong>Commit changes</strong>。「Commit」的意思就是「儲存」。你的檔案現在在 GitHub 上了。</span></span>
       </li>
     </ol>
-    <div class="shot"><span class="en">📷 Screenshot: drag-and-drop upload area</span><span class="zh">📷 截圖位置：拖放上傳區域</span></div>
+    <div class="shot"><span class="t-en">Screenshot — drag-and-drop upload area</span><span class="t-zh">截圖位置 — 拖放上傳區域</span></div>
   </div>
 </section>
 
 <!-- ===== Part D ===== -->
 <section class="part">
   <div class="wrap">
-    <div class="part-label">PART D</div>
-    <h2 class="en">Publish your website link</h2>
-    <h2 class="zh">發佈你的網站連結</h2>
-    <p class="intro en">Last step — we turn on <strong>GitHub Pages</strong>, the free feature that puts your website online.</p>
-    <p class="intro zh">最後一步——我們開啟 <strong>GitHub Pages</strong>，這個免費功能會把你的網站放上網路。</p>
-
+    <span class="kicker">Part D</span>
+    <h2><span class="t-en">Publish your website link</span><span class="t-zh">發佈你的網站連結</span></h2>
+    <p class="intro"><span class="t-en">Last step — turn on <strong>GitHub Pages</strong>, the free feature that puts your site online.</span><span class="t-zh">最後一步——開啟 <strong>GitHub Pages</strong>，這個免費功能會把網站放上網路。</span></p>
     <ol class="steps">
       <li>
-        <span class="step-t en">Open <strong>Settings</strong></span>
-        <span class="step-t zh">打開 <strong>Settings</strong></span>
-        <span class="step-d en">At the top of your repository, click the <strong>Settings</strong> tab (the gear).</span>
-        <span class="step-d zh">在 repository 上方，點 <strong>Settings</strong>（設定，齒輪圖示）分頁。</span>
+        <span class="step-t"><span class="t-en">Open <strong>Settings</strong></span><span class="t-zh">打開 <strong>Settings</strong></span></span>
+        <span class="step-d"><span class="t-en">At the top of your repository, click the <strong>Settings</strong> tab.</span><span class="t-zh">在 repository 上方，點 <strong>Settings</strong>（設定）分頁。</span></span>
       </li>
       <li>
-        <span class="step-t en">Click <strong>Pages</strong> in the left menu</span>
-        <span class="step-t zh">在左側選單點 <strong>Pages</strong></span>
-        <span class="step-d en">Scroll the left sidebar until you see <strong>Pages</strong>, and click it.</span>
-        <span class="step-d zh">捲動左側選單，找到 <strong>Pages</strong> 並點進去。</span>
+        <span class="step-t"><span class="t-en">Click <strong>Pages</strong> in the left menu</span><span class="t-zh">在左側選單點 <strong>Pages</strong></span></span>
+        <span class="step-d"><span class="t-en">Scroll the left sidebar until you see <strong>Pages</strong>, then click it.</span><span class="t-zh">捲動左側選單，找到 <strong>Pages</strong> 點進去。</span></span>
       </li>
       <li>
-        <span class="step-t en">Set the source to <strong>main</strong></span>
-        <span class="step-t zh">把來源設為 <strong>main</strong></span>
-        <span class="step-d en">Under "Build and deployment", set <strong>Source</strong> to <em>Deploy from a branch</em>, choose branch <strong>main</strong> and folder <strong>/ (root)</strong>, then click <strong>Save</strong>.</span>
-        <span class="step-d zh">在「Build and deployment」下，把 <strong>Source</strong> 設為 <em>Deploy from a branch</em>，分支選 <strong>main</strong>、資料夾選 <strong>/ (root)</strong>，再點 <strong>Save</strong>。</span>
+        <span class="step-t"><span class="t-en">Set the source to <strong>main</strong></span><span class="t-zh">把來源設為 <strong>main</strong></span></span>
+        <span class="step-d"><span class="t-en">Under "Build and deployment", set <strong>Source</strong> to <em>Deploy from a branch</em>, choose branch <strong>main</strong> and folder <strong>/ (root)</strong>, then click <strong>Save</strong>.</span><span class="t-zh">在「Build and deployment」下，把 <strong>Source</strong> 設為 <em>Deploy from a branch</em>，分支選 <strong>main</strong>、資料夾選 <strong>/ (root)</strong>，再點 <strong>Save</strong>。</span></span>
       </li>
       <li>
-        <span class="step-t en">Wait about 1 minute, then refresh</span>
-        <span class="step-t zh">等大約 1 分鐘，然後重新整理</span>
-        <span class="step-d en">A link will appear at the top of the Pages screen. It looks like this:</span>
-        <span class="step-d zh">Pages 畫面上方會出現一個連結，長得像這樣：</span>
-        <pre><code>https://<span class="en">your-username</span><span class="zh">你的使用者名稱</span>.github.io/my-first-website/</code></pre>
+        <span class="step-t"><span class="t-en">Wait about a minute, then refresh</span><span class="t-zh">等大約一分鐘，然後重新整理</span></span>
+        <span class="step-d"><span class="t-en">A link appears at the top of the Pages screen. It looks like this:</span><span class="t-zh">Pages 畫面上方會出現一個連結，長得像這樣：</span></span>
+        <pre><code>https://your-username.github.io/my-first-website/</code></pre>
       </li>
       <li>
-        <span class="step-t en">Share it! 🎉</span>
-        <span class="step-t zh">分享出去！🎉</span>
-        <span class="step-d en">Open the link to see your website live. Send it to your students, your school, or your family — it works on any phone or computer.</span>
-        <span class="step-d zh">打開連結就能看到你的網站上線了。把它傳給學生、學校或家人——任何手機或電腦都能打開。</span>
+        <span class="step-t"><span class="t-en">Share it.</span><span class="t-zh">分享出去。</span></span>
+        <span class="step-d"><span class="t-en">Open the link to see your website live, then send it to your students, school, or family. It works on any phone or computer.</span><span class="t-zh">打開連結就能看到網站上線，把它傳給學生、學校或家人。任何手機或電腦都能打開。</span></span>
       </li>
     </ol>
-    <div class="shot"><span class="en">📷 Screenshot: GitHub Pages link after publishing</span><span class="zh">📷 截圖位置：發佈後的 GitHub Pages 連結</span></div>
+    <div class="shot"><span class="t-en">Screenshot — the live GitHub Pages link</span><span class="t-zh">截圖位置 — 發佈後的 GitHub Pages 連結</span></div>
   </div>
 </section>
 
-<!-- ===== Troubleshooting ===== -->
+<!-- ===== FAQ ===== -->
 <section class="part">
   <div class="wrap">
-    <div class="part-label">FAQ</div>
-    <h2 class="en">If something doesn't work</h2>
-    <h2 class="zh">如果遇到問題</h2>
-    <div class="grid cols-3" style="margin-top:24px">
-      <div class="card">
-        <div class="ico">⏳</div>
-        <h3 class="en">The link shows "404"</h3>
-        <h3 class="zh">連結出現「404」</h3>
-        <p class="en">Wait 1–2 more minutes and refresh. The first publish can take a moment.</p>
-        <p class="zh">再等 1–2 分鐘後重新整理。第一次發佈需要一點時間。</p>
+    <span class="kicker">FAQ</span>
+    <h2><span class="t-en">If something doesn't work</span><span class="t-zh">如果遇到問題</span></h2>
+    <div class="grid cols-3" style="margin-top:30px">
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">The link shows "404"</span><span class="t-zh">連結出現「404」</span></h3>
+        <p class="t-en">Wait 1–2 more minutes and refresh. The first publish takes a moment.</p>
+        <p class="t-zh">再等 1–2 分鐘後重新整理。第一次發佈需要一點時間。</p>
       </div>
-      <div class="card">
-        <div class="ico">📄</div>
-        <h3 class="en">A blank or wrong page</h3>
-        <h3 class="zh">空白或顯示錯誤</h3>
-        <p class="en">Check your file is named exactly <code>index.html</code> (all lowercase).</p>
-        <p class="zh">確認你的檔案名稱剛好是 <code>index.html</code>（全部小寫）。</p>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">A blank or wrong page</span><span class="t-zh">空白或顯示錯誤</span></h3>
+        <p class="t-en">Check the file is named exactly <code>index.html</code>, all lowercase.</p>
+        <p class="t-zh">確認檔案名稱剛好是 <code>index.html</code>，全部小寫。</p>
       </div>
-      <div class="card">
-        <div class="ico">🔁</div>
-        <h3 class="en">Want to change the page?</h3>
-        <h3 class="zh">想修改頁面？</h3>
-        <p class="en">Upload a new <code>index.html</code> the same way. The site updates in about a minute.</p>
-        <p class="zh">用同樣的方式再上傳一個新的 <code>index.html</code>，網站約一分鐘後就會更新。</p>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">Want to change the page?</span><span class="t-zh">想修改頁面？</span></h3>
+        <p class="t-en">Upload a new <code>index.html</code> the same way. The site updates in about a minute.</p>
+        <p class="t-zh">用同樣方式再上傳一個新的 <code>index.html</code>，約一分鐘後就會更新。</p>
       </div>
     </div>
   </div>
@@ -267,28 +210,26 @@
 <section class="part">
   <div class="wrap">
     <div class="checklist">
-      <h3 class="en">✅ You did it — quick recap</h3>
-      <h3 class="zh">✅ 你做到了——快速回顧</h3>
+      <h3><span class="t-en">You did it — quick recap</span><span class="t-zh">你做到了——快速回顧</span></h3>
       <ul>
-        <li><span class="en">Created a free GitHub account</span><span class="zh">建立了免費的 GitHub 帳號</span></li>
-        <li><span class="en">Made a public repository</span><span class="zh">建立了一個公開的 repository</span></li>
-        <li><span class="en">Uploaded an <code>index.html</code> file</span><span class="zh">上傳了 <code>index.html</code> 檔案</span></li>
-        <li><span class="en">Turned on GitHub Pages and got a live link</span><span class="zh">開啟了 GitHub Pages，拿到了上線連結</span></li>
-        <li><span class="en">Shared your website with the world</span><span class="zh">把你的網站分享給了全世界</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Created a free GitHub account</span><span class="t-zh">建立了免費的 GitHub 帳號</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Made a public repository</span><span class="t-zh">建立了一個公開的 repository</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Uploaded an <code>index.html</code> file</span><span class="t-zh">上傳了 <code>index.html</code> 檔案</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Turned on GitHub Pages and got a live link</span><span class="t-zh">開啟了 GitHub Pages，拿到上線連結</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Shared your website with the world</span><span class="t-zh">把你的網站分享給了全世界</span></li>
       </ul>
     </div>
-
     <div class="lesson-foot">
-      <a class="btn btn-ghost" href="index.html"><span class="en">← Back to home</span><span class="zh">← 回首頁</span></a>
-      <a class="btn btn-primary" href="contact.html"><span class="en">Questions? Contact me</span><span class="zh">有問題？聯絡我</span></a>
+      <a class="btn btn-ghost" href="index.html"><span class="t-en">← Back to home</span><span class="t-zh">← 回首頁</span></a>
+      <a class="btn btn-accent" href="contact.html"><span class="t-en">Questions? Contact me</span><span class="t-zh">有問題？聯絡我</span></a>
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="yr">2026</span> AI4Teachers · Luke Lin</span>
-    <span><a href="index.html"><span class="en">Home</span><span class="zh">首頁</span></a></span>
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
   </div>
 </footer>
 

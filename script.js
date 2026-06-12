@@ -1,33 +1,22 @@
-/* AI4Teachers — one-click EN / 中文 toggle, no page reload.
-   Remembers the choice in localStorage. Default: English
-   (Lesson 1 is taught to international teachers). */
+/* AI4Teachers — clean EN / 中文 toggle.
+   SINGLE source of truth: the <html> element's class.
+   CSS hides the other language; you never see both, never blank. */
 (function () {
   var KEY = 'ai4t-lang';
+  var html = document.documentElement;
 
   function apply(lang) {
-    document.body.classList.remove('lang-en', 'lang-zh');
-    document.body.classList.add('lang-' + lang);
-    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+    html.classList.remove('lang-en', 'lang-zh');
+    html.classList.add('lang-' + lang);
+    html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
     try { localStorage.setItem(KEY, lang); } catch (e) {}
-    var btns = document.querySelectorAll('[data-lang-toggle]');
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].textContent = lang === 'en' ? '中文' : 'EN';
-      btns[i].setAttribute('aria-label', lang === 'en' ? '切換到中文' : 'Switch to English');
-    }
-  }
-
-  function current() {
-    return document.body.classList.contains('lang-zh') ? 'zh' : 'en';
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    var saved = 'en';
-    try { saved = localStorage.getItem(KEY) || 'en'; } catch (e) {}
-    apply(saved);
-    var btns = document.querySelectorAll('[data-lang-toggle]');
+    var btns = document.querySelectorAll('[data-lang]');
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener('click', function () {
-        apply(current() === 'en' ? 'zh' : 'en');
+        apply(this.getAttribute('data-lang'));
       });
     }
   });
