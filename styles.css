@@ -397,7 +397,58 @@ pre code { background: none; border: 0; color: inherit; padding: 0; }
 .feature.rvl.in:hover { transform: translateY(-5px); }
 .lesson-card.rvl.in:hover { transform: translateY(-3px); }
 
+/* hero entrance — staggered rise */
+.hero .kicker, .hero h1, .hero .lead, .hero-actions { animation: rise .7s cubic-bezier(.16, 1, .3, 1) backwards; }
+.hero h1 { animation-delay: .1s; }
+.hero .lead { animation-delay: .22s; }
+.hero-actions { animation-delay: .34s; }
+.hero-vis { position: relative; animation: rise .8s .25s cubic-bezier(.16, 1, .3, 1) backwards; }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } }
+
+/* warm underline draws itself under the gradient words */
+.hero h1 .soft { position: relative; display: inline-block; }
+.hero h1 .soft::after { content: ""; position: absolute; left: 2px; right: 2px; bottom: .02em; height: .1em; border-radius: 99px; background: var(--grad-warm); opacity: .9; transform: scaleX(0); transform-origin: left; animation: drawline .55s 1s cubic-bezier(.2, .8, .2, 1) forwards; }
+@keyframes drawline { to { transform: scaleX(1); } }
+
+/* floating badges around the mockup */
+.float-badge { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line-2); box-shadow: 0 10px 30px rgba(30,90,180,.16); border-radius: 999px; padding: 9px 16px; font-family: var(--sans); font-weight: 700; font-size: 13.5px; color: var(--ink); white-space: nowrap; animation: bob 5s ease-in-out infinite; }
+.float-badge .bi { flex: 0 0 auto; width: 21px; height: 21px; border-radius: 50%; color: #fff; display: grid; place-items: center; }
+.float-badge .bi svg { width: 12px; height: 12px; }
+.fb1 { top: -16px; left: -20px; animation-delay: -1.2s; }
+.fb1 .bi { background: var(--grad-teal); }
+.fb2 { bottom: -15px; right: -16px; animation-duration: 6.2s; }
+.fb2 .bi { background: var(--grad-blue); }
+.fb3 { bottom: -15px; left: 20px; animation-duration: 7s; animation-delay: -3.4s; }
+.fb3 .bi { background: var(--grad-warm); }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (max-width: 560px) { .float-badge { display: none; } }
+
+/* scrolling ticker of things you'll build */
+.ticker { overflow: hidden; background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 17px 0; }
+.ticker-track { display: flex; align-items: center; gap: 36px; width: max-content; animation: tickerscroll 38s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker .item { font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--ink-2); white-space: nowrap; }
+.ticker .tdot { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: var(--grad-warm); }
+@keyframes tickerscroll { to { transform: translateX(-50%); } }
+
+/* cursor spotlight on cards */
+.feature::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(230px circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,.10), transparent 65%); opacity: 0; transition: opacity .25s; pointer-events: none; }
+.feature:hover::after { opacity: 1; }
+
+/* shine sweep across warm buttons */
+.btn-primary, .btn-accent { position: relative; overflow: hidden; }
+.btn-primary::after, .btn-accent::after { content: ""; position: absolute; top: 0; bottom: 0; left: -70%; width: 45%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent); transform: skewX(-20deg); transition: left .55s ease; }
+.btn-primary:hover::after, .btn-accent:hover::after { left: 130%; }
+
+/* header shadow + reading progress (classes/width set by script.js) */
+.site-header { transition: box-shadow .25s; }
+.site-header.scrolled { box-shadow: 0 8px 30px rgba(15,29,54,.09); }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--grad-warm); z-index: 99; }
+
 @media (prefers-reduced-motion: reduce) {
-  .hero h1 .soft, .hero .blob, .window, .ai-caret { animation: none; }
+  .hero h1 .soft, .hero .blob, .window, .ai-caret,
+  .hero .kicker, .hero h1, .hero .lead, .hero-actions, .hero-vis,
+  .float-badge, .ticker-track { animation: none; }
+  .hero h1 .soft::after { animation: none; transform: scaleX(1); }
   .rvl, .window-body .gen { opacity: 1; transform: none; transition: none; }
 }

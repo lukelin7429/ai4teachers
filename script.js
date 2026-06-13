@@ -26,7 +26,7 @@
    Elements get .rvl (hidden) then .in when they enter the viewport. */
 (function () {
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var SEL = '.hero-grid > div, .section-head, .feature, .about, .ahead, .lesson-card, ' +
+  var SEL = '.section-head, .feature, .about, .ahead, .lesson-card, ' +
             '.contact-card, .goals, .mode, .checklist, .track-head, .credo';
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -50,6 +50,33 @@
     window.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
     setTimeout(check, 80);
+  });
+})();
+
+/* Cursor spotlight on cards + header shadow + reading progress bar. */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var cards = document.querySelectorAll('.feature');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('mousemove', function (e) {
+        var r = this.getBoundingClientRect();
+        this.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        this.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    }
+
+    var header = document.querySelector('.site-header');
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+    function onScroll() {
+      if (header) header.classList[window.scrollY > 8 ? 'add' : 'remove']('scrolled');
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
   });
 })();
 
