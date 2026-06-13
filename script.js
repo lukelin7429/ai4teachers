@@ -26,7 +26,7 @@
    Elements get .rvl (hidden) then .in when they enter the viewport. */
 (function () {
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var SEL = '.section-head, .feature, .about, .ahead, .lesson-card, ' +
+  var SEL = '.section-head, .feature, .about, .ahead, .lesson-card, .site-card, ' +
             '.contact-card, .goals, .mode, .checklist, .track-head, .credo';
 
   document.addEventListener('DOMContentLoaded', function () {
