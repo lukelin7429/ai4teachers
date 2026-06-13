@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PowerPoint Games with AI — for English Learning · AI4Teachers</title>
+<meta name="description" content="Use AI to build a real, clickable PowerPoint game for English learning — escape rooms, adventures, quiz boards. The whole trick is slides plus hyperlinks. Includes a ready-to-play example you can download.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Teaching Resources</span><span class="t-zh">教學資源</span></a> &nbsp;/&nbsp; <span class="t-en">PowerPoint Games</span><span class="t-zh">簡報遊戲</span></div>
+    <nav class="course-nav" aria-label="Teaching resources">
+      <a href="res-games.html"><span class="n">1</span><span class="t-en">Games</span><span class="t-zh">教育遊戲</span></a>
+      <a href="res-picture-books.html"><span class="n">2</span><span class="t-en">Picture books</span><span class="t-zh">繪本</span></a>
+      <a href="res-worksheets.html"><span class="n">3</span><span class="t-en">Worksheets</span><span class="t-zh">學習單</span></a>
+      <a href="res-differentiation.html"><span class="n">4</span><span class="t-en">Differentiation</span><span class="t-zh">差異化</span></a>
+      <a href="res-resources.html"><span class="n">5</span><span class="t-en">Free resources</span><span class="t-zh">免費資源</span></a>
+      <a class="active" href="res-ppt-games.html"><span class="n">6</span><span class="t-en">PowerPoint games</span><span class="t-zh">簡報遊戲</span></a>
+    </nav>
+    <h1><span class="t-en">Build a Game Inside PowerPoint — with AI</span><span class="t-zh">用 AI 在 PowerPoint 裡做一個遊戲</span></h1>
+    <p class="lead t-en">Not a quiz — a real game. An escape room, a branching adventure, a quiz board your class plays in teams. The whole secret is two things you already have: <strong>slides</strong> and <strong>links between them</strong>. AI writes the questions, designs the slides, and maps out the paths. You'll see a ready-to-play English game you can download today.</p>
+    <p class="lead t-zh">不是測驗——是真正的遊戲。密室逃脫、分支冒險、讓全班分組玩的搶答盤。整個祕訣就是你早就有的兩樣東西:<strong>投影片</strong>,以及<strong>投影片之間的連結</strong>。AI 幫你寫題目、設計版面、規劃路線。這一頁還附一個今天就能下載、可以玩的英文遊戲。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll understand</span><span class="t-zh">你會明白</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Why PowerPoint games are just slides + hyperlinks</span><span class="t-zh"><b>a</b> 為什麼簡報遊戲其實就是「投影片＋超連結」</span></li>
+        <li><span class="t-en"><b>b</b> Which game types work beautifully — and which don't</span><span class="t-zh"><b>b</b> 哪些遊戲類型做起來很漂亮、哪些不適合</span></li>
+        <li><span class="t-en"><b>c</b> How to have AI design and build the game for you</span><span class="t-zh"><b>c</b> 怎麼讓 AI 幫你設計並做出這個遊戲</span></li>
+        <li><span class="t-en"><b>d</b> The one click-skill you need: linking a button to a slide</span><span class="t-zh"><b>d</b> 你唯一要會的小技巧:把按鈕連到某張投影片</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Part 1 — the big idea -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">The big idea</span><span class="t-zh">核心觀念</span></span>
+    <h2><span class="t-en">A game is just slides that jump to each other</span><span class="t-zh">遊戲,就是會互相跳轉的投影片</span></h2>
+    <p class="intro"><span class="t-en">In a normal slideshow, slide 1 goes to slide 2 goes to slide 3. In a game, a slide asks a question, and <strong>each answer jumps somewhere different</strong>. Right answer? Jump forward. Wrong answer? Jump to a "locked" slide. That branching is the entire trick.</span><span class="t-zh">一般簡報是第 1 頁到第 2 頁、第 2 頁到第 3 頁。在遊戲裡,一張投影片問一個問題,而<strong>每個答案跳到不同的地方</strong>。答對?往前跳。答錯?跳到「上鎖」那頁。這個「分支」就是全部的祕訣。</span></p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="fi" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+        <b><span class="t-en">A slide asks</span><span class="t-zh">一張投影片發問</span></b>
+        <em><span class="t-en">"Which word means BIG?"</span><span class="t-zh">「哪個字是 BIG 的意思?」</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5 11 13.5 15.5 9"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <b><span class="t-en">Right answer</span><span class="t-zh">答對的按鈕</span></b>
+        <em><span class="t-en">links forward → next door.</span><span class="t-zh">連到下一關 → 下一道門。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-warm)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+        <b><span class="t-en">Wrong answer</span><span class="t-zh">答錯的按鈕</span></b>
+        <em><span class="t-en">links to a "locked" slide → try again.</span><span class="t-zh">連到「上鎖」頁 → 再試一次。</span></em>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:30px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <span class="t-en">Because students <strong>click buttons to move</strong> (instead of pressing the arrow key), the game runs in <em>Slide Show</em> mode on any computer — no add-ons, no internet, nothing to install.</span>
+        <span class="t-zh">因為學生是<strong>用點按鈕來前進</strong>(而不是按方向鍵),這個遊戲在任何電腦的<em>播放模式</em>下都能跑——不用外掛、不用網路、不用安裝任何東西。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 2 — what works / what doesn't -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Pick the right game</span><span class="t-zh">挑對遊戲類型</span></span>
+    <h2><span class="t-en">What PowerPoint does brilliantly — and what it doesn't</span><span class="t-zh">PowerPoint 很拿手的 vs 不拿手的</span></h2>
+    <p class="intro"><span class="t-en">Branching and navigation are PowerPoint's superpower. Live scoring and dragging things around are not. Choose a game built on jumping between slides and you'll have a great time.</span><span class="t-zh">「分支」和「導覽」是 PowerPoint 的超能力;「即時計分」和「拖來拖去」則不是。選一個靠「投影片跳轉」的遊戲,就會很順。</span></p>
+    <div class="modes">
+      <div class="mode is-agent">
+        <div class="mode-head">
+          <span class="lbl"><span class="t-en">Great in PowerPoint</span><span class="t-zh">很適合 PowerPoint</span></span>
+          <h3><span class="t-en">Built on jumping between slides</span><span class="t-zh">靠投影片跳轉的遊戲</span></h3>
+        </div>
+        <div class="mode-body">
+          <ul class="plist">
+            <li class="y"><span class="t-en"><strong>Escape room</strong> — read clues, choose, unlock doors</span><span class="t-zh"><strong>密室逃脫</strong>——讀線索、做選擇、解鎖門</span></li>
+            <li class="y"><span class="t-en"><strong>Branching adventure</strong> — your choices change the story</span><span class="t-zh"><strong>分支冒險</strong>——你的選擇改變劇情</span></li>
+            <li class="y"><span class="t-en"><strong>Quiz board (Jeopardy)</strong> — pick a tile, win points in teams</span><span class="t-zh"><strong>搶答盤(Jeopardy)</strong>——點格子、分組搶分</span></li>
+            <li class="y"><span class="t-en"><strong>Board game</strong> — land on a space, do the task</span><span class="t-zh"><strong>大富翁式棋盤</strong>——走到格子、完成任務</span></li>
+            <li class="y"><span class="t-en"><strong>Reveal &amp; memory</strong> — click cards to flip them</span><span class="t-zh"><strong>翻牌記憶</strong>——點卡片翻面</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode is-nonagent">
+        <div class="mode-head">
+          <span class="lbl"><span class="t-en">Better as a web page</span><span class="t-zh">改用網頁更好</span></span>
+          <h3><span class="t-en">Needs scoring, dragging, or saving</span><span class="t-zh">要計分、拖放、或存檔的</span></h3>
+        </div>
+        <div class="mode-body">
+          <ul class="plist">
+            <li class="n"><span class="t-en"><strong>Drag-and-drop</strong> sorting in play mode</span><span class="t-zh">播放模式下的<strong>拖放</strong>分類</span></li>
+            <li class="n"><span class="t-en"><strong>Live score counters</strong> &amp; leaderboards</span><span class="t-zh"><strong>即時計分</strong>與排行榜</span></li>
+            <li class="n"><span class="t-en"><strong>Timers</strong> that change the score</span><span class="t-zh">會影響分數的<strong>計時器</strong></span></li>
+            <li class="n"><span class="t-en"><strong>Saving results</strong> to a sheet</span><span class="t-zh">把<strong>結果存進表單</strong></span></li>
+          </ul>
+          <p style="margin-top:16px;font-size:15px;color:var(--muted)"><span class="t-en">These need fragile macros in PowerPoint. Make them as a web page instead — see <a href="res-games.html">Interactive Games</a> and <a href="lesson-5.html">Lesson 5</a>.</span><span class="t-zh">這些在 PowerPoint 要靠脆弱的巨集。改做成網頁更好——見<a href="res-games.html">互動遊戲</a>與<a href="lesson-5.html">第五課</a>。</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 3 — make it with AI -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Make it with AI</span><span class="t-zh">用 AI 做出來</span></span>
+    <h2><span class="t-en">Two ways to let AI do the heavy lifting</span><span class="t-zh">讓 AI 出力的兩種方式</span></h2>
+    <p class="intro"><span class="t-en">However you work, AI writes every question, the wrong-answer traps, and the design. The only thing a human decides is the shape of the game.</span><span class="t-zh">不管用哪種方式,每一題、每個陷阱選項、每張版面都由 AI 寫。人要決定的只有「遊戲的樣子」。</span></p>
+
+    <div class="modes" style="margin-bottom:34px">
+      <div class="mode is-nonagent">
+        <div class="mode-head">
+          <span class="lbl"><span class="t-en">Way 1 · No code</span><span class="t-zh">方式一 · 不寫程式</span></span>
+          <h3><span class="t-en">AI plans it, you click the links in</span><span class="t-zh">AI 規劃,你把連結點上去</span></h3>
+        </div>
+        <div class="mode-body">
+          <p><span class="t-en">Ask any AI (Gemini, Claude) for a slide-by-slide game plan: what's on each slide, and which button links to which slide. Build the slides, then add the links yourself — it's one easy menu (Part D below).</span><span class="t-zh">請任何 AI(Gemini、Claude)給你一份「逐頁遊戲企劃」:每張投影片放什麼、哪個按鈕連到哪張。把投影片做好,再自己把連結加上去——就是一個簡單的選單(下面 Part D)。</span></p>
+        </div>
+      </div>
+      <div class="mode is-agent">
+        <div class="mode-head">
+          <span class="lbl"><span class="t-en">Way 2 · Agent</span><span class="t-zh">方式二 · 代理人</span></span>
+          <h3><span class="t-en">AI builds the whole .pptx for you</span><span class="t-zh">AI 直接做出整個 .pptx</span></h3>
+        </div>
+        <div class="mode-body">
+          <p><span class="t-en">An agent like Claude Code can generate the finished PowerPoint file — links and all — that you just open and play. That's exactly how the example below was made. More power, a little more setup (<a href="lesson-2.html">Lesson 2</a>).</span><span class="t-zh">像 Claude Code 這種代理人可以直接產出做好的 PowerPoint 檔——連結全都接好——你打開就能玩。下面那個範例就是這樣做出來的。更強大,但要多一點設定(<a href="lesson-2.html">第二課</a>)。</span></p>
+        </div>
+      </div>
+    </div>
+
+    <p class="prompt-label"><span class="t-en">Copy-and-paste prompt — ask for the game plan</span><span class="t-zh">可複製的提示詞——請 AI 給你遊戲企劃</span></p>
+    <pre><code>Design an English-learning <span class="gx">escape-room</span> game in PowerPoint
+for <span class="gx">[grade / level]</span> students, on the topic <span class="gx">[vocabulary / tenses / …]</span>.
+
+- <span class="gx">[4]</span> "doors", each a different English skill.
+- Each door slide: a clue + 3 answer buttons.
+- The right button jumps to the NEXT door; wrong buttons jump to a
+  "Locked — try again" slide that returns to the same door.
+- A start slide and a "You escaped!" winner slide.
+
+Give me a slide-by-slide map: for every slide, the text on it and
+exactly which slide each button should link to. Keep the English
+simple and the design colourful.</code></pre>
+
+    <h3 style="font-size:21px;margin:40px 0 6px"><span class="t-en">Part D · The one click-skill: link a button to a slide</span><span class="t-zh">Part D · 唯一的小技巧:把按鈕連到投影片</span></h3>
+    <p class="intro" style="margin-top:6px"><span class="t-en">This is the only "new" thing to learn, and it takes ten seconds per button:</span><span class="t-zh">這是唯一要學的「新東西」,每個按鈕只花十秒:</span></p>
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">Click the button (or shape) once to select it</span><span class="t-zh">點一下按鈕(或圖形)選取它</span></span>
+        <span class="step-d"><span class="t-en">The shape AI made for "HUGE", for example.</span><span class="t-zh">例如 AI 做的那個「HUGE」按鈕。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Go to <strong>Insert → Link</strong> (or right-click → Link)</span><span class="t-zh">點 <strong>插入 → 連結</strong>(或在按鈕上按右鍵 → 連結)</span></span>
+        <span class="step-d"><span class="t-en">A small window opens.</span><span class="t-zh">會跳出一個小視窗。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Choose <strong>Place in This Document</strong></span><span class="t-zh">選 <strong>這份文件中的位置</strong></span></span>
+        <span class="step-d"><span class="t-en">It lists every slide. Pick the slide this button should jump to — then OK.</span><span class="t-zh">它會列出每一張投影片。選這個按鈕該跳到的那一張——然後按確定。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Repeat for each button, then press <strong>Play</strong></span><span class="t-zh">每個按鈕重複一次,然後按<strong>播放</strong></span></span>
+        <span class="step-d"><span class="t-en">In Slide Show mode, clicking a button now jumps to its slide. Your game is alive.</span><span class="t-zh">在播放模式下,點按鈕就會跳到對應的投影片。你的遊戲活了。</span></span>
+      </li>
+    </ol>
+
+    <figure class="ui-fig" aria-hidden="true">
+      <div class="frame">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="addr" style="font-family:var(--sans);font-weight:700;color:var(--gh-ink)"><b>PowerPoint</b> · Insert Hyperlink</span></div>
+        <div class="screen">
+          <div class="ui-panel">
+            <div class="ui-tabs"><span class="ui-tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/></svg>Place in This Document</span></div>
+            <div class="ui-mini" style="margin-top:4px">
+              <div class="ml"><span class="t-en">Select a place in this document — Slides</span><span class="t-zh">選擇這份文件中的位置 — 投影片</span></div>
+              <div class="slide-opt"><span class="ix">3</span>Door 1 — Vocabulary</div>
+              <div class="slide-opt"><span class="ix">4</span>Locked — try again</div>
+              <div class="slide-opt sel"><span class="ix">5</span>Door 2 — Grammar  ✓</div>
+              <div class="slide-opt"><span class="ix">7</span>Door 3 — Prepositions</div>
+              <div class="slide-opt"><span class="ix">11</span>You escaped!</div>
+            </div>
+            <div style="text-align:right;margin-top:16px"><span class="ui-btn green">OK</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption><span class="t-en">Select the button → Insert → Link → Place in This Document → pick the slide. That's the whole skill.</span><span class="t-zh">選按鈕 → 插入 → 連結 → 這份文件中的位置 → 選投影片。技巧就這樣。</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Part 4 — the real example -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">See a real one</span><span class="t-zh">看一個真的</span></span>
+    <h2><span class="t-en">"Word Quest" — an English escape room</span><span class="t-zh">「Word Quest」——英文密室逃脫</span></h2>
+    <p class="intro"><span class="t-en">Here's a finished game an agent built — eleven slides, four doors, all clickable. Students read an English clue, choose a word, and an open door takes them forward. A wrong choice locks them out until they try again. Open it, press Play, and click.</span><span class="t-zh">這是一個由代理人做好的遊戲——11 張投影片、4 道門,全部可點。學生讀英文線索、選一個字,門開了就前進;選錯就鎖住,直到再試一次。打開它、按播放、開始點。</span></p>
+
+    <div class="shots">
+      <figure><img src="showcase/pptgame-title.jpg" alt="Word Quest title slide" loading="lazy"><figcaption><span class="t-en">Start screen</span><span class="t-zh">開始畫面</span></figcaption></figure>
+      <figure><img src="showcase/pptgame-door.jpg" alt="Word Quest vocabulary door" loading="lazy"><figcaption><span class="t-en">A door: pick the word for BIG</span><span class="t-zh">一道門:選 BIG 的同義字</span></figcaption></figure>
+      <figure><img src="showcase/pptgame-win.jpg" alt="Word Quest winner slide" loading="lazy"><figcaption><span class="t-en">Escape and win</span><span class="t-zh">逃脫成功</span></figcaption></figure>
+    </div>
+
+    <div class="dl-cta">
+      <span class="dl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
+      <div class="dl-tx">
+        <b><span class="t-en">Download Word Quest (.pptx)</span><span class="t-zh">下載 Word Quest(.pptx)</span></b>
+        <span><span class="t-en">Open it, press Play, and click the answers. Swap in your own words to reuse it.</span><span class="t-zh">打開、按播放、點答案。把文字換成你的單字就能重複使用。</span></span>
+      </div>
+      <a class="btn btn-primary" href="downloads/Word_Quest_English_Game.pptx" download><span class="t-en">Download</span><span class="t-zh">下載</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+      </a>
+    </div>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Make it yours.</strong><strong class="t-zh">改成你的。</strong>
+        <span class="t-en"> Keep the structure, just change the words: your unit's vocabulary, your grammar point, your reading text. The links keep working — you only edited the text on the slides.</span>
+        <span class="t-zh"> 保留結構,只換文字:你這個單元的單字、你要教的文法、你的閱讀課文。連結照樣運作——你只改了投影片上的文字而已。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 5 — PPT vs Web -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Which to use</span><span class="t-zh">該用哪個</span></span>
+    <h2><span class="t-en">PowerPoint game or web game?</span><span class="t-zh">簡報遊戲還是網頁遊戲?</span></h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="agentcol"><span class="t-en">PowerPoint game</span><span class="t-zh">簡報遊戲</span></th>
+            <th><span class="t-en">Web game (a page)</span><span class="t-zh">網頁遊戲(一頁)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="t-en">Best for</span><span class="t-zh">最適合</span></th>
+            <td class="agentcol"><span class="t-en">Stories, escape rooms, quiz boards, choices.</span><span class="t-zh">故事、密室、搶答盤、做選擇。</span></td>
+            <td><span class="t-en">Scoring, dragging, typing, saving results.</span><span class="t-zh">計分、拖放、打字、存結果。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Runs where</span><span class="t-zh">在哪裡跑</span></th>
+            <td class="agentcol"><span class="t-en">Any computer with PowerPoint, offline.</span><span class="t-zh">任何有 PowerPoint 的電腦,離線可用。</span></td>
+            <td><span class="t-en">Any browser, by a link — phones too.</span><span class="t-zh">任何瀏覽器、一個連結——手機也行。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">On the projector</span><span class="t-zh">投影到大螢幕</span></th>
+            <td class="agentcol"><span class="t-en">Perfect — already a slideshow.</span><span class="t-zh">完美——它本來就是簡報。</span></td>
+            <td><span class="t-en">Fine, full-screen in the browser.</span><span class="t-zh">也行,瀏覽器全螢幕。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Share with students</span><span class="t-zh">分享給學生</span></th>
+            <td class="agentcol"><span class="t-en">Send the file (or play together in class).</span><span class="t-zh">傳檔案(或全班一起玩)。</span></td>
+            <td><span class="t-en">Send a link — nothing to download.</span><span class="t-zh">傳一個連結——不用下載。</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <div>
+        <span class="t-en"><strong>My rule:</strong> a whole-class game on the projector, or a story with choices? PowerPoint. Something students play alone, with a score that saves? A web page (<a href="lesson-5.html">Lesson 5</a>).</span>
+        <span class="t-zh"><strong>我的原則:</strong>全班一起在投影幕上玩、或有選擇的故事?用 PowerPoint。學生各自玩、分數要存下來的?用網頁(<a href="lesson-5.html">第五課</a>)。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">FAQ</span>
+    <h2><span class="t-en">Common questions</span><span class="t-zh">常見問題</span></h2>
+    <div class="grid cols-3" style="margin-top:30px">
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">The arrow key skips ahead</span><span class="t-zh">按方向鍵會亂跳</span></h3>
+        <p class="t-en">In PowerPoint, set transitions to "On Mouse Click: off" so only the buttons move the game. AI can note this in the plan.</p>
+        <p class="t-zh">在 PowerPoint 把切換設成「按滑鼠時:關閉」,讓只有按鈕能前進。AI 可以在企劃裡幫你註明。</p>
+      </div>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">Does it work on Google Slides?</span><span class="t-zh">Google Slides 能用嗎?</span></h3>
+        <p class="t-en">Yes — slide-to-slide links work there too. Drag-and-drop and macros don't, so stick to the jumping kind.</p>
+        <p class="t-zh">可以——投影片之間的連結在那裡也能用。拖放和巨集不行,所以做「跳轉型」就好。</p>
+      </div>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">Can I add sound or timers?</span><span class="t-zh">可以加音效或計時嗎?</span></h3>
+        <p class="t-en">Sounds and simple animations, yes. Score-changing timers need macros — that's the web's job. Keep games joyful, not high-stakes.</p>
+        <p class="t-zh">音效和簡單動畫可以。會影響分數的計時器要巨集——那是網頁的工作。讓遊戲保持快樂,別變成高壓考試。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Checklist -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">Quick recap</span><span class="t-zh">快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">A PowerPoint game is slides that jump to each other</span><span class="t-zh">簡報遊戲就是會互相跳轉的投影片</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Choose a jumping game — escape room, adventure, quiz board</span><span class="t-zh">選跳轉型遊戲——密室、冒險、搶答盤</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Let AI write the questions, traps, and slide-by-slide plan</span><span class="t-zh">讓 AI 寫題目、陷阱選項、逐頁企劃</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Link each button: Insert → Link → Place in This Document</span><span class="t-zh">每個按鈕連結:插入 → 連結 → 這份文件中的位置</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Downloaded Word Quest and made it my own</span><span class="t-zh">下載了 Word Quest 並改成自己的版本</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lessons.html#teaching-resources"><span class="t-en">← All resources</span><span class="t-zh">← 所有資源</span></a>
+      <a class="btn btn-primary" href="res-games.html"><span class="t-en">Web games too →</span><span class="t-zh">也看網頁遊戲 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+</body>
+</html>

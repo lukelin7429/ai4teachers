@@ -623,3 +623,24 @@ figure.ui-fig { margin: 30px 0 0; }
 .flow .arrow2 { flex: 0 0 auto; align-self: center; color: var(--blue); padding: 0 7px; }
 .flow .arrow2 svg { width: 22px; height: 22px; display: block; }
 @media (max-width: 680px) { .flow { flex-direction: column; } .flow .arrow2 { transform: rotate(90deg); padding: 6px 0; } }
+
+/* ===========================================================
+   PowerPoint-games resource page — screenshots + link dialog
+   =========================================================== */
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 30px 0 0; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; border-radius: 12px; border: 1px solid var(--line-2); box-shadow: var(--sh-sm); display: block; }
+.shots figcaption { margin-top: 9px; font-family: var(--sans); font-size: 13px; color: var(--muted); text-align: center; }
+@media (max-width: 680px) { .shots { grid-template-columns: 1fr; } }
+.dl-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 26px; padding: 22px 26px; background: linear-gradient(135deg, var(--bg-tint), #fff); border: 1px solid var(--line-2); border-radius: var(--r-lg); }
+.dl-cta .dl-ic { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 13px; background: var(--grad-warm); display: grid; place-items: center; color: #fff; box-shadow: var(--sh-sm); }
+.dl-cta .dl-ic svg { width: 24px; height: 24px; }
+.dl-cta .dl-tx { flex: 1 1 240px; }
+.dl-cta .dl-tx b { font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--ink); display: block; }
+.dl-cta .dl-tx span { font-size: 14.5px; color: var(--muted); }
+/* PowerPoint "Insert Link → Place in This Document" mock list */
+.slide-opt { display: flex; align-items: center; gap: 11px; padding: 9px 13px; border-radius: 8px; font-family: var(--sans); font-size: 14px; color: var(--gh-ink); }
+.slide-opt + .slide-opt { margin-top: 2px; }
+.slide-opt.sel { background: #dbeafe; color: var(--gh-blue); font-weight: 700; }
+.slide-opt .ix { width: 24px; height: 24px; border-radius: 6px; background: var(--gh-canvas); display: grid; place-items: center; font-family: var(--mono); font-size: 11px; color: var(--gh-muted); flex: 0 0 auto; }
+.slide-opt.sel .ix { background: var(--gh-blue); color: #fff; }
