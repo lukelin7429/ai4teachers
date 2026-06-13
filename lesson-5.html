@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 5 — Quizzes &amp; Surveys that Save to Google Sheets · AI4Teachers</title>
+<meta name="description" content="Use AI to build a beautiful quiz or survey web page, then use Google Apps Script to send each student's class, name, answers, and score straight into a Google Sheet. Faster and prettier than Google Forms.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 5</span><span class="t-zh">第五課</span></div>
+    <nav class="course-nav" aria-label="Lessons">
+      <a href="lesson-1.html"><span class="n">1</span><span class="t-en">Publish your first site</span><span class="t-zh">發佈第一個網站</span></a>
+      <a href="lesson-2.html"><span class="n">2</span><span class="t-en">Produce the HTML</span><span class="t-zh">產出 HTML</span></a>
+      <a href="lesson-3.html"><span class="n">3</span><span class="t-en">Why not Google Sites</span><span class="t-zh">為何不用 Google Sites</span></a>
+      <a href="lesson-4.html"><span class="n">4</span><span class="t-en">Get a domain</span><span class="t-zh">買網域</span></a>
+      <a class="active" href="lesson-5.html"><span class="n">5</span><span class="t-en">Quizzes to Sheets</span><span class="t-zh">測驗回傳 Sheets</span></a>
+    </nav>
+    <h1><span class="t-en">Quizzes &amp; Surveys that Save to Google Sheets</span><span class="t-zh">會自動存進 Google Sheets 的測驗與問卷</span></h1>
+    <p class="lead t-en">This is my favourite kind of quiz. You build a beautiful quiz page with AI, your students fill it in, and their <strong>class, name, answers, and score</strong> drop straight into a Google Sheet — automatically. The same trick makes a wonderful survey, too. And it's faster and far better-looking than Google Forms.</p>
+    <p class="lead t-zh">這是我最喜歡的一種小考。你用 AI 做出一頁漂亮的測驗，學生填完後，他們的<strong>班級、姓名、作答與分數</strong>會自動掉進一份 Google Sheet 裡。同樣的方法拿來做問卷調查也超好用。而且它比 Google Forms 更快、更好看。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll be able to do</span><span class="t-zh">你將學會</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Have AI write the questions and a beautiful quiz page</span><span class="t-zh"><b>a</b> 讓 AI 寫出題目，並做成一頁漂亮的測驗網頁</span></li>
+        <li><span class="t-en"><b>b</b> Set up a Google Sheet + Apps Script to catch the answers</span><span class="t-zh"><b>b</b> 設定 Google Sheet ＋ Apps Script 來接收作答</span></li>
+        <li><span class="t-en"><b>c</b> Connect the page so scores save to the Sheet automatically</span><span class="t-zh"><b>c</b> 把網頁接上，讓分數自動存進 Sheet</span></li>
+        <li><span class="t-en"><b>d</b> Know when to use this instead of Google Forms</span><span class="t-zh"><b>d</b> 知道什麼時候該用它、而不是 Google Forms</span></li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Before we start.</strong><strong class="t-zh">開始之前。</strong>
+        <span class="t-en"> Have ready: a Google account (for the Sheet), and a place to publish your page — your GitHub Pages site from <a href="lesson-1.html">Lesson 1</a>. About 30 minutes. You don't need to write a single line of code yourself — AI writes the page, and you'll copy a small ready-made script for the Sheet.</span>
+        <span class="t-zh"> 請準備好：一個 Google 帳號（放 Sheet 用），以及一個能發佈網頁的地方——就是<a href="lesson-1.html">第一課</a>的 GitHub Pages 網站。大約 30 分鐘。你完全不用自己寫程式——網頁由 AI 寫，Sheet 的部分只要複製一段現成的小腳本。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part A — the idea ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part A</span>
+    <h2><span class="t-en">How the whole thing works</span><span class="t-zh">整件事是怎麼運作的</span></h2>
+    <p class="intro"><span class="t-en">It looks like magic, but it's just four simple steps passing data along a line. Once you see the shape, the rest is easy.</span><span class="t-zh">看起來像魔法，其實只是四個簡單步驟，把資料一棒接一棒傳下去。看懂這個形狀，後面就簡單了。</span></p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="fi" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"/></svg></span>
+        <b><span class="t-en">AI writes the page</span><span class="t-zh">AI 寫出網頁</span></b>
+        <em><span class="t-en">Questions + a clean design, all on one page.</span><span class="t-zh">題目＋乾淨設計，全在一頁。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <b><span class="t-en">Student fills it in</span><span class="t-zh">學生填寫</span></b>
+        <em><span class="t-en">Name, class, answers — then taps Submit.</span><span class="t-zh">姓名、班級、作答——按下送出。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg></span>
+        <b><span class="t-en">Apps Script catches it</span><span class="t-zh">Apps Script 接住</span></b>
+        <em><span class="t-en">A tiny Google script receives the data.</span><span class="t-zh">一段 Google 小腳本收下資料。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-warm)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></span>
+        <b><span class="t-en">It lands in your Sheet</span><span class="t-zh">掉進你的 Sheet</span></b>
+        <em><span class="t-en">One new row per student, scored.</span><span class="t-zh">每位學生一列，分數算好。</span></em>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:30px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 21h6"/></svg>
+      <div>
+        <span class="t-en">The two new words here are <strong>Apps Script</strong> (free Google code that can do things to your Sheet) and <strong>Web App</strong> (a secret web address that script listens on). You'll meet both in Part C — and AI handles the hard part.</span>
+        <span class="t-zh">這裡只有兩個新名詞：<strong>Apps Script</strong>（Google 免費的程式，可以對你的 Sheet 做事）和 <strong>Web App</strong>（那段腳本在等資料的一個秘密網址）。Part C 會帶你認識它們——而且難的部分都交給 AI。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part B — generate the quiz with AI ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part B</span>
+    <h2><span class="t-en">Have AI build the quiz page</span><span class="t-zh">讓 AI 做出測驗網頁</span></h2>
+    <p class="intro"><span class="t-en">Here's where the time-saving begins. Instead of typing questions into a form one at a time, you describe the whole quiz once and AI writes all of it — every question, the scoring, and the design — in a single page.</span><span class="t-zh">省時間就從這裡開始。你不用一題一題打進表單，而是把整份測驗描述一次，AI 就把全部寫出來——每一題、自動算分、還有設計——全在一頁。</span></p>
+
+    <p class="prompt-label"><span class="t-en">Copy-and-paste prompt</span><span class="t-zh">可直接複製的提示詞</span></p>
+    <pre><code>Make a single self-contained HTML quiz page about <span class="gx">[your topic]</span>
+for <span class="gx">[grade / level]</span> students.
+
+- <span class="gx">[10]</span> multiple-choice questions, ALL on one page (not one at a time).
+- At the top: a "Name" field and a "Class" field.
+- A Submit button that scores the answers in the browser and
+  shows the student their score.
+- On submit, also send the result to this web address using fetch (POST):
+      <span class="gx">[paste your Apps Script /exec URL from Part C]</span>
+  Send it as JSON: { class, name, score, answers }
+- Friendly, colourful design, big text, works on phones.
+  No login, no outside libraries.</code></pre>
+
+    <ol class="steps" style="margin-top:30px">
+      <li>
+        <span class="step-t"><span class="t-en">Fill in the blanks</span><span class="t-zh">把空格填好</span></span>
+        <span class="step-d"><span class="t-en">Topic, level, and how many questions. You can also say "make 5 of them harder" or "add a short-answer question at the end."</span><span class="t-zh">主題、程度、幾題。你也可以說「其中 5 題難一點」或「最後加一題簡答」。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Leave the URL blank for now</span><span class="t-zh">網址先空著</span></span>
+        <span class="step-d"><span class="t-en">You'll get that address in Part C. Just keep AI's page open — you'll paste the URL in at the end.</span><span class="t-zh">那個網址會在 Part C 拿到。先把 AI 做的頁面留著，最後再把網址貼進去。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Preview and tweak</span><span class="t-zh">預覽並微調</span></span>
+        <span class="step-d"><span class="t-en">Read the questions, fix any wording, ask AI to change colours or add your school's name. This is the part only you can do well.</span><span class="t-zh">看一遍題目、修字句，請 AI 換顏色或加上學校名字。這部分只有你能做得好。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Survey instead of a quiz?</strong><strong class="t-zh">想做問卷而不是測驗？</strong>
+        <span class="t-en"> Just say so: "make this a survey, no right answers, no score — collect the choices." Everything else stays the same. Class feedback, parent surveys, reading-interest polls — same method.</span>
+        <span class="t-zh"> 只要說一句：「改成問卷，沒有正確答案、不算分——只收集選項。」其他都一樣。班級回饋、家長問卷、閱讀興趣調查——同一套方法。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part C — Apps Script + Sheet ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part C</span>
+    <h2><span class="t-en">Make a Google Sheet that catches the answers</span><span class="t-zh">做一份會接住作答的 Google Sheet</span></h2>
+    <p class="intro"><span class="t-en">Now we build the other end of the line — the Sheet, and the little script that writes a new row each time a student submits.</span><span class="t-zh">現在來做這條線的另一端——Sheet，以及那段每次學生送出就寫一列的小腳本。</span></p>
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">Make a new Google Sheet</span><span class="t-zh">建一份新的 Google Sheet</span></span>
+        <span class="step-d"><span class="t-en">Go to <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a>. In row 1, type your column headings — for example: <code>Time</code>, <code>Class</code>, <code>Name</code>, <code>Score</code>, <code>Answers</code>.</span><span class="t-zh">前往 <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a>。在第 1 列打上欄位標題——例如：<code>Time</code>、<code>Class</code>、<code>Name</code>、<code>Score</code>、<code>Answers</code>。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Open <strong>Extensions → Apps Script</strong></span><span class="t-zh">打開 <strong>擴充功能 → Apps Script</strong></span></span>
+        <span class="step-d"><span class="t-en">A code editor opens in a new tab. Delete whatever's there, and paste the script below.</span><span class="t-zh">會在新分頁打開一個程式編輯器。把裡面的內容全部刪掉，貼上下面這段腳本。</span></span>
+      </li>
+    </ol>
+
+    <p class="prompt-label"><span class="t-en">Paste this into Apps Script</span><span class="t-zh">把這段貼進 Apps Script</span></p>
+    <pre><code>function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  var data  = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    new Date(),
+    data.class,
+    data.name,
+    data.score,
+    (data.answers || []).join("  |  ")
+  ]);
+  return ContentService.createTextOutput("ok");
+}</code></pre>
+
+    <ol class="steps" style="margin-top:30px">
+      <li>
+        <span class="step-t"><span class="t-en">Click <strong>Deploy → New deployment</strong></span><span class="t-zh">點 <strong>部署 → 新增部署作業</strong></span></span>
+        <span class="step-d"><span class="t-en">Choose type <strong>Web app</strong>. This turns your script into a web address that can receive data.</span><span class="t-zh">類型選 <strong>網頁應用程式（Web app）</strong>。這會把你的腳本變成一個能接收資料的網址。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Set access to <strong>Anyone</strong></span><span class="t-zh">存取權設為 <strong>任何人（Anyone）</strong></span></span>
+        <span class="step-d"><span class="t-en"><em>Execute as:</em> Me. <em>Who has access:</em> Anyone. This lets students' pages send in answers without logging in. (Your Sheet itself stays private — only you can open it.)</span><span class="t-zh"><em>執行身分：</em>我。<em>誰可以存取：</em>任何人。這樣學生的頁面不用登入就能送出作答。（你的 Sheet 本身仍是私人的——只有你能打開。）</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Authorize, then copy the <strong>Web app URL</strong></span><span class="t-zh">授權，然後複製 <strong>網頁應用程式網址</strong></span></span>
+        <span class="step-d"><span class="t-en">Google asks you to allow your own script the first time — that's normal. Then it gives you a URL ending in <code>/exec</code>. <strong>This is the address from Part B.</strong></span><span class="t-zh">Google 第一次會請你授權自己的腳本——這很正常。接著它會給你一個以 <code>/exec</code> 結尾的網址。<strong>這就是 Part B 要用的那個網址。</strong></span></span>
+      </li>
+    </ol>
+
+    <figure class="ui-fig" aria-hidden="true">
+      <div class="frame">
+        <div class="bar sheets"><span class="dots"><i></i><i></i><i></i></span><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg><b>docs.google.com</b>/spreadsheets · Quiz Results</span></div>
+        <div class="screen" style="padding:0">
+          <div class="ui-sheet">
+            <table>
+              <thead class="cols"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead>
+              <thead class="head"><tr><th>1</th><th>Time</th><th>Class</th><th>Name</th><th>Score</th><th>Answers</th></tr></thead>
+              <tbody>
+                <tr><th>2</th><td>09:14</td><td>4A</td><td>Amy Chen</td><td class="sc">9 / 10</td><td>B · A · C · D · A …</td></tr>
+                <tr><th>3</th><td>09:14</td><td>4A</td><td>Ben Wu</td><td class="sc">7 / 10</td><td>B · C · C · D · A …</td></tr>
+                <tr><th>4</th><td>09:15</td><td>4A</td><td>Cathy Lin</td><td class="sc">10 / 10</td><td>B · A · C · D · A …</td></tr>
+                <tr><th>5</th><td>09:15</td><td>4B</td><td>David Ho</td><td class="sc">8 / 10</td><td>B · A · D · D · A …</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <figcaption><span class="t-en">This is what you'll see — one row per student, class, name and score, filling in live.</span><span class="t-zh">你會看到的就是這個——每位學生一列，班級、姓名、分數即時填入。</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== Part D — connect the two ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part D</span>
+    <h2><span class="t-en">Connect the page to the Sheet</span><span class="t-zh">把網頁接上 Sheet</span></h2>
+    <p class="intro"><span class="t-en">Two ends, one link. Now you hand the <code>/exec</code> URL to the quiz page, publish it, and watch the first row appear.</span><span class="t-zh">兩端、一條線。現在把 <code>/exec</code> 網址交給測驗頁、發佈出去，看著第一列出現。</span></p>
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">Paste the URL into the page</span><span class="t-zh">把網址貼進網頁</span></span>
+        <span class="step-d"><span class="t-en">Give the <code>/exec</code> URL back to AI: "here's my Apps Script URL, put it in the page." Or paste it yourself where the page says <code>fetch(</code>.</span><span class="t-zh">把 <code>/exec</code> 網址交回給 AI：「這是我的 Apps Script 網址，請放進頁面。」或自己貼到頁面裡寫著 <code>fetch(</code> 的地方。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Publish the page</span><span class="t-zh">發佈頁面</span></span>
+        <span class="step-d"><span class="t-en">Upload the <code>index.html</code> to your GitHub repository, exactly like <a href="lesson-1.html">Lesson 1</a>. Within a minute it's live and shareable.</span><span class="t-zh">把 <code>index.html</code> 上傳到你的 GitHub repository，就跟<a href="lesson-1.html">第一課</a>一樣。約一分鐘就上線、可以分享。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Test it yourself first</span><span class="t-zh">自己先測一次</span></span>
+        <span class="step-d"><span class="t-en">Open the live page, type a name and class, answer, and submit. Then switch to your Google Sheet — a new row should appear within seconds. 🎉</span><span class="t-zh">打開上線的頁面，輸入姓名和班級、作答、送出。再切回你的 Google Sheet——幾秒內就會出現新的一列。🎉</span></span>
+      </li>
+    </ol>
+
+    <p class="prompt-label"><span class="t-en">What the page is doing (you don't have to write this)</span><span class="t-zh">頁面在做的事（你不用自己寫）</span></p>
+    <pre><code>fetch("https://script.google.com/macros/s/AKfy…/exec", {
+  method: "POST",
+  body: JSON.stringify({ class: cls, name: name, score: score, answers: answers })
+});</code></pre>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">It won't pop up an error — so test by checking the Sheet.</strong><strong class="t-zh">它不會跳錯誤訊息——所以請用「看 Sheet」來測試。</strong>
+        <span class="t-en"> For privacy reasons the page can't read a reply back from Google, so it stays quiet either way. The Sheet is the source of truth: if a new row appeared, it works.</span>
+        <span class="t-zh"> 基於隱私限制，頁面讀不到 Google 回傳的內容，所以不管成功與否它都很安靜。Sheet 才是真相：只要出現新的一列，就代表成功了。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part E — vs Google Forms ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Side by side</span><span class="t-zh">一張表看懂</span></span>
+    <h2><span class="t-en">This vs Google Forms</span><span class="t-zh">這個方法 vs Google Forms</span></h2>
+    <p class="intro"><span class="t-en">Google Forms is fine — and for a single quick question, it's the right call. But the moment you want something beautiful, branded, or long, the difference is huge. Both, by the way, can save to a Google Sheet.</span><span class="t-zh">Google Forms 很好——而且只要一個快速問題，它就是對的選擇。但當你想要漂亮、有品牌感、或題目很多時，差別就很大了。順帶一提，兩者都能存進 Google Sheet。</span></p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="t-en">Your own quiz page</span><span class="t-zh">你自己的測驗網頁</span></th>
+            <th class="agentcol">Google Forms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="t-en">Look &amp; feel</span><span class="t-zh">外觀質感</span></th>
+            <td class="agentcol"><span class="t-en">Anything you want — your colours, your school, real design.</span><span class="t-zh">你想要的任何樣子——你的顏色、你的學校、真正的設計。</span></td>
+            <td><span class="t-en">One plain template. Tidy, but the same as everyone else's.</span><span class="t-zh">一個樸素的模板。整齊，但跟大家長得一樣。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">All questions at once</span><span class="t-zh">所有題目一次看</span></th>
+            <td class="agentcol"><span class="t-en">Yes — one page, scroll through, like a real paper test.</span><span class="t-zh">可以——一頁到底，像真正的紙本考卷。</span></td>
+            <td><span class="t-en">Possible, but built and edited one question at a time.</span><span class="t-zh">做得到，但要一題一題建立和修改。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Building 20 questions</span><span class="t-zh">出 20 題的速度</span></th>
+            <td class="agentcol"><span class="t-en">AI writes all 20 in one go. Minutes.</span><span class="t-zh">AI 一口氣寫完 20 題。幾分鐘。</span></td>
+            <td><span class="t-en">Type, click "add", repeat ×20. Lots of copy-paste.</span><span class="t-zh">打字、按「新增」、重複 20 次。一堆複製貼上。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Auto-scoring</span><span class="t-zh">自動算分</span></th>
+            <td class="agentcol"><span class="t-en">Yes — and you control exactly how feedback looks.</span><span class="t-zh">可以——而且你能完全掌控回饋怎麼呈現。</span></td>
+            <td><span class="t-en">Yes (Quiz mode), within Forms' fixed style.</span><span class="t-zh">可以（測驗模式），但限定在 Forms 的固定樣式裡。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Where answers go</span><span class="t-zh">作答存到哪</span></th>
+            <td class="agentcol"><span class="t-en">Your Google Sheet — class, name, score, answers.</span><span class="t-zh">你的 Google Sheet——班級、姓名、分數、作答。</span></td>
+            <td><span class="t-en">A Google Sheet too. Same destination.</span><span class="t-zh">也是 Google Sheet。同一個目的地。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Lives inside your site</span><span class="t-zh">能放進你的網站</span></th>
+            <td class="agentcol"><span class="t-en">Yes — it's just a page on your own website.</span><span class="t-zh">可以——它本來就是你網站上的一頁。</span></td>
+            <td><span class="t-en">Only as an embedded box; the design never quite matches.</span><span class="t-zh">只能嵌成一個方框；設計永遠搭不太起來。</span></td>
+          </tr>
+          <tr>
+            <th><span class="t-en">Quickest one-off question</span><span class="t-zh">臨時一個小問題</span></th>
+            <td class="agentcol"><span class="t-en">Slight setup (the script, once).</span><span class="t-zh">要一點設定（那段腳本，做一次）。</span></td>
+            <td><span class="t-en">Fastest — nothing to set up. Forms wins here.</span><span class="t-zh">最快——完全免設定。這裡 Forms 勝。</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <div>
+        <span class="t-en"><strong>My rule of thumb:</strong> one quick question for the staff room? Google Forms. A real quiz or survey for my students — many questions, looks lovely, lives on my site? My own page, every time.</span>
+        <span class="t-zh"><strong>我的判斷原則：</strong>辦公室裡一個快速小問題？用 Google Forms。給學生的真正測驗或問卷——題目多、要好看、要放在我的網站上？每次都用我自己的頁面。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">FAQ</span>
+    <h2><span class="t-en">If something doesn't work</span><span class="t-zh">如果遇到問題</span></h2>
+    <div class="grid cols-3" style="margin-top:30px">
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">No new row appears</span><span class="t-zh">沒有出現新的一列</span></h3>
+        <p class="t-en">Check the deployment access is <strong>Anyone</strong>, and that the page has your <code>/exec</code> URL (not the editor URL).</p>
+        <p class="t-zh">確認部署的存取權是<strong>任何人</strong>，而且頁面用的是你的 <code>/exec</code> 網址（不是編輯器的網址）。</p>
+      </div>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">Can students retake it?</span><span class="t-zh">學生可以重做嗎？</span></h3>
+        <p class="t-en">Yes — each submit just adds another row. You'll see every attempt, with its time.</p>
+        <p class="t-zh">可以——每次送出就多一列。你會看到每一次作答和它的時間。</p>
+      </div>
+      <div class="feature">
+        <h3 style="font-size:18px"><span class="t-en">Is it private?</span><span class="t-zh">這樣安全嗎？</span></h3>
+        <p class="t-en">Only you can open the Sheet. Keep it to names and answers — never collect anything sensitive. See <a href="responsible-ai.html">Responsible AI</a>.</p>
+        <p class="t-zh">只有你能打開那份 Sheet。只收姓名和作答就好——絕不收集敏感資料。參見<a href="responsible-ai.html">負責任 AI</a>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Checklist ===== -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">You did it — quick recap</span><span class="t-zh">你做到了——快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Had AI write the questions and a beautiful quiz page</span><span class="t-zh">讓 AI 寫出題目和一頁漂亮的測驗</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Set up a Google Sheet with an Apps Script Web App</span><span class="t-zh">設定了一份 Google Sheet 和 Apps Script 網頁應用程式</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Connected the page so scores save automatically</span><span class="t-zh">把頁面接上，讓分數自動存檔</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Saw class, name, and score land in your Sheet</span><span class="t-zh">看到班級、姓名、分數掉進你的 Sheet</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Know when to reach for this instead of Google Forms</span><span class="t-zh">知道什麼時候用它、而不是 Google Forms</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lesson-4.html"><span class="t-en">← Lesson 4</span><span class="t-zh">← 第四課</span></a>
+      <a class="btn btn-primary" href="lessons.html"><span class="t-en">See all lessons →</span><span class="t-zh">看完整課程 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+</body>
+</html>
