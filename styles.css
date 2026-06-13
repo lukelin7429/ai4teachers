@@ -337,3 +337,7 @@ pre code { background: none; border: 0; color: inherit; padding: 0; }
 .ahead-close { margin: 34px 0 0; font-family: var(--display); font-weight: 600; font-size: clamp(19px, 2.4vw, 23px); color: var(--ink); }
 .ahead-close .gx2 { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 760px){ .ahead-skills { grid-template-columns: 1fr; } }
+
+/* personal credo pull-quote (Responsible AI page) */
+.credo { font-family: var(--display); font-weight: 600; font-size: clamp(20px, 2.8vw, 27px); line-height: 1.45; letter-spacing: -.01em; color: var(--ink); border-left: 4px solid var(--blue); padding: 2px 0 2px 22px; margin: 24px 0 8px; max-width: 760px; }
+.credo em { font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
