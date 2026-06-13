@@ -21,3 +21,82 @@
     }
   });
 })();
+
+/* Scroll reveal — getBoundingClientRect version, auto-applied site-wide.
+   Elements get .rvl (hidden) then .in when they enter the viewport. */
+(function () {
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SEL = '.hero-grid > div, .section-head, .feature, .about, .ahead, .lesson-card, ' +
+            '.contact-card, .goals, .mode, .checklist, .track-head, .credo';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var els = [].slice.call(document.querySelectorAll(SEL));
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], p = el.parentNode;
+      p.__rvlN = (p.__rvlN === undefined) ? 0 : p.__rvlN + 1;
+      el.classList.add('rvl');
+      if (p.__rvlN % 3 === 1) el.classList.add('d1');
+      if (p.__rvlN % 3 === 2) el.classList.add('d2');
+    }
+    function check() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (el.classList.contains('in')) continue;
+        var r = el.getBoundingClientRect();
+        if (r.top < vh * 0.88 && r.bottom > 0) el.classList.add('in');
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    setTimeout(check, 80);
+  });
+})();
+
+/* Hero mockup: "you type a prompt, AI builds the site" loop. */
+(function () {
+  var PROMPT = 'Make a bilingual website for my Grade 4 English club';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var txt = document.querySelector('.ai-text');
+    if (!txt) return;
+    var caret = document.querySelector('.ai-caret');
+    var gens = document.querySelectorAll('.window-body .gen');
+    var STEPS = 5;
+
+    function setStep(s, on) {
+      for (var i = 0; i < gens.length; i++) {
+        if (+gens[i].getAttribute('data-step') === s) {
+          gens[i].classList[on ? 'add' : 'remove']('on');
+        }
+      }
+    }
+
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      txt.textContent = PROMPT;
+      if (caret) caret.style.display = 'none';
+      for (var s = 1; s <= STEPS; s++) setStep(s, true);
+      return;
+    }
+
+    function run() {
+      for (var s = 1; s <= STEPS; s++) setStep(s, false);
+      txt.textContent = '';
+      var i = 0;
+      (function type() {
+        if (i < PROMPT.length) {
+          txt.textContent += PROMPT.charAt(i++);
+          setTimeout(type, 34 + Math.random() * 38);
+        } else {
+          setTimeout(function () { reveal(1); }, 550);
+        }
+      })();
+      function reveal(s) {
+        setStep(s, true);
+        if (s < STEPS) setTimeout(function () { reveal(s + 1); }, 300);
+        else setTimeout(run, 5600);
+      }
+    }
+    setTimeout(run, 600);
+  });
+})();
