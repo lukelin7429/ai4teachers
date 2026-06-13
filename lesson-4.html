@@ -154,6 +154,31 @@
         <span class="step-d"><span class="t-en">So you never accidentally lose your domain.</span><span class="t-zh">這樣才不會不小心讓網域過期被收回。</span></span>
       </li>
     </ol>
+    <figure class="ui-fig" aria-hidden="true">
+      <div class="frame">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><b>your-registrar.com</b>/search</span></div>
+        <div class="screen">
+          <div class="ui-panel">
+            <h3 class="ui-h"><span class="t-en">Find your domain</span><span class="t-zh">搜尋你的網域</span></h3>
+            <div class="ui-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <span class="q">ai-for-teachers.org</span>
+              <span class="ui-btn green go"><span class="t-en">Search</span><span class="t-zh">搜尋</span></span>
+            </div>
+            <div class="ui-result">
+              <span class="dn">ai-for-teachers.org</span>
+              <span class="avail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Available</span><span class="t-zh">可註冊</span></span>
+              <span class="price">US$12<span style="font-weight:400;color:var(--gh-muted)">/yr</span></span>
+            </div>
+            <div class="ui-taken">
+              <span class="dn">ai4teachers.org</span>
+              <span class="tk"><span class="t-en">Taken</span><span class="t-zh">已被註冊</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><span class="t-en">If the short name is taken, the spelled-out version is often free — and just as good.</span><span class="t-zh">短名被搶走時，拼出來的版本通常還空著——而且一樣好用。</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -185,6 +210,24 @@
         <span class="step-d"><span class="t-en">Switch the cloud icon to grey (DNS only), so GitHub can issue your HTTPS certificate.</span><span class="t-zh">把雲朵圖示切成灰色(DNS only),這樣 GitHub 才能簽你的 HTTPS 憑證。</span></span>
       </li>
     </ol>
+    <figure class="ui-fig" aria-hidden="true">
+      <div class="frame">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><b>your-registrar.com</b>/dns</span></div>
+        <div class="screen">
+          <table class="ui-dns">
+            <thead><tr><th>Type</th><th>Name</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="type">A</td><td>@</td><td>185.199.108.153</td></tr>
+              <tr><td class="type">A</td><td>@</td><td>185.199.109.153</td></tr>
+              <tr><td class="type">A</td><td>@</td><td>185.199.110.153</td></tr>
+              <tr><td class="type">A</td><td>@</td><td>185.199.111.153</td></tr>
+              <tr><td class="type">CNAME</td><td>www</td><td>teacher-anna.github.io</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <figcaption><span class="t-en">Five records total — four A records for the root, one CNAME for <code>www</code>.</span><span class="t-zh">總共五筆——根網域四筆 A 記錄，<code>www</code> 一筆 CNAME。</span></figcaption>
+    </figure>
     <div class="callout">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       <div>
