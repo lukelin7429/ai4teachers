@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Language for AI Agents · AI4Teachers</title>
+<meta name="description" content="A detailed bilingual lesson for teachers: learn website design language and how to give clear instructions to AI agents.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a> &nbsp;/&nbsp; <span class="t-en">Design Language</span><span class="t-zh">設計語言</span></div>
+    <nav class="course-nav" aria-label="Design language sections">
+      <a class="active" href="#layout"><span class="n">0.1</span><span class="t-en">Layout</span><span class="t-zh">版面</span></a>
+      <a href="#ux"><span class="n">0.2</span><span class="t-en">UX</span><span class="t-zh">好用</span></a>
+      <a href="#style"><span class="n">0.3</span><span class="t-en">Style</span><span class="t-zh">風格</span></a>
+      <a href="#content"><span class="n">0.4</span><span class="t-en">Content</span><span class="t-zh">內容</span></a>
+      <a href="#instruct"><span class="n">0.5</span><span class="t-en">Instruct</span><span class="t-zh">下指令</span></a>
+    </nav>
+    <h1><span class="t-en">Design Language for AI Agents</span><span class="t-zh">給 AI agents 的網站設計語言</span></h1>
+    <p class="lead t-en">This is the missing layer between “make it beautiful” and a website that actually works. You will learn the words designers use, what they mean in plain teacher language, and how to turn them into clear instructions for AI agents.</p>
+    <p class="lead t-zh">這一課補上「幫我美化」和「真的做出好網站」之間缺少的那一層。你會學網站設計者常用的詞、用老師能理解的方式知道它們是什麼，並把它們變成可以交給 AI agents 的清楚指令。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">By the end, you can ask for</span><span class="t-zh">學完後，你可以要求 AI agents 做到</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> A clear first screen with a strong purpose</span><span class="t-zh"><b>a</b> 第一屏清楚、有明確目的</span></li>
+        <li><span class="t-en"><b>b</b> A page flow that teachers, parents, and students can follow</span><span class="t-zh"><b>b</b> 老師、家長、學生都看得懂的頁面順序</span></li>
+        <li><span class="t-en"><b>c</b> A visual style that matches education, not random decoration</span><span class="t-zh"><b>c</b> 符合教育現場的視覺風格，而不是隨機裝飾</span></li>
+        <li><span class="t-en"><b>d</b> Mobile-friendly pages with readable text and clear buttons</span><span class="t-zh"><b>d</b> 手機好讀、按鈕清楚、文字不擠壓的頁面</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="layout">
+  <div class="wrap">
+    <span class="kicker">Lesson 0.1</span>
+    <h2><span class="t-en">Layout &amp; Visual Hierarchy</span><span class="t-zh">版面與視覺層級</span></h2>
+    <p class="intro"><span class="t-en">A beautiful website is not just “nice colors.” It is a page where the most important thing is obvious first. Visual hierarchy means the page quietly tells the eye where to look: first the headline, then the explanation, then the button, then the supporting details.</span><span class="t-zh">漂亮的網站不是只有「顏色好看」。真正好的頁面，是讓最重要的東西第一眼就很明顯。視覺層級的意思是：頁面會安靜地引導眼睛先看標題、再看說明、再看按鈕，最後才看補充內容。</span></p>
+
+    <div class="deep-grid">
+      <div class="deep-card">
+        <h3><span class="t-en">What to tell the agent</span><span class="t-zh">你要告訴 agent 什麼</span></h3>
+        <ul class="plain-list">
+          <li><span class="t-en">What should users notice first?</span><span class="t-zh">使用者第一眼要看到什麼？</span></li>
+          <li><span class="t-en">What action should be easiest to take?</span><span class="t-zh">哪一個行動要最容易完成？</span></li>
+          <li><span class="t-en">Should the page feel dense, calm, playful, formal, or practical?</span><span class="t-zh">頁面要密集、沉穩、活潑、正式，還是實用？</span></li>
+        </ul>
+      </div>
+      <div class="deep-card">
+        <h3><span class="t-en">Teacher example</span><span class="t-zh">老師情境範例</span></h3>
+        <p><span class="t-en">For a class website, the first screen might need: class name, this week's topic, one practice button, and a short note for parents.</span><span class="t-zh">如果是班級網站，第一屏可能需要：班級名稱、本週主題、一個練習按鈕，以及給家長的一句簡短說明。</span></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h3><span class="t-en">Prompt you can copy</span><span class="t-zh">可以直接複製的指令</span></h3>
+      <pre class="t-en"><code>Please redesign the first screen of this teaching website.
+Make the visual hierarchy clear:
+1. The visitor should first understand who this website is for.
+2. The main headline should be short and easy to understand.
+3. The primary CTA should be visually stronger than other links.
+4. Use enough whitespace so the page feels calm, not crowded.
+5. Check the mobile version and make sure the headline and button fit.</code></pre>
+      <pre class="t-zh"><code>請重新設計這個教學網站的第一屏。
+請讓視覺層級清楚：
+1. 訪客第一眼要知道這個網站是給誰看的。
+2. 主標題要短、容易理解。
+3. 主要 CTA 要比其他連結更明顯。
+4. 使用足夠留白，讓頁面穩定、不擁擠。
+5. 請檢查手機版，確認標題和按鈕都放得下。</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="ux">
+  <div class="wrap">
+    <span class="kicker">Lesson 0.2</span>
+    <h2><span class="t-en">UX: Make the Site Easy to Use</span><span class="t-zh">UX：讓網站真正好用</span></h2>
+    <p class="intro"><span class="t-en">UX means user experience. For teachers, this simply means: can a real person use the page without asking you what to do? A good page helps visitors understand, decide, and act.</span><span class="t-zh">UX 是 User Experience，使用者體驗。對老師來說，簡單講就是：一個真實的人打開頁面後，能不能不用問你，就知道下一步要做什麼？好的頁面會幫訪客理解、決定、行動。</span></p>
+
+    <div class="deep-grid">
+      <div class="deep-card">
+        <h3><span class="t-en">5-second test</span><span class="t-zh">5 秒測試</span></h3>
+        <p><span class="t-en">Ask someone to open the page for 5 seconds, then close it. Can they tell you what the page is, who it is for, and what they should click?</span><span class="t-zh">請別人打開頁面 5 秒後關掉。對方能不能說出這頁是什麼、給誰看、應該點哪裡？</span></p>
+      </div>
+      <div class="deep-card">
+        <h3><span class="t-en">User journey</span><span class="t-zh">使用者旅程</span></h3>
+        <p><span class="t-en">A parent may want announcements. A student may want practice. A teacher may want downloads. The page should not force all users through the same confusing path.</span><span class="t-zh">家長可能想看公告，學生可能想練習，老師可能想下載教材。頁面不要讓所有人都走同一條混亂的路。</span></p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li><span class="step-t"><span class="t-en">Name the user</span><span class="t-zh">先說使用者是誰</span></span><span class="step-d"><span class="t-en">Do not just say “make a website.” Say “for Grade 4 students and their parents.”</span><span class="t-zh">不要只說「做網站」。要說「給四年級學生和家長看的」。</span></span></li>
+      <li><span class="step-t"><span class="t-en">Name the task</span><span class="t-zh">再說他們要完成什麼</span></span><span class="step-d"><span class="t-en">Examples: find this week's homework, register for a club, download a worksheet, or contact the teacher.</span><span class="t-zh">例如：找到本週作業、報名社團、下載學習單、聯絡老師。</span></span></li>
+      <li><span class="step-t"><span class="t-en">Remove friction</span><span class="t-zh">減少阻礙</span></span><span class="step-d"><span class="t-en">Ask the agent to reduce unnecessary text, confusing links, tiny buttons, and long scrolling before the main action.</span><span class="t-zh">請 agent 減少不必要文字、混亂連結、太小的按鈕，以及主要行動前過長的捲動。</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="part" id="style">
+  <div class="wrap">
+    <span class="kicker">Lesson 0.3</span>
+    <h2><span class="t-en">Visual Style Direction</span><span class="t-zh">視覺風格方向</span></h2>
+    <p class="intro"><span class="t-en">“Beautiful” is too vague. AI agents need a direction. The more precisely you describe the feeling, the less random the design becomes.</span><span class="t-zh">「漂亮」太模糊了。AI agents 需要方向。你越精準描述感覺，設計就越不會隨機亂做。</span></p>
+
+    <div class="term-detail-grid">
+      <div class="term-detail"><b>Warm</b><span class="t-en">Human, friendly, approachable.</span><span class="t-zh">有人味、親切、容易接近。</span></div>
+      <div class="term-detail"><b>Trustworthy</b><span class="t-en">Stable, clear, appropriate for schools.</span><span class="t-zh">穩定、清楚、適合學校。</span></div>
+      <div class="term-detail"><b>Institutional</b><span class="t-en">Formal enough for organizations and public schools.</span><span class="t-zh">有機構感，適合組織與公立學校。</span></div>
+      <div class="term-detail"><b>Editorial</b><span class="t-en">Magazine-like rhythm, strong headings, thoughtful photos.</span><span class="t-zh">像雜誌，有節奏、標題強、照片有選擇。</span></div>
+      <div class="term-detail"><b>Clean</b><span class="t-en">Uncluttered, easy to scan, not over-decorated.</span><span class="t-zh">乾淨、易掃讀、不過度裝飾。</span></div>
+      <div class="term-detail"><b>Playful</b><span class="t-en">Good for children, but easy to overdo.</span><span class="t-zh">適合孩子，但很容易過頭。</span></div>
+    </div>
+
+    <div class="example-box">
+      <h3><span class="t-en">Better style instruction</span><span class="t-zh">更好的風格指令</span></h3>
+      <pre class="t-en"><code>Make this page feel warm, professional, and trustworthy.
+It is for an education nonprofit, so do not make it look like a commercial cram school.
+Use friendly colors, real classroom energy, clear headings, and calm spacing.
+Avoid childish decoration, oversized marketing sections, and random gradients.</code></pre>
+      <pre class="t-zh"><code>請讓這個頁面感覺溫暖、專業、可信賴。
+這是教育公益網站，不要做得像商業補習班。
+請使用親切的顏色、真實課堂感、清楚標題、穩定留白。
+避免幼稚裝飾、過大的行銷式區塊，以及隨機漸層。</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="content">
+  <div class="wrap">
+    <span class="kicker">Lesson 0.4</span>
+    <h2><span class="t-en">Content Design</span><span class="t-zh">內容設計</span></h2>
+    <p class="intro"><span class="t-en">Content design is deciding what to say, what order to say it in, and how much text each section deserves. A page can look expensive and still fail if the words do not guide the visitor.</span><span class="t-zh">內容設計就是決定要說什麼、用什麼順序說、每個區塊該放多少文字。網站就算看起來很高級，如果文字沒有引導訪客，仍然會失敗。</span></p>
+
+    <div class="checklist">
+      <h3><span class="t-en">A useful section flow for education sites</span><span class="t-zh">教育網站好用的段落順序</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Who this page is for</span><span class="t-zh">這頁是給誰看的</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">What problem or need it answers</span><span class="t-zh">它解決什麼問題或需求</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">What the visitor can do here</span><span class="t-zh">訪客在這裡可以做什麼</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Proof, examples, or real student work</span><span class="t-zh">成果、案例或學生作品</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">One clear next step</span><span class="t-zh">一個清楚的下一步</span></li>
+      </ul>
+    </div>
+
+    <div class="deep-grid" style="margin-top:28px">
+      <div class="deep-card">
+        <h3><span class="t-en">Weak instruction</span><span class="t-zh">比較弱的指令</span></h3>
+        <p><span class="t-en">“Make the text better.”</span><span class="t-zh">「幫我把文字變好。」</span></p>
+      </div>
+      <div class="deep-card">
+        <h3><span class="t-en">Strong instruction</span><span class="t-zh">比較強的指令</span></h3>
+        <p><span class="t-en">“Rewrite the page so a busy parent can scan it quickly. Use short headings, one idea per section, and a clear contact CTA at the end.”</span><span class="t-zh">「請重寫這頁，讓忙碌家長能快速掃讀。每段用短標題，一區只講一個概念，最後放清楚的聯絡 CTA。」</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="instruct">
+  <div class="wrap">
+    <span class="kicker">Lesson 0.5</span>
+    <h2><span class="t-en">How to Instruct AI Agents</span><span class="t-zh">如何對 AI agents 下指令</span></h2>
+    <p class="intro"><span class="t-en">AI agents are not mind readers. They can produce excellent work when you give them context, goals, constraints, and examples. The quality of the website often depends on the quality of the instruction.</span><span class="t-zh">AI agents 不會讀心。你給它背景、目標、限制、範例，它就能做得很好。網站品質常常取決於指令品質。</span></p>
+
+    <div class="example-box" id="prompt-formula">
+      <h3><span class="t-en">The full prompt formula</span><span class="t-zh">完整指令公式</span></h3>
+      <pre class="t-en"><code>Please create or improve [page / section].
+
+Target users: [who will visit this site]
+Website goal: [what you want them to understand or do]
+Style direction: [warm / professional / modern / educational]
+Content order: [hero, mission, services, examples, contact]
+Must include: [photos, CTA, bilingual text, downloadable resource]
+Avoid: [what you do not want it to look like]
+Check carefully: [mobile layout, readability, speed, consistency]</code></pre>
+      <pre class="t-zh"><code>請幫我製作或修改 [頁面 / 區塊]。
+
+目標使用者：[誰會看這個網站]
+網站目標：[希望他理解什麼或做什麼]
+風格方向：[溫暖 / 專業 / 現代 / 教育感]
+內容順序：[第一屏、使命、服務、案例、聯絡]
+必須包含：[照片、CTA、雙語文字、可下載資源]
+請避免：[你不想要的樣子]
+請仔細檢查：[手機版、可讀性、速度、整體一致]</code></pre>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Important teacher habit.</strong><strong class="t-zh">老師最重要的習慣。</strong>
+        <span class="t-en"> Do not ask only once. Ask, inspect the result, then give sharper feedback: “The CTA is not clear enough,” “the mobile heading is too long,” or “this looks too commercial.”</span>
+        <span class="t-zh"> 不要只問一次。先問、看結果、再給更精準的回饋：「CTA 不夠明顯」、「手機標題太長」、「這看起來太商業」。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="vocabulary">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Vocabulary Deep Dive</span><span class="t-zh">術語深入說明</span></span>
+    <h2><span class="t-en">The words you can use with AI agents</span><span class="t-zh">可以拿來跟 AI agents 溝通的詞</span></h2>
+    <p class="intro"><span class="t-en">These are not fancy words for designers only. They are practical handles you can use to steer the agent.</span><span class="t-zh">這些不是設計師炫技的詞，而是你可以拿來控制 agent 方向的實用把手。</span></p>
+
+    <div class="term-detail-grid">
+      <div class="term-detail" id="hero-section"><b>Hero Section</b><span class="t-en">The first major section. Ask it to answer: who are we, who is this for, and what should visitors do next?</span><span class="t-zh">第一個大型區塊。請它回答：我們是誰、給誰看、下一步要做什麼？</span></div>
+      <div class="term-detail" id="cta"><b>CTA</b><span class="t-en">Call to Action. The most important button or link, such as Start Lesson 1, Contact, Download, or Register.</span><span class="t-zh">Call to Action，行動呼籲。最重要的按鈕或連結，例如開始第一課、聯絡、下載、報名。</span></div>
+      <div class="term-detail" id="above-fold"><b>Above the Fold</b><span class="t-en">The part users see before scrolling. Put the main message and action here.</span><span class="t-zh">使用者不用滑就看到的第一屏。主訊息和主要行動應該在這裡。</span></div>
+      <div class="term-detail" id="responsive-design"><b>Responsive Design</b><span class="t-en">The site adapts to phones, tablets, and computers. Always ask for mobile checks.</span><span class="t-zh">網站會適應手機、平板、電腦。一定要請 agent 檢查手機版。</span></div>
+      <div class="term-detail" id="information-architecture"><b>Information Architecture</b><span class="t-en">How content is grouped. Good IA helps users find Lessons, Resources, About, and Contact.</span><span class="t-zh">內容如何分類。好的資訊架構讓使用者能找到課程、資源、關於、聯絡。</span></div>
+      <div class="term-detail" id="scannability"><b>Scannability</b><span class="t-en">How easily people can skim. Use short headings, cards, bullets, and clear labels.</span><span class="t-zh">是否容易快速掃讀。使用短標題、卡片、條列、清楚標籤。</span></div>
+      <div class="term-detail" id="typography"><b>Typography</b><span class="t-en">Fonts, sizes, weights, spacing, and line height. It controls whether reading feels easy.</span><span class="t-zh">字體、字級、粗細、間距、行高。它決定閱讀是否舒服。</span></div>
+      <div class="term-detail" id="design-system"><b>Design System</b><span class="t-en">Reusable rules for colors, buttons, spacing, and cards. It keeps a 20-page site consistent.</span><span class="t-zh">顏色、按鈕、間距、卡片的共用規則。它讓 20 頁網站保持一致。</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">Final checklist before you accept an AI-made website</span><span class="t-zh">接受 AI 做出的網站前，最後檢查</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Can visitors understand the page in 5 seconds?</span><span class="t-zh">訪客能不能 5 秒內理解這頁？</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Is there one clear primary CTA?</span><span class="t-zh">是否有一個清楚的主要 CTA？</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Does the mobile version fit without awkward wrapping?</span><span class="t-zh">手機版是否放得下、沒有奇怪換行？</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Does the style match the audience and purpose?</span><span class="t-zh">風格是否符合對象與目的？</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Does every section help the visitor move forward?</span><span class="t-zh">每個區塊是否都幫助訪客往下一步前進？</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lessons.html"><span class="t-en">Back to lessons</span><span class="t-zh">回課程目錄</span></a>
+      <a class="btn btn-primary" href="lesson-1.html"><span class="t-en">Next: Publish your first site</span><span class="t-zh">下一課：發佈第一個網站</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+</body>
+</html>

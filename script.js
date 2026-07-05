@@ -22,29 +22,6 @@
   });
 })();
 
-/* Expandable teaching cards on the lessons index. */
-(function () {
-  function toggle(card) {
-    var open = card.getAttribute('aria-expanded') === 'true';
-    card.setAttribute('aria-expanded', open ? 'false' : 'true');
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var cards = document.querySelectorAll('.expandable-card');
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].addEventListener('click', function (e) {
-        if (e.target.closest && e.target.closest('a, button, .lang-seg')) return;
-        toggle(this);
-      });
-      cards[i].addEventListener('keydown', function (e) {
-        if (e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        toggle(this);
-      });
-    }
-  });
-})();
-
 /* Scroll reveal — getBoundingClientRect version, auto-applied site-wide.
    Elements get .rvl (hidden) then .in when they enter the viewport. */
 (function () {
