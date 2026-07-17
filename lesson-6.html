@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 6 — Git &amp; GitHub, Decoded · AI4Teachers</title>
+<meta name="description" content="The plain-English meaning of the words Claude Code, Cursor and Codex keep using — commit, push, clone, branch, pull request — and how to undo a mistake without panicking.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 6</span><span class="t-zh">第六課</span></div>
+    <nav class="course-nav" aria-label="Lessons">
+      <a href="lesson-1.html"><span class="n">1</span><span class="t-en">Publish your first site</span><span class="t-zh">發佈第一個網站</span></a>
+      <a href="lesson-2.html"><span class="n">2</span><span class="t-en">Produce the HTML</span><span class="t-zh">產出 HTML</span></a>
+      <a href="lesson-3.html"><span class="n">3</span><span class="t-en">Why not Google Sites</span><span class="t-zh">為何不用 Google Sites</span></a>
+      <a href="lesson-4.html"><span class="n">4</span><span class="t-en">Get a domain</span><span class="t-zh">買網域</span></a>
+      <a href="lesson-5.html"><span class="n">5</span><span class="t-en">Quizzes to Sheets</span><span class="t-zh">測驗回傳 Sheets</span></a>
+      <a class="active" href="lesson-6.html"><span class="n">6</span><span class="t-en">Git vocabulary</span><span class="t-zh">Git 術語</span></a>
+    </nav>
+    <h1><span class="t-en">Git &amp; GitHub, Decoded</span><span class="t-zh">看懂 Git 與 GitHub 的術語</span></h1>
+    <p class="lead t-en">The first time Claude Code or Cursor asks <em>"want me to commit this?"</em> or <em>"should I open a branch?"</em>, it can feel like the tool switched to a foreign language. It didn't — it's really just a handful of simple ideas. Once you know them, every AI coding tool makes a lot more sense.</p>
+    <p class="lead t-zh">當 Claude Code 或 Cursor 第一次問你「<em>要不要 commit 這個？</em>」或「<em>要開一個 branch 嗎？</em>」，感覺就像它突然講起外星語。其實不是——那只是幾個簡單的概念。搞懂它們之後，任何 AI 寫程式工具你都聽得懂。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll be able to do</span><span class="t-zh">你將學會</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Know the real difference between Git and GitHub</span><span class="t-zh"><b>a</b> 分清楚 Git 和 GitHub 到底哪裡不一樣</span></li>
+        <li><span class="t-en"><b>b</b> Understand what "commit" and "push" actually do</span><span class="t-zh"><b>b</b> 搞懂 commit 和 push 實際上在做什麼</span></li>
+        <li><span class="t-en"><b>c</b> Know what clone, pull, and branch mean when AI mentions them</span><span class="t-zh"><b>c</b> AI 提到 clone、pull、branch 時知道那是什麼意思</span></li>
+        <li><span class="t-en"><b>d</b> Feel confident undoing a mistake instead of panicking</span><span class="t-zh"><b>d</b> 東西改壞時懂得怎麼救回來，而不是慌張</span></li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Before we start.</strong><strong class="t-zh">開始之前。</strong>
+        <span class="t-en"> Nothing to set up — this is a reading lesson. It'll help most if you've already published a site in <a href="lesson-1.html">Lesson 1</a>, or you're using an AI coding tool like Claude Code, Cursor, or Codex. About 15 minutes.</span>
+        <span class="t-zh"> 不需要安裝任何東西——這是一堂閱讀課。如果你已經在<a href="lesson-1.html">第一課</a>發佈過網站，或正在用 Claude Code、Cursor、Codex 之類的 AI 寫程式工具，會更有感覺。大約 15 分鐘。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part A — why these words keep coming up ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part A</span>
+    <h2><span class="t-en">Why AI keeps using these words</span><span class="t-zh">為什麼 AI 一直在講這些詞</span></h2>
+    <p class="intro"><span class="t-en">Every AI coding tool — Claude Code, Cursor, Codex, all of them — is built on top of Git, the same version-control system professional developers have used for 20 years. Their vocabulary leaks into your conversation. That's not a bug you did wrong; it's just what's underneath. Here's a quick preview of the six words worth knowing — we'll unpack each one below.</span><span class="t-zh">每一個 AI 寫程式工具——Claude Code、Cursor、Codex——底層用的都是 Git，一套專業工程師用了 20 年的版本控制系統。它的詞彙自然會出現在你的對話裡。這不是你哪裡做錯了，只是底層本來就長這樣。以下先快速預覽六個值得認識的詞，下面會一一拆解。</span></p>
+
+    <div class="grid cols-3">
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg></div>
+        <h3>Git</h3>
+        <p class="t-en">The save-and-history system itself. Runs quietly inside your AI tool.</p>
+        <p class="t-zh">存檔與歷史紀錄系統本身。安安靜靜在你的 AI 工具裡運作。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/></svg></div>
+        <h3>GitHub</h3>
+        <p class="t-en">The website that stores a copy of that history online — where your site lives.</p>
+        <p class="t-zh">把那份歷史紀錄放到線上的網站——你的網站就住在這。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg></div>
+        <h3>Commit</h3>
+        <p class="t-en">A checkpoint — a saved snapshot of what just changed, with a short note.</p>
+        <p class="t-zh">一個檢查點——把剛剛改的東西存成快照，附一句簡短說明。</p>
+      </div>
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+        <h3>Push</h3>
+        <p class="t-en">Uploading your checkpoints to GitHub — this is what makes your site go live.</p>
+        <p class="t-zh">把你的檢查點上傳到 GitHub——網站就是這樣上線的。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+        <h3>Branch</h3>
+        <p class="t-en">A separate draft version of your site you can experiment on safely.</p>
+        <p class="t-zh">一個獨立的草稿版本，可以放心在上面實驗。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div>
+        <h3><span class="t-en">Pull Request</span><span class="t-zh">Pull Request</span></h3>
+        <p class="t-en">A request to merge a branch's changes back into the live version.</p>
+        <p class="t-zh">請求把某個 branch 的變更合併回正式上線的版本。</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:30px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <span class="t-en">This lesson was prompted by a short explainer from <a href="https://www.youtube.com/watch?v=atqcAb7MFAM" target="_blank" rel="noopener">Gary Chen (@garytalksstuff)</a> — worth a watch if you'd like a second explanation of the same ideas.</span>
+        <span class="t-zh">這堂課的靈感來自 <a href="https://www.youtube.com/watch?v=atqcAb7MFAM" target="_blank" rel="noopener">Gary Chen (@garytalksstuff)</a> 的一支短片——如果想聽另一種講法，值得一看。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part B — Git vs GitHub ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part B</span>
+    <h2><span class="t-en">Git vs. GitHub — they're not the same thing</span><span class="t-zh">Git 跟 GitHub 不是同一件事</span></h2>
+    <p class="intro"><span class="t-en">This is the single most confusing pair of words in the whole topic, because they sound like the same thing said twice. They're not.</span><span class="t-zh">這是整個主題裡最容易搞混的一對詞，因為聽起來像同一個字講兩次。其實不是。</span></p>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 21h6"/></svg>
+      <div>
+        <strong class="t-en">The analogy that sticks.</strong><strong class="t-zh">一個好記的比喻。</strong>
+        <span class="t-en"> <strong>Git</strong> is like Word's "Track Changes" plus a save-history feature — the idea of keeping every version of a document. <strong>GitHub</strong> is like Google Drive — a website where those saved versions live, so you (and GitHub Pages) can reach them from anywhere. Git is the concept; GitHub is one company's website that hosts it. (GitLab and Bitbucket are others.)</span>
+        <span class="t-zh"> <strong>Git</strong> 就像 Word 的「追蹤修訂」加上存檔歷史紀錄的概念——保留文件每一個版本的想法。<strong>GitHub</strong> 就像 Google Drive——一個放這些存檔版本的網站，讓你（還有 GitHub Pages）隨時都能拿到。Git 是概念；GitHub 是某家公司拿來裝這個概念的網站。（GitLab、Bitbucket 是另外兩家。）</span>
+      </div>
+    </div>
+
+    <p style="margin-top:26px;font-size:17px;color:var(--ink-2);line-height:1.65"><span class="t-en">In practice: your AI coding tool speaks Git on your computer (or in its own workspace) — that's where commits happen. GitHub is the destination those commits travel to when you push, and it's what actually serves your live website.</span><span class="t-zh">實際運作上：你的 AI 工具在你的電腦（或它自己的工作空間）裡講 Git——commit 就是在那裡發生的。GitHub 則是 push 之後，這些 commit 要去的目的地，也是真正把你的網站放上線的地方。</span></p>
+  </div>
+</section>
+
+<!-- ===== Part C — commit & push ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part C</span>
+    <h2><span class="t-en">Commit &amp; push — save, then upload</span><span class="t-zh">Commit 與 push——先存檔，再上傳</span></h2>
+    <p class="intro"><span class="t-en">These two always travel together, and they map onto something you already do all the time: saving a game, then syncing that save to the cloud.</span><span class="t-zh">這兩個詞總是一起出現，其實對應到你早就在做的事：存遊戲進度，然後把存檔同步到雲端。</span></p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="fi" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+        <b><span class="t-en">You edit a file</span><span class="t-zh">你修改一個檔案</span></b>
+        <em><span class="t-en">You (or the AI) change some text or code.</span><span class="t-zh">你（或 AI）改了一些文字或程式碼。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg></span>
+        <b>Commit</b>
+        <em><span class="t-en">A checkpoint is saved, with a short note about what changed.</span><span class="t-zh">存下一個檢查點，附一句說明改了什麼。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+        <b>Push</b>
+        <em><span class="t-en">That checkpoint is uploaded to GitHub.</span><span class="t-zh">把那個檢查點上傳到 GitHub。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-warm)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/></svg></span>
+        <b><span class="t-en">Your site updates</span><span class="t-zh">網站更新</span></b>
+        <em><span class="t-en">GitHub Pages picks it up — your live link now shows the change.</span><span class="t-zh">GitHub Pages 接收到變更——你的上線連結馬上就更新了。</span></em>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:32px"><span class="t-en">What AI is really asking</span><span class="t-zh">AI 其實在問什麼</span></p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">What it says</span><span class="t-zh">它說的話</span></th><th class="agentcol"><span class="t-en">What it means</span><span class="t-zh">它的意思</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th>"Want me to commit this?"</th><td class="agentcol"><span class="t-en">Should I save a checkpoint of what I just changed?</span><span class="t-zh">要不要把我剛改的東西存成一個檢查點？</span></td></tr>
+          <tr><th>"Should I push?"</th><td class="agentcol"><span class="t-en">Should I upload that checkpoint to GitHub so it goes live?</span><span class="t-zh">要不要把那個檢查點上傳到 GitHub，讓它上線？</span></td></tr>
+          <tr><th><span class="t-en">"Commit message?"</span><span class="t-zh">"Commit message?"</span></th><td class="agentcol"><span class="t-en">What one-line note should I attach to this checkpoint?</span><span class="t-zh">這個檢查點要附上哪一句說明？</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Commit ≠ push.</strong><strong class="t-zh">Commit 不等於 push。</strong>
+        <span class="t-en"> A commit only exists on your own machine (or the AI's workspace) until you push it. That's why AI sometimes commits many small checkpoints, then pushes once — it's saving often, but only "publishing" when you're ready.</span>
+        <span class="t-zh"> Commit 在你 push 之前，只存在你自己的電腦（或 AI 的工作空間）裡。這就是為什麼 AI 有時候會先存好幾個小檢查點，最後才一次 push——它一直在存檔，只是要等你準備好才「發佈」。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part D — clone, pull & branch ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part D</span>
+    <h2><span class="t-en">Clone, pull &amp; branch</span><span class="t-zh">Clone、pull 與 branch</span></h2>
+    <p class="intro"><span class="t-en">These three come up once your site (or your AI tool) needs to talk to a copy of your project that already exists somewhere else.</span><span class="t-zh">當你的網站（或你的 AI 工具）需要跟另一個已經存在別處的專案副本溝通時，就會用到這三個詞。</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t">Clone</span>
+        <span class="step-d"><span class="t-en">Making your own full copy of a GitHub repository — including its whole history — onto your computer or into your AI tool's workspace. You usually only do this once, right at the start.</span><span class="t-zh">把一個 GitHub repository 完整複製一份——連同它所有的歷史紀錄——到你的電腦或 AI 工具的工作空間裡。通常一開始只做這一次。</span></span>
+      </li>
+      <li>
+        <span class="step-t">Pull</span>
+        <span class="step-d"><span class="t-en">Fetching the newest changes from GitHub down into your copy. If you (or a colleague) edited a file directly on GitHub.com, a pull brings that change back to your AI tool so everyone's working from the same version.</span><span class="t-zh">把 GitHub 上最新的變更抓下來、更新到你的副本。如果你（或同事）直接在 GitHub.com 上改了檔案，pull 一下就能把那個變更帶回你的 AI 工具，讓大家用的是同一個版本。</span></span>
+      </li>
+      <li>
+        <span class="step-t">Branch</span>
+        <span class="step-d"><span class="t-en">A separate, parallel version of your site where you can try something — a redesign, a risky edit — without touching the version that's already live. The live version is usually called <code>main</code>. When you're happy with the branch, its changes can be merged into <code>main</code>.</span><span class="t-zh">一個獨立、平行的網站版本，讓你可以試點什麼——改版、有風險的修改——而不會動到已經上線的版本。上線的版本通常叫 <code>main</code>。等你對這個 branch 滿意了，它的變更就可以合併回 <code>main</code>。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Branch = a draft copy.</strong><strong class="t-zh">Branch = 一份草稿。</strong>
+        <span class="t-en"> Think of <code>main</code> as the printed handout you already gave your class, and a branch as the draft you're still marking up. Nobody sees the draft until you decide to hand it out too.</span>
+        <span class="t-zh"> 把 <code>main</code> 想成你已經發給學生的講義，branch 則是你還在改的草稿。在你決定要發出去之前，沒有人會看到那份草稿。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part E — worktree & pull requests ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part E</span>
+    <h2><span class="t-en">Worktree &amp; pull requests — for when you go further</span><span class="t-zh">Worktree 與 pull request——當你想玩得更進階</span></h2>
+    <p class="intro"><span class="t-en">These two are less urgent than the words above. Skip this part on a first read if you just want the basics — come back once your AI tool starts mentioning them.</span><span class="t-zh">這兩個詞沒有上面幾個急迫。第一次讀如果只想抓基本概念可以先跳過——等你的 AI 工具開始提到它們時再回來看。</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t">Worktree</span>
+        <span class="step-d"><span class="t-en">A way to have two AI agents working on two different branches of the same project <em>at the same time</em>, each in its own folder, without them stepping on each other's files. This only matters if you're running multiple AI coding sessions in parallel — most teachers won't need it on day one.</span><span class="t-zh">讓兩個 AI agent<em>同時</em>在同一個專案的兩個不同 branch 上工作，各自在自己的資料夾裡，不會互相踩到對方的檔案。這只有在你同時開好幾個 AI 工作階段平行進行時才用得到——大部分老師一開始都不需要。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Pull Request (PR)</span><span class="t-zh">Pull Request（PR）</span></span>
+        <span class="step-d"><span class="t-en">A request to merge a branch's changes back into <code>main</code>, with a review step in between — a chance to look over what changed before it goes live. Working solo, you might just review and click merge yourself; in a team, someone else usually looks first.</span><span class="t-zh">請求把某個 branch 的變更合併回 <code>main</code>，中間會有一個檢查的步驟——在正式上線之前先看過改了什麼。自己一個人做的話，你可能自己看過就按合併；如果是團隊合作，通常會請別人先看過。</span></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== Part F — when you break something ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part F</span>
+    <h2><span class="t-en">When you break something</span><span class="t-zh">當你把東西改壞了</span></h2>
+    <p class="intro"><span class="t-en">This is the part that matters most for peace of mind: your history is never actually gone. Because every commit is a saved checkpoint, you — or your AI tool — can always step back to one that worked.</span><span class="t-zh">這部分最能讓你安心：你的歷史紀錄其實從來不會真的消失。因為每一個 commit 都是一個存好的檢查點，你——或你的 AI 工具——永遠可以退回到能正常運作的那一個。</span></p>
+
+    <p class="prompt-label"><span class="t-en">Things you can just ask AI to do</span><span class="t-zh">你可以直接請 AI 做的事</span></p>
+    <pre><code>"Please revert to the last working commit."
+"Can you show me the recent commit history?"
+"Undo the last change and go back to before this file was touched."</code></pre>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">The risky moment is before a commit.</strong><strong class="t-zh">真正有風險的是「還沒 commit」的那段時間。</strong>
+        <span class="t-en"> Once something is committed, it's a checkpoint you can always return to. Changes that haven't been committed yet are the ones that can actually get lost. That's why "commit early, commit often" is good advice — and why it's fair to ask AI to commit before trying anything risky, like a big redesign.</span>
+        <span class="t-zh"> 一旦東西被 commit 了，它就是一個你隨時能回去的檢查點。真正可能弄丟的，是還沒 commit 的變更。這就是為什麼「常常 commit」是個好習慣——也是為什麼在請 AI 嘗試有風險的事（例如大改版）之前，先請它 commit 一下是合理的要求。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Cheat sheet ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Cheat sheet</span><span class="t-zh">速查表</span></span>
+    <h2><span class="t-en">Every word, one line each</span><span class="t-zh">每個詞，各一句話</span></h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Term</span><span class="t-zh">術語</span></th><th class="agentcol"><span class="t-en">Plain English</span><span class="t-zh">白話說法</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Git</th><td class="agentcol"><span class="t-en">The save-and-history system underneath your AI tool.</span><span class="t-zh">你 AI 工具底層的存檔與歷史紀錄系統。</span></td></tr>
+          <tr><th>GitHub</th><td class="agentcol"><span class="t-en">The website that hosts that history online — and your live site.</span><span class="t-zh">把那份歷史放到線上的網站——也放著你上線的網站。</span></td></tr>
+          <tr><th>Commit</th><td class="agentcol"><span class="t-en">A saved checkpoint of what just changed.</span><span class="t-zh">剛剛改動存下來的一個檢查點。</span></td></tr>
+          <tr><th>Push</th><td class="agentcol"><span class="t-en">Uploading your checkpoints to GitHub.</span><span class="t-zh">把你的檢查點上傳到 GitHub。</span></td></tr>
+          <tr><th>Clone</th><td class="agentcol"><span class="t-en">Making your own full copy of a project, once, at the start.</span><span class="t-zh">一開始把整個專案完整複製一份給自己。</span></td></tr>
+          <tr><th>Pull</th><td class="agentcol"><span class="t-en">Fetching the newest changes down into your copy.</span><span class="t-zh">把最新的變更抓下來、更新到你的副本。</span></td></tr>
+          <tr><th>Branch</th><td class="agentcol"><span class="t-en">A separate draft version you can experiment on safely.</span><span class="t-zh">一份可以放心實驗的獨立草稿版本。</span></td></tr>
+          <tr><th>Worktree</th><td class="agentcol"><span class="t-en">Two AI agents working on two branches at once, in separate folders.</span><span class="t-zh">兩個 AI agent 各在自己的資料夾，同時處理兩個 branch。</span></td></tr>
+          <tr><th><span class="t-en">Pull Request</span><span class="t-zh">Pull Request</span></th><td class="agentcol"><span class="t-en">A request to merge a branch back into the live version, with a review step.</span><span class="t-zh">請求把 branch 合併回上線版本，中間有一個檢查步驟。</span></td></tr>
+          <tr><th>Revert</th><td class="agentcol"><span class="t-en">Stepping back to an earlier, working checkpoint.</span><span class="t-zh">退回到之前一個能正常運作的檢查點。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Quick check quiz ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Quick check</span><span class="t-zh">小考</span></span>
+    <h2><span class="t-en">Eight questions, one page</span><span class="t-zh">八題小考，一頁搞定</span></h2>
+    <p class="intro"><span class="t-en">Answer every question, then check your score. This grades itself right here in your browser — nothing is saved or sent anywhere.</span><span class="t-zh">每一題都作答完，再檢查你的分數。這個測驗就在你的瀏覽器裡自動算分——什麼都不會被存起來或傳出去。</span></p>
+
+    <form id="quiz" class="quiz">
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 1</span><span class="t-zh">第 1 題</span></div>
+        <p class="qt"><span class="t-en">What's the real difference between Git and GitHub?</span><span class="t-zh">Git 和 GitHub 真正的差別是什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q1" value="a"><span><span class="t-en">They're two names for the exact same thing.</span><span class="t-zh">它們是同一個東西的兩個名字。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="b"><span><span class="t-en">Git is the save-and-history system; GitHub is a website that hosts it online.</span><span class="t-zh">Git 是存檔與歷史紀錄系統；GitHub 是把它放到線上的網站。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="c"><span><span class="t-en">GitHub is only for teams; Git is only for solo projects.</span><span class="t-zh">GitHub 只給團隊用；Git 只給個人專案用。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="d"><span><span class="t-en">Git is the app icon; GitHub is the company that made it.</span><span class="t-zh">Git 是應用程式圖示；GitHub 是做它的公司。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 2</span><span class="t-zh">第 2 題</span></div>
+        <p class="qt"><span class="t-en">A "commit" is best described as...</span><span class="t-zh">「commit」最貼切的說法是……</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q2" value="a"><span><span class="t-en">Deleting your old files permanently.</span><span class="t-zh">把舊檔案永久刪除。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="b"><span><span class="t-en">Publishing your site to the whole world.</span><span class="t-zh">把網站發佈給全世界看。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="c"><span><span class="t-en">A saved checkpoint of what just changed, with a short note.</span><span class="t-zh">把剛改的東西存成一個檢查點，附一句說明。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="d"><span><span class="t-en">A password required to open GitHub.</span><span class="t-zh">打開 GitHub 需要的密碼。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="a">
+        <div class="qn"><span class="t-en">Question 3</span><span class="t-zh">第 3 題</span></div>
+        <p class="qt"><span class="t-en">Right after a commit but before a push, where does that checkpoint live?</span><span class="t-zh">commit 之後、push 之前，那個檢查點存在哪裡？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q3" value="a"><span><span class="t-en">Only on your computer / your AI tool's workspace — not on GitHub yet.</span><span class="t-zh">只在你的電腦／AI 工具的工作空間裡——還沒到 GitHub。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="b"><span><span class="t-en">It's already live on your website.</span><span class="t-zh">已經在你的網站上線了。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="c"><span><span class="t-en">Nowhere — commits don't get saved anywhere.</span><span class="t-zh">哪裡都沒有——commit 根本不會被存起來。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="d"><span><span class="t-en">In your email inbox.</span><span class="t-zh">在你的電子郵件信箱裡。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="d">
+        <div class="qn"><span class="t-en">Question 4</span><span class="t-zh">第 4 題</span></div>
+        <p class="qt"><span class="t-en">What does "push" do?</span><span class="t-zh">「push」是在做什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q4" value="a"><span><span class="t-en">Deletes a branch.</span><span class="t-zh">刪除一個 branch。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="b"><span><span class="t-en">Downloads changes from GitHub.</span><span class="t-zh">從 GitHub 下載變更。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="c"><span><span class="t-en">Creates a brand-new GitHub account.</span><span class="t-zh">建立一個全新的 GitHub 帳號。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="d"><span><span class="t-en">Uploads your commits to GitHub, updating your live site.</span><span class="t-zh">把你的 commit 上傳到 GitHub，更新上線的網站。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 5</span><span class="t-zh">第 5 題</span></div>
+        <p class="qt"><span class="t-en">You want to try a risky redesign without touching your live site. What should you ask for?</span><span class="t-zh">你想試一個有風險的改版，但不想動到已經上線的網站。你該要求什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q5" value="a"><span><span class="t-en">Delete the whole repository first.</span><span class="t-zh">先把整個 repository 刪掉。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="b"><span><span class="t-en">A new branch to experiment on.</span><span class="t-zh">開一個新的 branch 拿來實驗。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="c"><span><span class="t-en">A brand-new GitHub account.</span><span class="t-zh">一個全新的 GitHub 帳號。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="d"><span><span class="t-en">Turning off GitHub Pages.</span><span class="t-zh">關掉 GitHub Pages。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 6</span><span class="t-zh">第 6 題</span></div>
+        <p class="qt"><span class="t-en">"Clone" means...</span><span class="t-zh">「clone」的意思是……</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q6" value="a"><span><span class="t-en">Erasing a repository's history.</span><span class="t-zh">清除一個 repository 的歷史紀錄。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="b"><span><span class="t-en">Renaming your website.</span><span class="t-zh">把你的網站改名。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="c"><span><span class="t-en">Making your own full copy of a GitHub repository, history included.</span><span class="t-zh">把一個 GitHub repository 完整複製一份給自己，連歷史紀錄都在。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="d"><span><span class="t-en">Sharing your password with a colleague.</span><span class="t-zh">把密碼分享給同事。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 7</span><span class="t-zh">第 7 題</span></div>
+        <p class="qt"><span class="t-en">A Pull Request (PR) is...</span><span class="t-zh">Pull Request（PR）是……</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q7" value="a"><span><span class="t-en">A request to delete a branch.</span><span class="t-zh">請求刪除一個 branch。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="b"><span><span class="t-en">A request for someone to clone your repository.</span><span class="t-zh">請求別人來複製你的 repository。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="c"><span><span class="t-en">A request to merge a branch's changes into the live version, with a review step.</span><span class="t-zh">請求把某個 branch 的變更合併進上線版本，中間有個檢查步驟。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="d"><span><span class="t-en">A request to reset your GitHub password.</span><span class="t-zh">請求重設你的 GitHub 密碼。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 8</span><span class="t-zh">第 8 題</span></div>
+        <p class="qt"><span class="t-en">AI just broke something and you want to go back to a working version. What's true?</span><span class="t-zh">AI 把東西改壞了，你想退回到能正常運作的版本。以下哪個是對的？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q8" value="a"><span><span class="t-en">It's hopeless — once changed, it's gone for good.</span><span class="t-zh">沒救了——改了就永遠回不去了。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="b"><span><span class="t-en">You can ask AI to revert to the last working commit.</span><span class="t-zh">可以請 AI 退回到上一個能正常運作的 commit。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="c"><span><span class="t-en">You have to delete your GitHub account and start over.</span><span class="t-zh">要把 GitHub 帳號刪掉、重新開始。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="d"><span><span class="t-en">Only GitHub staff can undo a change.</span><span class="t-zh">只有 GitHub 的員工能救回來。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="submit" class="btn btn-primary"><span class="t-en">Check my answers</span><span class="t-zh">檢查我的答案</span></button>
+        <button type="button" id="quizReset" class="btn btn-ghost"><span class="t-en">Try again</span><span class="t-zh">重新作答</span></button>
+        <span id="quizScore" class="quiz-score"><span class="badge" id="quizBadge"></span><span id="quizMsg"></span></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Checklist ===== -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">You did it — quick recap</span><span class="t-zh">你做到了——快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Know the real difference between Git and GitHub</span><span class="t-zh">分清楚 Git 和 GitHub 到底哪裡不一樣</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Understand what commit and push actually do</span><span class="t-zh">搞懂 commit 和 push 實際上在做什麼</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Know what clone, pull, and branch mean</span><span class="t-zh">知道 clone、pull、branch 是什麼意思</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Feel confident undoing a mistake instead of panicking</span><span class="t-zh">東西改壞時懂得怎麼救回來，而不是慌張</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lesson-5.html"><span class="t-en">← Lesson 5</span><span class="t-zh">← 第五課</span></a>
+      <a class="btn btn-primary" href="lessons.html"><span class="t-en">See all lessons →</span><span class="t-zh">看完整課程 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('quiz');
+  if (!form) return;
+  var questions = [].slice.call(form.querySelectorAll('.quiz-q'));
+  var scoreWrap = document.getElementById('quizScore');
+  var badge = document.getElementById('quizBadge');
+  var msg = document.getElementById('quizMsg');
+
+  var MESSAGES = [
+    { min: 8, en: "Perfect score — you're fluent in Git now.", zh: "滿分——你現在已經懂 Git 了。" },
+    { min: 6, en: "Great work — just a couple to review.", zh: "很不錯——只有一兩題再看一下。" },
+    { min: 0, en: "Worth another read of the sections above.", zh: "建議把上面的內容再看一次。" }
+  ];
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var score = 0;
+    var allAnswered = true;
+
+    questions.forEach(function (q) {
+      var correct = q.getAttribute('data-correct');
+      var checked = q.querySelector('input:checked');
+      if (!checked) { allAnswered = false; return; }
+      q.classList.add('answered');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        opt.classList.remove('is-correct', 'is-wrong');
+        if (input.value === correct) opt.classList.add('is-correct');
+        else if (input === checked) opt.classList.add('is-wrong');
+      });
+      if (checked.value === correct) score++;
+    });
+
+    if (!allAnswered) {
+      var isZh = document.documentElement.classList.contains('lang-zh');
+      alert(isZh ? '請先回答完所有題目。' : 'Please answer every question first.');
+      return;
+    }
+
+    badge.textContent = score + ' / ' + questions.length;
+    var m = MESSAGES.find(function (x) { return score >= x.min; });
+    var isZh = document.documentElement.classList.contains('lang-zh');
+    msg.textContent = isZh ? m.zh : m.en;
+    scoreWrap.classList.add('show');
+  });
+
+  document.getElementById('quizReset').addEventListener('click', function () {
+    form.reset();
+    questions.forEach(function (q) {
+      q.classList.remove('answered');
+      [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (opt) {
+        opt.classList.remove('is-correct', 'is-wrong');
+      });
+    });
+    scoreWrap.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>

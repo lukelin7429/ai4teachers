@@ -644,3 +644,22 @@ figure.ui-fig { margin: 30px 0 0; }
 .slide-opt.sel { background: #dbeafe; color: var(--gh-blue); font-weight: 700; }
 .slide-opt .ix { width: 24px; height: 24px; border-radius: 6px; background: var(--gh-canvas); display: grid; place-items: center; font-family: var(--mono); font-size: 11px; color: var(--gh-muted); flex: 0 0 auto; }
 .slide-opt.sel .ix { background: var(--gh-blue); color: #fff; }
+
+/* ===========================================================
+   Lesson 6 — self-scoring vocabulary quiz widget
+   =========================================================== */
+.quiz-q { background: #fff; border: 1px solid var(--line-2); border-radius: var(--r); padding: 26px 28px; margin-bottom: 18px; box-shadow: var(--sh-sm); }
+.quiz-q .qn { font-family: var(--sans); font-weight: 800; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--blue); margin-bottom: 9px; }
+.quiz-q .qt { font-family: var(--display); font-weight: 600; font-size: 18.5px; color: var(--ink); margin: 0 0 16px; line-height: 1.45; }
+.quiz-opts { display: flex; flex-direction: column; gap: 9px; }
+.quiz-opt { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border: 1.5px solid var(--line-2); border-radius: 11px; cursor: pointer; font-size: 15.5px; color: var(--ink-2); transition: border-color .15s, background .15s; }
+.quiz-opt:hover { border-color: var(--blue); background: var(--bg-tint); }
+.quiz-opt input { accent-color: var(--blue); width: 17px; height: 17px; flex: 0 0 auto; }
+.quiz-q.answered .quiz-opt { cursor: default; }
+.quiz-q.answered .quiz-opt:hover { background: none; }
+.quiz-opt.is-correct { border-color: #16a34a; background: #f0fdf4; color: #15803d; font-weight: 700; }
+.quiz-opt.is-wrong { border-color: #dc2626; background: #fef2f2; color: #b91c1c; font-weight: 700; }
+.quiz-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+.quiz-score { font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--ink); display: none; align-items: center; gap: 12px; }
+.quiz-score.show { display: inline-flex; }
+.quiz-score .badge { display: inline-flex; align-items: center; justify-content: center; padding: 7px 18px; border-radius: 999px; background: var(--grad-brand); color: #fff; font-size: 16px; box-shadow: var(--sh-sm); }
