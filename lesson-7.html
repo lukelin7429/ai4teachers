@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 7 — Cut Videos with AI Agents · AI4Teachers</title>
+<meta name="description" content="Install ffmpeg and a terminal-based AI agent, then have it transcribe, trim, subtitle, score with copyright-free music, and insert B-roll into any school video — lesson recaps, activity reels, campus tours, class plays.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260706-pop3">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 7</span><span class="t-zh">第七課</span></div>
+    <nav class="course-nav" aria-label="Lessons">
+      <a href="lesson-1.html"><span class="n">1</span><span class="t-en">Publish your first site</span><span class="t-zh">發佈第一個網站</span></a>
+      <a href="lesson-2.html"><span class="n">2</span><span class="t-en">Produce the HTML</span><span class="t-zh">產出 HTML</span></a>
+      <a href="lesson-3.html"><span class="n">3</span><span class="t-en">Why not Google Sites</span><span class="t-zh">為何不用 Google Sites</span></a>
+      <a href="lesson-4.html"><span class="n">4</span><span class="t-en">Get a domain</span><span class="t-zh">買網域</span></a>
+      <a href="lesson-5.html"><span class="n">5</span><span class="t-en">Quizzes to Sheets</span><span class="t-zh">測驗回傳 Sheets</span></a>
+      <a href="lesson-6.html"><span class="n">6</span><span class="t-en">Git vocabulary</span><span class="t-zh">Git 術語</span></a>
+      <a class="active" href="lesson-7.html"><span class="n">7</span><span class="t-en">Edit video with AI</span><span class="t-zh">AI 剪片</span></a>
+    </nav>
+    <h1><span class="t-en">Cut Videos with AI Agents</span><span class="t-zh">用 AI Agents 剪輯影片</span></h1>
+    <p class="lead t-en">Claude Code and other terminal-based AI agents can now open a folder of raw footage and cut it — trim the pauses, transcribe and burn in subtitles, drop in cutaway shots, mix in music — the same way they write and edit a webpage. This lesson covers what to install and exactly how to ask, for any kind of school video: a lesson recap, a student activity reel, a campus tour, even a class play.</p>
+    <p class="lead t-zh">Claude Code 這類終端機型 AI agent，現在可以打開一整個資料夾的原始素材，直接動手剪——剪掉冷場的停頓、轉出逐字稿並燒上字幕、插入補充畫面、混入背景音樂——手法跟它寫網頁、改網頁一模一樣。這堂課教你該裝什麼工具，以及每一步該怎麼開口問，適用各種校園影片：教學回顧、學生活動精華、校園簡介，甚至學生話劇。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll be able to do</span><span class="t-zh">你將學會</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Install ffmpeg and a terminal-based AI agent that can actually touch your video files</span><span class="t-zh"><b>a</b> 安裝 ffmpeg 與一個能真正動到你影片檔案的終端機型 AI agent</span></li>
+        <li><span class="t-en"><b>b</b> Get a clean transcript and burned-in subtitles without typing a word yourself</span><span class="t-zh"><b>b</b> 不用自己打一個字，就拿到乾淨的逐字稿與燒錄字幕</span></li>
+        <li><span class="t-en"><b>c</b> Find and legally download background music, and have your agent duck it under your voice</span><span class="t-zh"><b>c</b> 找到並合法下載背景音樂，讓 agent 幫你在人聲出現時自動壓低音量</span></li>
+        <li><span class="t-en"><b>d</b> Understand what "B-roll" is and how to ask your agent to place it</span><span class="t-zh"><b>d</b> 搞懂什麼是「B-roll」，以及怎麼請 agent 幫你安插</span></li>
+        <li><span class="t-en"><b>e</b> Follow a full prompt workflow for any video: lesson recap, activity reel, campus tour, or class play</span><span class="t-zh"><b>e</b> 學會一套完整指令流程，適用任何影片：教學回顧、活動精華、校園簡介或班級話劇</span></li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Before we start.</strong><strong class="t-zh">開始之前。</strong>
+        <span class="t-en"> You'll need a Mac or PC with Terminal access, about an hour, and your raw footage (phone video is perfectly fine). This lesson assumes you're using Claude Code, or a similar agent that can open Terminal on your own computer — see Part B if you're starting from zero. About 30–40 minutes to read.</span>
+        <span class="t-zh"> 你需要一台能開終端機的 Mac 或 PC、大約一小時，以及你的原始素材（手機拍的完全沒問題）。這堂課假設你在用 Claude Code，或其他能在你自己電腦上開終端機的 agent——如果你是從零開始，請看 Part B。閱讀大約需要 30–40 分鐘。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part A — why this works now ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part A</span>
+    <h2><span class="t-en">Why this works now</span><span class="t-zh">為什麼現在做得到</span></h2>
+    <p class="intro"><span class="t-en">Video editors like Premiere or iMovie hide everything behind a timeline you drag with a mouse. But underneath, editing is really just a series of file operations: cut this clip from 0:03 to 0:11, lay this audio track under that video at a lower volume, burn these lines of text onto the frame at these timestamps. That's exactly the kind of precise, repeatable, file-based task an AI coding agent is built for.</span><span class="t-zh">Premiere 或 iMovie 這類剪輯軟體，把一切都藏在你用滑鼠拖拉的時間軸背後。但實際上，剪輯說穿了就是一連串對檔案的操作：把這段畫面從 0:03 剪到 0:11、把這條音軌用較低的音量疊在畫面下方、在指定時間點把這幾行文字燒進畫面。這正是 AI 寫程式 agent 最擅長的那種精準、可重複、以檔案為本的任務。</span></p>
+
+    <p style="margin:0 0 22px;font-size:17px;color:var(--ink-2);line-height:1.65"><span class="t-en">The engine that actually does the work is a free, open-source program called <strong>ffmpeg</strong> — it has been the invisible backbone of nearly every video app for over 20 years. Your AI agent doesn't replace it; it writes and runs ffmpeg commands for you, the same way it writes and runs code when it builds you a webpage. You describe what you want in plain language; the agent translates that into exact commands, runs them, and shows you the result.</span><span class="t-zh">真正動手做事的引擎，是一套免費、開源的程式，叫做 <strong>ffmpeg</strong>——它是幾乎所有影片軟體背後那個隱形的骨幹，已經默默運作超過 20 年了。你的 AI agent 不是取代它，而是幫你把話翻成 ffmpeg 指令、跑給你看，跟它幫你寫網頁程式碼、執行、給你看結果是同一套邏輯。你用白話描述想要什麼，agent 負責翻成精確的指令、執行，再把結果拿給你看。</span></p>
+
+    <div class="grid cols-3">
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 4 2.5L10 14z" fill="#fff"/></svg></div>
+        <h3>ffmpeg</h3>
+        <p class="t-en">The free engine that actually cuts, mixes and exports video. Your agent drives it for you.</p>
+        <p class="t-zh">真正在剪接、混音、輸出影片的免費引擎。你的 agent 負責幫你操作它。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M6 11a6 6 0 0 0 12 0M12 19v3"/></svg></div>
+        <h3><span class="t-en">Whisper</span><span class="t-zh">Whisper</span></h3>
+        <p class="t-en">A free speech-to-text model that turns your audio into an accurate, timestamped transcript.</p>
+        <p class="t-zh">免費的語音辨識模型，把你的聲音轉成準確、附時間碼的逐字稿。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <h3><span class="t-en">SRT subtitles</span><span class="t-zh">SRT 字幕</span></h3>
+        <p class="t-en">A plain-text file of timed caption lines — the standard format your agent generates and burns in.</p>
+        <p class="t-zh">一份附時間碼的純文字字幕檔——agent 產生並燒進畫面用的標準格式。</p>
+      </div>
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="m20 9-4 3 4 3z"/></svg></div>
+        <h3><span class="t-en">B-roll</span><span class="t-zh">B-roll</span></h3>
+        <p class="t-en">Cutaway footage shown over narration instead of a static talking head — covers edits, adds life.</p>
+        <p class="t-zh">在旁白進行時插入的補充畫面，取代死板的人頭鏡頭——遮住剪接痕跡，畫面也更有生命力。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3><span class="t-en">Ducking</span><span class="t-zh">Ducking</span></h3>
+        <p class="t-en">Automatically lowering the music volume whenever someone is talking, then raising it back after.</p>
+        <p class="t-zh">只要有人在講話，就自動把音樂音量壓低，講完再拉回來。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></svg></div>
+        <h3><span class="t-en">Agent workspace</span><span class="t-zh">Agent 工作區</span></h3>
+        <p class="t-en">The project folder on your own computer where your agent reads and writes your video files directly.</p>
+        <p class="t-zh">你自己電腦上的專案資料夾，agent 直接在裡面讀寫你的影片檔案。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part B — installing the tools ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part B</span>
+    <h2><span class="t-en">Installing the tools</span><span class="t-zh">安裝工具</span></h2>
+    <p class="intro"><span class="t-en">Four things, installed once. After this, you'll never touch the Terminal directly — you'll just talk to your agent, and it will run these tools on your behalf.</span><span class="t-zh">四個東西，裝一次就好。裝完之後你就不用再自己碰終端機了——你只要跟 agent 說話，它會替你操作以下工具。</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">Homebrew (Mac only)</span><span class="t-zh">Homebrew（僅限 Mac）</span></span>
+        <span class="step-d"><span class="t-en">A package installer for Mac. If you don't already have it, go to <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> and copy the one-line install command into Terminal. Windows users can skip this and ask their agent to use <code>winget</code> instead.</span><span class="t-zh">Mac 上的軟體安裝工具。如果你還沒裝，到 <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> 複製那行安裝指令貼進終端機執行即可。Windows 使用者可以跳過這步，改請 agent 用 <code>winget</code> 安裝。</span></span>
+      </li>
+      <li>
+        <span class="step-t">ffmpeg</span>
+        <span class="step-d"><span class="t-en">The actual video engine. In Terminal, run <code>brew install ffmpeg</code>. This is the single most important install on this page — nothing below works without it.</span><span class="t-zh">真正的影片引擎。在終端機打 <code>brew install ffmpeg</code>。這是整頁最重要的一步——沒有它，下面所有事情都做不了。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Whisper (speech-to-text)</span><span class="t-zh">Whisper（語音轉文字）</span></span>
+        <span class="step-d"><span class="t-en">Ask your agent to install it for you — for example <code>pip install openai-whisper</code> or <code>brew install whisper-cpp</code>. You don't need to memorize the command; just tell your agent "install a local speech-to-text tool" and let it choose.</span><span class="t-zh">請你的 agent 幫你裝，例如 <code>pip install openai-whisper</code> 或 <code>brew install whisper-cpp</code>。你不需要背指令，直接跟 agent 說「幫我裝一個本機語音轉文字工具」讓它自己決定就好。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">A terminal-based AI agent</span><span class="t-zh">終端機型 AI agent</span></span>
+        <span class="step-d"><span class="t-en">Claude Code is the one this lesson is built around — install with <code>npm install -g @anthropic-ai/claude-code</code>, then run <code>claude</code> inside your project folder. The ChatGPT desktop app's agent mode can also open Terminal and drive ffmpeg the same way — the prompts in this lesson work with either.</span><span class="t-zh">這堂課主要以 Claude Code 為例——執行 <code>npm install -g @anthropic-ai/claude-code</code> 安裝，再到你的專案資料夾裡執行 <code>claude</code> 就能開始。ChatGPT 桌面版的 agent 模式同樣能開終端機、操作 ffmpeg，原理相通——這堂課的提示詞兩邊都適用。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Why a terminal-based agent, not a browser tab.</strong><strong class="t-zh">為什麼要用終端機型 agent，而不是網頁版。</strong>
+        <span class="t-en"> Browser-based AI chat has an upload size limit and often re-compresses your video. A terminal-based agent works directly on the files already sitting on your computer — no upload, no size limit, no quality loss until the very final export.</span>
+        <span class="t-zh"> 網頁版的 AI 聊天工具有上傳大小限制，還常常會重新壓縮你的影片。終端機型 agent 是直接在你電腦上既有的檔案上工作——不用上傳、沒有大小限制，畫質一直到最後輸出前都不會損失。</span>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:30px"><span class="t-en">Set up the project folder</span><span class="t-zh">建立專案資料夾</span></p>
+    <pre><code>mkdir my-video-project
+cd my-video-project
+mkdir raw-footage b-roll music
+# drop your clips into raw-footage/, cutaways into b-roll/, mp3s into music/
+claude</code></pre>
+  </div>
+</section>
+
+<!-- ===== Part C — transcript & subtitles first ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part C</span>
+    <h2><span class="t-en">Get a transcript first — everything else builds on it</span><span class="t-zh">先拿到逐字稿——後面所有事都建立在這上面</span></h2>
+    <p class="intro"><span class="t-en">Before cutting anything, ask your agent to transcribe your raw audio. This one step gives you two things at once: a searchable script the agent can use to find the best soundbites and cut the "ums" and dead air, and the exact timestamps needed to generate subtitles.</span><span class="t-zh">在剪任何東西之前，先請 agent 把原始聲音轉成逐字稿。這一步一次拿到兩樣東西：一份可搜尋的腳本，讓 agent 能找出最好的片段、剪掉「呃」和冷場；以及做字幕所需的精確時間碼。</span></p>
+
+    <p class="prompt-label"><span class="t-en">Ask your agent</span><span class="t-zh">跟你的 agent 這樣說</span></p>
+    <pre><code>"Transcribe every clip in raw-footage/ using Whisper.
+Save each as an .srt subtitle file with the same name.
+Then show me the full transcript so I can tell you what to cut."</code></pre>
+
+    <p style="margin:26px 0 14px;font-size:17px;color:var(--ink-2);line-height:1.65"><span class="t-en">If you'd rather not touch a terminal at all for this one step, there are GUI apps that do good auto-captioning on their own — worth knowing about even though this lesson's workflow uses Whisper:</span><span class="t-zh">如果這一步你完全不想碰終端機，也有幾套圖形介面的 App 能自己做出不錯的自動字幕——雖然這堂課的流程用的是 Whisper，但這些工具還是值得認識：</span></p>
+
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Tool</span><span class="t-zh">工具</span></th><th class="agentcol"><span class="t-en">Best for</span><span class="t-zh">適合用在</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th><span class="t-en">Whisper via your agent</span><span class="t-zh">透過 agent 用 Whisper</span></th><td class="agentcol"><span class="t-en">Most accurate, works offline, batch-processes many clips at once, feeds directly into the rest of this workflow.</span><span class="t-zh">最準確、離線可用、能一次批次處理多支影片，還能直接接上這堂課後面的整套流程。</span></td></tr>
+          <tr><th><span class="t-en">CapCut (剪映) auto-captions</span><span class="t-zh">剪映自動字幕</span></th><td class="agentcol"><span class="t-en">A quick, free, no-install option if you just need one short clip captioned in Traditional Chinese right now.</span><span class="t-zh">如果你只是想馬上幫一支短片加上繁中字幕，這是免安裝、免費又快速的選擇。</span></td></tr>
+          <tr><th><span class="t-en">iFlytek (訊飛聽見)</span><span class="t-zh">訊飛聽見</span></th><td class="agentcol"><span class="t-en">Strong Mandarin dictation if your footage is entirely in Chinese with heavy accents or classroom noise.</span><span class="t-zh">如果整支影片全是中文、口音重或教室噪音大，這套的中文聽打表現很強。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Read the transcript before you cut.</strong><strong class="t-zh">動剪之前先看過逐字稿。</strong>
+        <span class="t-en"> Skim it and tell your agent in plain language what to remove — "cut the long pause around 2:10," "drop the second attempt at this sentence, keep the third." The agent maps your notes back to timestamps and cuts the actual footage.</span>
+        <span class="t-zh"> 掃過一遍，用白話告訴 agent 要剪掉什麼——「把 2:10 附近那段很長的停頓剪掉」、「這句話講了三次，留第三次就好」。Agent 會把你的說法對應回時間碼，直接剪動實際的影片。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part D — copyright-free music ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part D</span>
+    <h2><span class="t-en">Copyright-free background music</span><span class="t-zh">不用版權的背景音樂</span></h2>
+    <p class="intro"><span class="t-en">A video with copyrighted music can get muted, demonetized or taken down once it's on YouTube or your school's site — and it's an easy problem to avoid entirely. These sources are free to use, even in videos published publicly by a school:</span><span class="t-zh">影片一旦放上 YouTube 或學校網站，用了有版權的音樂可能會被靜音、拿掉廣告分潤、甚至整支下架——但這其實是完全可以避免的問題。以下這幾個來源都能免費使用，就算是學校公開發佈的影片也沒問題：</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">YouTube Audio Library</span><span class="t-zh">YouTube Audio Library</span></span>
+        <span class="step-d"><span class="t-en">Free inside YouTube Studio (studio.youtube.com → Audio Library). Most tracks need no attribution at all — filter by mood or genre and download the mp3 directly.</span><span class="t-zh">YouTube Studio 裡就有（studio.youtube.com → 音效資料庫），完全免費。大部分曲目連掛名致謝都不需要——依情緒或曲風篩選，直接下載 mp3。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Pixabay Music</span><span class="t-zh">Pixabay Music</span></span>
+        <span class="step-d"><span class="t-en">pixabay.com/music — free for commercial use, no attribution required. Good search filters by mood, genre and length.</span><span class="t-zh">pixabay.com/music——可商用、免致謝。可依情緒、曲風、長度篩選，好找。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Free Music Archive / Incompetech</span><span class="t-zh">Free Music Archive / Incompetech</span></span>
+        <span class="step-d"><span class="t-en">Creative Commons libraries with a huge catalogue. Many tracks require attribution in your video description — check the specific license shown next to each track before you use it.</span><span class="t-zh">曲庫龐大的創用 CC 授權平台。不少曲目要求在影片說明欄掛名致謝——下載前務必看清楚每首曲子旁標示的授權條款。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">"Free" doesn't always mean "no strings attached."</strong><strong class="t-zh">「免費」不等於「完全沒有條件」。</strong>
+        <span class="t-en"> Always read the license on the specific track, not just the site's homepage. When in doubt, YouTube Audio Library's no-attribution tracks are the safest default for a school video.</span>
+        <span class="t-zh"> 一定要看那首曲子本身的授權說明，不要只看網站首頁的宣傳。拿不準的話，YouTube Audio Library 裡不用致謝的曲目，是校園影片最保險的預設選擇。</span>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:30px"><span class="t-en">Ask your agent to mix and duck it</span><span class="t-zh">請 agent 幫你混音並自動壓低</span></p>
+    <pre><code>"Add music/campus-theme.mp3 as a background track under the whole video,
+starting at 20% volume. Duck it down to 8% whenever someone is speaking,
+and bring it back up to 20% during quiet or B-roll-only sections."</code></pre>
+  </div>
+</section>
+
+<!-- ===== Part E — B-roll ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part E</span>
+    <h2><span class="t-en">B-roll — what it is, and why it saves your edit</span><span class="t-zh">B-roll——是什麼，為什麼能救你的剪輯</span></h2>
+    <p class="intro"><span class="t-en">"B-roll" is any cutaway footage you show <em>over</em> narration instead of a static shot of someone talking — a wide shot of the classroom, hands writing on a worksheet, students laughing. It does two jobs at once: it hides the visual jump when you cut out an awkward pause in the main footage, and it simply makes the video feel less like a static recording.</span><span class="t-zh">「B-roll」指的是在旁白進行時<em>疊在畫面上</em>的補充鏡頭，取代死板的講話人頭鏡頭——教室的遠景、學生在學習單上寫字的手、學生大笑的畫面。它同時做兩件事：剪掉主鏡頭裡尷尬停頓時，用它蓋過畫面跳接的痕跡；同時也讓整支影片不再像一支呆板的錄影。</span></p>
+
+    <p style="margin:0 0 22px;font-size:17px;color:var(--ink-2);line-height:1.65"><span class="t-en">Once your agent has the transcript, it can flag long stretches where the visual doesn't change — "the same static shot from 1:40 to 2:35" — and suggest exactly where a cutaway would help. You just need to have shot some extra footage to give it.</span><span class="t-zh">Agent 拿到逐字稿之後，就能標出畫面一直沒變的長段落——「1:40 到 2:35 都是同一個靜止鏡頭」——並建議在哪裡插入補充畫面最合適。你只需要事先多拍一些額外素材，供它使用。</span></p>
+
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Video type</span><span class="t-zh">影片類型</span></th><th class="agentcol"><span class="t-en">B-roll ideas to shoot</span><span class="t-zh">可以拍的 B-roll</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th><span class="t-en">Lesson recap</span><span class="t-zh">教學影片</span></th><td class="agentcol"><span class="t-en">Close-ups of the worksheet, students writing, the whiteboard, a page turning.</span><span class="t-zh">學習單特寫、學生寫字的手、白板、翻頁的畫面。</span></td></tr>
+          <tr><th><span class="t-en">Student activity reel</span><span class="t-zh">學生活動影片</span></th><td class="agentcol"><span class="t-en">Candid shots of the activity in progress, high-fives, group reactions, laughter.</span><span class="t-zh">活動進行中的自然抓拍、擊掌、群體反應、笑聲畫面。</span></td></tr>
+          <tr><th><span class="t-en">Campus tour</span><span class="t-zh">校園簡介</span></th><td class="agentcol"><span class="t-en">Establishing shots of the gate, hallway walk-throughs, a classroom door opening.</span><span class="t-zh">校門遠景、走廊行走鏡頭、教室門打開的畫面。</span></td></tr>
+          <tr><th><span class="t-en">Class play</span><span class="t-zh">學生演戲</span></th><td class="agentcol"><span class="t-en">Rehearsal footage, backstage costume prep, audience reactions in the crowd.</span><span class="t-zh">彩排畫面、後台換裝準備、台下觀眾的反應。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="prompt-label" style="margin-top:30px"><span class="t-en">Ask your agent</span><span class="t-zh">跟你的 agent 這樣說</span></p>
+    <pre><code>"Look at the transcript and flag any stretch longer than 15 seconds
+where the visual doesn't change. Suggest which clip in b-roll/
+would fit each one, then cut it in over the narration."</code></pre>
+  </div>
+</section>
+
+<!-- ===== Part F — full workflow ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part F</span>
+    <h2><span class="t-en">Putting it all together</span><span class="t-zh">全部串起來</span></h2>
+    <p class="intro"><span class="t-en">Here's the order that works best — each step hands the next one exactly what it needs.</span><span class="t-zh">照這個順序做效果最好——每一步都會準備好下一步需要的東西。</span></p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="fi" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="m20 9-4 3 4 3z"/></svg></span>
+        <b><span class="t-en">Gather footage</span><span class="t-zh">收集素材</span></b>
+        <em><span class="t-en">Main footage into raw-footage/, cutaways into b-roll/, music into music/.</span><span class="t-zh">主要畫面放 raw-footage/、補充畫面放 b-roll/、音樂放 music/。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M6 11a6 6 0 0 0 12 0M12 19v3"/></svg></span>
+        <b><span class="t-en">Transcribe</span><span class="t-zh">轉逐字稿</span></b>
+        <em><span class="t-en">Whisper produces a script and timestamps for every clip.</span><span class="t-zh">Whisper 產出每支影片的腳本與時間碼。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18M18 3v18M3 8h4M17 8h4M3 16h4M17 16h4"/></svg></span>
+        <b><span class="t-en">Trim narration</span><span class="t-zh">剪掉冷場</span></b>
+        <em><span class="t-en">You mark up the transcript; the agent cuts pauses and filler from the real footage.</span><span class="t-zh">你在逐字稿上做標記；agent 從實際影片裡剪掉停頓與贅詞。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-warm)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="m20 9-4 3 4 3z"/><path d="M9 18V5l12-2v13" opacity=".55"/></svg></span>
+        <b><span class="t-en">Add B-roll + music</span><span class="t-zh">加 B-roll 與音樂</span></b>
+        <em><span class="t-en">Cutaways drop into static stretches; music plays under, ducked under speech.</span><span class="t-zh">補充畫面插入呆板段落；音樂鋪底，講話時自動壓低。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-brand)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></svg></span>
+        <b><span class="t-en">Subtitle + export</span><span class="t-zh">燒字幕、輸出</span></b>
+        <em><span class="t-en">Captions burn in from the .srt file; ffmpeg renders the finished video.</span><span class="t-zh">字幕從 .srt 檔燒進畫面；ffmpeg 輸出完成的影片。</span></em>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:34px"><span class="t-en">A full prompt you can copy and adapt</span><span class="t-zh">一份可直接複製套用的完整指令</span></p>
+    <pre><code>"This is a [lesson recap / activity reel / campus tour / class play] video.
+
+1. Transcribe everything in raw-footage/ with Whisper.
+2. Show me the transcript so I can mark what to cut.
+3. Cut the marked pauses and filler from the real clips, and stitch
+   the remaining footage together in order.
+4. Wherever a single shot runs longer than 15 seconds, suggest a
+   b-roll/ clip to cut in over the narration.
+5. Add music/[track].mp3 under the whole video at 20% volume,
+   ducked to 8% whenever someone is speaking.
+6. Burn in the subtitles from the .srt files, centered near the
+   bottom, readable on a phone screen.
+7. Export as a single MP4, 1080p, ready to upload."</code></pre>
+  </div>
+</section>
+
+<!-- ===== Cheat sheet ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Cheat sheet</span><span class="t-zh">速查表</span></span>
+    <h2><span class="t-en">Every word, one line each</span><span class="t-zh">每個詞，各一句話</span></h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Term</span><span class="t-zh">術語</span></th><th class="agentcol"><span class="t-en">Plain English</span><span class="t-zh">白話說法</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th>ffmpeg</th><td class="agentcol"><span class="t-en">The free engine that actually cuts, mixes and exports video files.</span><span class="t-zh">真正在剪接、混音、輸出影片檔案的免費引擎。</span></td></tr>
+          <tr><th>Whisper</th><td class="agentcol"><span class="t-en">A free tool that turns speech into a timestamped, written transcript.</span><span class="t-zh">把語音轉成附時間碼書面逐字稿的免費工具。</span></td></tr>
+          <tr><th>SRT</th><td class="agentcol"><span class="t-en">The standard subtitle file format — timed lines of text your agent burns onto the video.</span><span class="t-zh">標準的字幕檔格式——附時間碼的文字行，agent 用它燒字幕到畫面上。</span></td></tr>
+          <tr><th>B-roll</th><td class="agentcol"><span class="t-en">Cutaway footage shown over narration instead of a static talking-head shot.</span><span class="t-zh">旁白時疊在畫面上的補充鏡頭，取代死板的講話人頭畫面。</span></td></tr>
+          <tr><th><span class="t-en">Ducking</span><span class="t-zh">Ducking</span></th><td class="agentcol"><span class="t-en">Automatically lowering music volume while someone is speaking.</span><span class="t-zh">有人講話時自動把音樂音量壓低。</span></td></tr>
+          <tr><th><span class="t-en">Talking head</span><span class="t-zh">Talking head</span></th><td class="agentcol"><span class="t-en">A static shot of one person speaking to camera — what B-roll is used to break up.</span><span class="t-zh">一個人對著鏡頭講話的靜止鏡頭——B-roll 就是用來打斷這種畫面的。</span></td></tr>
+          <tr><th><span class="t-en">Render / export</span><span class="t-zh">Render / export</span></th><td class="agentcol"><span class="t-en">The final step where all the edits are combined into one finished video file.</span><span class="t-zh">把所有剪輯合併成一支完成影片檔案的最後一步。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Quick check quiz ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Quick check</span><span class="t-zh">小考</span></span>
+    <h2><span class="t-en">Eight questions, one page</span><span class="t-zh">八題小考，一頁搞定</span></h2>
+    <p class="intro"><span class="t-en">Answer every question, then check your score. This grades itself right here in your browser — nothing is saved or sent anywhere.</span><span class="t-zh">每一題都作答完，再檢查你的分數。這個測驗就在你的瀏覽器裡自動算分——什麼都不會被存起來或傳出去。</span></p>
+
+    <form id="quiz" class="quiz">
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 1</span><span class="t-zh">第 1 題</span></div>
+        <p class="qt"><span class="t-en">What does ffmpeg actually do?</span><span class="t-zh">ffmpeg 到底在做什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q1" value="a"><span><span class="t-en">It's the AI agent that decides what to cut.</span><span class="t-zh">它是決定要剪什麼的 AI agent。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="b"><span><span class="t-en">It records the raw footage.</span><span class="t-zh">它負責拍攝原始素材。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="c"><span><span class="t-en">It's the free engine that actually cuts, mixes and exports the video files.</span><span class="t-zh">它是真正在剪接、混音、輸出影片檔案的免費引擎。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="d"><span><span class="t-en">It's a paid subscription service for music.</span><span class="t-zh">它是付費的音樂訂閱服務。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="a">
+        <div class="qn"><span class="t-en">Question 2</span><span class="t-zh">第 2 題</span></div>
+        <p class="qt"><span class="t-en">Why get a transcript before cutting anything?</span><span class="t-zh">為什麼要在剪之前先拿到逐字稿？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q2" value="a"><span><span class="t-en">It gives you a searchable script and the timestamps needed for subtitles.</span><span class="t-zh">它給你一份可搜尋的腳本，還有做字幕需要的時間碼。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="b"><span><span class="t-en">It automatically deletes your raw footage.</span><span class="t-zh">它會自動刪除你的原始素材。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="c"><span><span class="t-en">It's required before ffmpeg will even install.</span><span class="t-zh">沒有它 ffmpeg 根本裝不起來。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="d"><span><span class="t-en">It's not actually necessary at any point.</span><span class="t-zh">其實完全不需要這一步。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 3</span><span class="t-zh">第 3 題</span></div>
+        <p class="qt"><span class="t-en">Why prefer a terminal-based agent over a browser AI chat for editing video?</span><span class="t-zh">為什麼剪片偏好用終端機型 agent，而不是網頁版 AI 聊天？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q3" value="a"><span><span class="t-en">Browser chat is always more accurate.</span><span class="t-zh">網頁版聊天一定比較準確。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="b"><span><span class="t-en">It works directly on your files with no upload limit or quality loss.</span><span class="t-zh">它直接在你的檔案上工作，沒有上傳限制，也不會損失畫質。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="c"><span><span class="t-en">Terminal agents can't handle audio at all.</span><span class="t-zh">終端機型 agent 完全處理不了音訊。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="d"><span><span class="t-en">Browser chat can't be used for anything school-related.</span><span class="t-zh">網頁版聊天完全不能用在校園相關事務。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 4</span><span class="t-zh">第 4 題</span></div>
+        <p class="qt"><span class="t-en">Which music source is described as the safest default for a school video?</span><span class="t-zh">哪個音樂來源被說是校園影片最保險的預設選擇？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q4" value="a"><span><span class="t-en">Any song currently on the radio.</span><span class="t-zh">任何現在正在電台播的歌。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="b"><span><span class="t-en">A ripped audio track from a movie.</span><span class="t-zh">從電影裡截取的音軌。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="c"><span><span class="t-en">A no-attribution track from YouTube Audio Library.</span><span class="t-zh">YouTube Audio Library 裡不用致謝的曲目。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="d"><span><span class="t-en">Whatever plays automatically in the video editor.</span><span class="t-zh">剪輯軟體裡隨便自動播放的東西。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="d">
+        <div class="qn"><span class="t-en">Question 5</span><span class="t-zh">第 5 題</span></div>
+        <p class="qt"><span class="t-en">What does "ducking" mean?</span><span class="t-zh">「ducking」是什麼意思？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q5" value="a"><span><span class="t-en">Cropping the video into a square shape.</span><span class="t-zh">把影片裁成正方形。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="b"><span><span class="t-en">Deleting a clip permanently.</span><span class="t-zh">永久刪除一段影片。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="c"><span><span class="t-en">Speeding up the whole video.</span><span class="t-zh">把整支影片加速。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="d"><span><span class="t-en">Automatically lowering music volume whenever someone is speaking.</span><span class="t-zh">有人講話時自動把音樂音量壓低。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 6</span><span class="t-zh">第 6 題</span></div>
+        <p class="qt"><span class="t-en">What is B-roll for?</span><span class="t-zh">B-roll 的用途是什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q6" value="a"><span><span class="t-en">It's the raw, unedited backup copy of your footage.</span><span class="t-zh">它是你影片未剪輯的原始備份。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="b"><span><span class="t-en">Cutaway footage shown over narration to cover edits and add life.</span><span class="t-zh">旁白時插入的補充鏡頭，用來蓋住剪接痕跡、讓畫面更有生命力。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="c"><span><span class="t-en">A second, lower-quality export of the final video.</span><span class="t-zh">最終影片畫質較低的第二個輸出版本。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="d"><span><span class="t-en">The background music track.</span><span class="t-zh">背景音樂軌。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="a">
+        <div class="qn"><span class="t-en">Question 7</span><span class="t-zh">第 7 題</span></div>
+        <p class="qt"><span class="t-en">In the recommended workflow, what comes right after transcribing?</span><span class="t-zh">在建議的流程裡，轉完逐字稿之後緊接著是哪一步？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q7" value="a"><span><span class="t-en">Mark up the transcript and trim pauses/filler from the real footage.</span><span class="t-zh">在逐字稿上標記，並從實際影片裡剪掉停頓與贅詞。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="b"><span><span class="t-en">Immediately export the final MP4.</span><span class="t-zh">馬上輸出最終 MP4。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="c"><span><span class="t-en">Delete the raw-footage folder.</span><span class="t-zh">刪掉 raw-footage 資料夾。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="d"><span><span class="t-en">Buy a paid music subscription.</span><span class="t-zh">購買付費音樂訂閱。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 8</span><span class="t-zh">第 8 題</span></div>
+        <p class="qt"><span class="t-en">What format does your agent generate for subtitles?</span><span class="t-zh">Agent 產生字幕用的是什麼格式？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q8" value="a"><span><span class="t-en">A PDF document.</span><span class="t-zh">PDF 文件。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="b"><span><span class="t-en">A spreadsheet.</span><span class="t-zh">試算表。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="c"><span><span class="t-en">An SRT file — timed lines of text.</span><span class="t-zh">SRT 檔——附時間碼的文字行。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="d"><span><span class="t-en">A separate video file with only captions on it.</span><span class="t-zh">另一支只有字幕的獨立影片檔。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="submit" class="btn btn-primary"><span class="t-en">Check my answers</span><span class="t-zh">檢查我的答案</span></button>
+        <button type="button" id="quizReset" class="btn btn-ghost"><span class="t-en">Try again</span><span class="t-zh">重新作答</span></button>
+        <span id="quizScore" class="quiz-score"><span class="badge" id="quizBadge"></span><span id="quizMsg"></span></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Checklist ===== -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">You did it — quick recap</span><span class="t-zh">你做到了——快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Install ffmpeg and a terminal-based AI agent that can touch your video files</span><span class="t-zh">安裝 ffmpeg 與能真正動到影片檔案的終端機型 AI agent</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Get a clean transcript and burned-in subtitles automatically</span><span class="t-zh">自動拿到乾淨的逐字稿與燒錄字幕</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Find legal background music and have it ducked under your voice</span><span class="t-zh">找到合法背景音樂，並讓它在人聲出現時自動壓低</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Understand B-roll and ask your agent to place it</span><span class="t-zh">搞懂 B-roll，並請 agent 幫你安插</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Follow the full workflow for any school video type</span><span class="t-zh">套用完整流程剪出任何類型的校園影片</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lesson-6.html"><span class="t-en">← Lesson 6</span><span class="t-zh">← 第六課</span></a>
+      <a class="btn btn-primary" href="lessons.html"><span class="t-en">See all lessons →</span><span class="t-zh">看完整課程 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('quiz');
+  if (!form) return;
+  var questions = [].slice.call(form.querySelectorAll('.quiz-q'));
+  var scoreWrap = document.getElementById('quizScore');
+  var badge = document.getElementById('quizBadge');
+  var msg = document.getElementById('quizMsg');
+
+  var MESSAGES = [
+    { min: 8, en: "Perfect score — go install ffmpeg and start cutting.", zh: "滿分——去裝 ffmpeg，開始剪片吧。" },
+    { min: 6, en: "Great work — just a couple to review.", zh: "很不錯——只有一兩題再看一下。" },
+    { min: 0, en: "Worth another read of the sections above.", zh: "建議把上面的內容再看一次。" }
+  ];
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var score = 0;
+    var allAnswered = true;
+
+    questions.forEach(function (q) {
+      var correct = q.getAttribute('data-correct');
+      var checked = q.querySelector('input:checked');
+      if (!checked) { allAnswered = false; return; }
+      q.classList.add('answered');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        opt.classList.remove('is-correct', 'is-wrong');
+        if (input.value === correct) opt.classList.add('is-correct');
+        else if (input === checked) opt.classList.add('is-wrong');
+      });
+      if (checked.value === correct) score++;
+    });
+
+    if (!allAnswered) {
+      var isZh = document.documentElement.classList.contains('lang-zh');
+      alert(isZh ? '請先回答完所有題目。' : 'Please answer every question first.');
+      return;
+    }
+
+    badge.textContent = score + ' / ' + questions.length;
+    var m = MESSAGES.find(function (x) { return score >= x.min; });
+    var isZh = document.documentElement.classList.contains('lang-zh');
+    msg.textContent = isZh ? m.zh : m.en;
+    scoreWrap.classList.add('show');
+  });
+
+  document.getElementById('quizReset').addEventListener('click', function () {
+    form.reset();
+    questions.forEach(function (q) {
+      q.classList.remove('answered');
+      [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (opt) {
+        opt.classList.remove('is-correct', 'is-wrong');
+      });
+    });
+    scoreWrap.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>
