@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8 — Narrate Your Materials with AI · AI4Teachers</title>
+<meta name="description" content="Install edge-tts and a terminal-based AI agent, then generate real neural-voice audio for every word and sentence in your teaching materials — with a lookup table, a fallback voice, and a hosting plan that scales from a few hundred clips to tens of thousands.">
+<script>(function(){var l='en';try{l=localStorage.getItem('ai4t-lang')||'en';}catch(e){}document.documentElement.className='lang-'+l;document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260817-hover-soft">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <div class="nav-right">
+      <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+      <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a>
+      <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任 AI</span></a>
+      <a class="cta" href="contact.html"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <div class="lang-seg" role="group" aria-label="Language">
+        <button data-lang="en" type="button">EN</button>
+        <button data-lang="zh" type="button">中</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="lesson-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a> &nbsp;/&nbsp; <a href="lessons.html"><span class="t-en">Lessons</span><span class="t-zh">課程</span></a> &nbsp;/&nbsp; <span class="t-en">Lesson 8</span><span class="t-zh">第八課</span></div>
+    <nav class="course-nav" aria-label="Lessons">
+      <a href="lesson-1.html"><span class="n">1</span><span class="t-en">Publish your first site</span><span class="t-zh">發佈第一個網站</span></a>
+      <a href="lesson-2.html"><span class="n">2</span><span class="t-en">Produce the HTML</span><span class="t-zh">產出 HTML</span></a>
+      <a href="lesson-3.html"><span class="n">3</span><span class="t-en">Why not Google Sites</span><span class="t-zh">為何不用 Google Sites</span></a>
+      <a href="lesson-4.html"><span class="n">4</span><span class="t-en">Get a domain</span><span class="t-zh">買網域</span></a>
+      <a href="lesson-5.html"><span class="n">5</span><span class="t-en">Quizzes to Sheets</span><span class="t-zh">測驗回傳 Sheets</span></a>
+      <a href="lesson-6.html"><span class="n">6</span><span class="t-en">Git vocabulary</span><span class="t-zh">Git 術語</span></a>
+      <a href="lesson-7.html"><span class="n">7</span><span class="t-en">Edit video with AI</span><span class="t-zh">AI 剪片</span></a>
+      <a class="active" href="lesson-8.html"><span class="n">8</span><span class="t-en">Narrate with AI</span><span class="t-zh">AI 配音</span></a>
+    </nav>
+    <h1><span class="t-en">Narrate Your Materials with AI</span><span class="t-zh">用 AI 幫教材配音</span></h1>
+    <p class="lead t-en">Every 🔊 button on a language-learning page is either a real recorded voice or the flat, robotic one built into the browser — and most sites never get past the second one. AI agents can now generate studio-quality narration for hundreds of words and sentences in one sitting, and wire it into your page so it plays back reliably, everywhere. This lesson covers the whole pipeline: generating the clips, keeping them organized, hosting them, and never leaving a button silent.</p>
+    <p class="lead t-zh">語言學習頁面上的 🔊 按鈕，不是播放真人錄音，就是播放瀏覽器內建那種呆板的機器聲——大部分網站從來沒有跨過第二種。現在 AI agent 可以一次幫你生成幾百則單字、例句的錄音室等級配音，並把它接進你的頁面、確保任何裝置上都能穩定播放。這堂課涵蓋整條流程：生成音檔、把它們管好、放到哪裡、以及永遠不讓按鈕啞掉。</p>
+
+    <div class="goals">
+      <h3><span class="t-en">What you'll be able to do</span><span class="t-zh">你將學會</span></h3>
+      <ul>
+        <li><span class="t-en"><b>a</b> Install a terminal-based AI agent and edge-tts, a free neural text-to-speech tool</span><span class="t-zh"><b>a</b> 安裝終端機型 AI agent 與 edge-tts，一套免費的神經網路語音工具</span></li>
+        <li><span class="t-en"><b>b</b> Generate real narration for hundreds of words and sentences without recording a single one yourself</span><span class="t-zh"><b>b</b> 不用自己錄一句話，就生成出上百則單字、例句的真人品質配音</span></li>
+        <li><span class="t-en"><b>c</b> Name and organize the files so updates never leave stale or duplicate audio behind</span><span class="t-zh"><b>c</b> 把檔案命名、整理得當，讓教材更新時不會留下過時或重複的音檔</span></li>
+        <li><span class="t-en"><b>d</b> Choose where to host the clips, and know when to switch from one option to the other</span><span class="t-zh"><b>d</b> 決定音檔要放在哪裡，並知道什麼時候該從一種方案換成另一種</span></li>
+        <li><span class="t-en"><b>e</b> Wire a 🔊 button so it always plays something, even when a clip is missing</span><span class="t-zh"><b>e</b> 讓 🔊 按鈕永遠有聲音可以播，就算某個音檔漏生成也一樣</span></li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <strong class="t-en">Before we start.</strong><strong class="t-zh">開始之前。</strong>
+        <span class="t-en"> You'll need a Mac or PC with Terminal access, about 45 minutes, and a webpage that already has some content on it — vocabulary, example sentences, quiz questions, anything you'd like spoken aloud. This lesson assumes you're using Claude Code, or a similar agent that can open Terminal on your own computer — see Part B if you're starting from zero.</span>
+        <span class="t-zh"> 你需要一台能開終端機的 Mac 或 PC、大約 45 分鐘，以及一個已經有內容的網頁——單字、例句、小考題目，任何你想念出來的內容都可以。這堂課假設你在用 Claude Code，或其他能在你自己電腦上開終端機的 agent——如果你是從零開始，請看 Part B。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part A — why this works now ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part A</span>
+    <h2><span class="t-en">The six pieces that make this work</span><span class="t-zh">讓這件事成立的六個零件</span></h2>
+    <p class="intro"><span class="t-en">A browser's built-in <code>speechSynthesis</code> voice is free and instant, but it sounds exactly like what it is — a device reading text out loud. Neural text-to-speech sounds like a real person, and an AI agent can now generate it in bulk, name the files sensibly, and wire it into a page the same way it writes and edits any other code.</span><span class="t-zh">瀏覽器內建的 <code>speechSynthesis</code> 語音免費又即時，但聽起來就是那個樣子——一台裝置在照著文字唸。神經網路語音聽起來像真人，而現在 AI agent 可以幫你大量生成、把檔案命名得井然有序，再把它接進頁面裡——手法跟它寫、改任何其他程式碼是同一套邏輯。</span></p>
+
+    <div class="grid cols-3">
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M6 11a6 6 0 0 0 12 0M12 19v3"/></svg></div>
+        <h3>edge-tts</h3>
+        <p class="t-en">The free tool that actually turns text into spoken audio. Your agent runs it for you.</p>
+        <p class="t-zh">真正把文字轉成語音的免費工具，你的 agent 幫你操作它。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3><span class="t-en">Neural voice</span><span class="t-zh">神經網路語音</span></h3>
+        <p class="t-en">A studio-quality AI voice, not the flat, robotic one built into a browser.</p>
+        <p class="t-zh">錄音室等級的 AI 語音，不是瀏覽器內建那種呆板的機器聲。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <h3><span class="t-en">Manifest</span><span class="t-zh">Manifest</span></h3>
+        <p class="t-en">A simple text-to-filename lookup table your page checks before it plays anything.</p>
+        <p class="t-zh">一份「文字對應檔名」的查詢表，網頁播放前會先查這裡。</p>
+      </div>
+      <div class="feature f-blue">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 4 2.5L10 14z" fill="#fff"/></svg></div>
+        <h3><span class="t-en">Content hash</span><span class="t-zh">內容雜湊</span></h3>
+        <p class="t-en">A short fixed code generated from the text itself — the same sentence always gets the same filename.</p>
+        <p class="t-zh">從文字內容本身算出的一段固定代碼——同一句話永遠對應同一個檔名。</p>
+      </div>
+      <div class="feature f-sky">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+        <h3><span class="t-en">Fallback voice</span><span class="t-zh">保底語音</span></h3>
+        <p class="t-en">If a clip is missing, the button quietly falls back to the device's own voice instead of staying silent.</p>
+        <p class="t-zh">萬一某個音檔漏生成，按鈕會悄悄退回裝置本身的語音，而不是完全沒反應。</p>
+      </div>
+      <div class="feature f-teal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></svg></div>
+        <h3><span class="t-en">Object storage</span><span class="t-zh">物件儲存空間</span></h3>
+        <p class="t-en">Wherever the finished audio files live so your page can fetch them by URL.</p>
+        <p class="t-zh">完成的音檔實際存放的地方，讓網頁能透過網址抓到它們。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part B — installing the tools ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part B</span>
+    <h2><span class="t-en">Installing the tools</span><span class="t-zh">安裝工具</span></h2>
+    <p class="intro"><span class="t-en">Two things, installed once. After this, you'll never run a voice-generation command yourself — you'll just describe what you want to your agent, and it will run these tools on your behalf.</span><span class="t-zh">兩個東西，裝一次就好。裝完之後你就不用自己下任何生成語音的指令了——你只要跟 agent 描述你想要什麼，它會替你操作以下工具。</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">pipx</span><span class="t-zh">pipx</span></span>
+        <span class="step-d"><span class="t-en">A tool for installing Python command-line programs cleanly. On a Mac, run <code>brew install pipx</code> in Terminal (get Homebrew first at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> if you don't have it). On Windows, ask your agent to install it with <code>pip install pipx</code> instead.</span><span class="t-zh">乾淨安裝 Python 命令列程式的工具。Mac 上在終端機打 <code>brew install pipx</code>（如果還沒裝 Homebrew，先到 <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> 複製安裝指令）。Windows 使用者可以請 agent 改用 <code>pip install pipx</code> 安裝。</span></span>
+      </li>
+      <li>
+        <span class="step-t">edge-tts</span>
+        <span class="step-d"><span class="t-en">The voice engine itself. Run <code>pipx install edge-tts</code>. This is the single most important install on this page — nothing below works without it.</span><span class="t-zh">真正的語音引擎。執行 <code>pipx install edge-tts</code>。這是整頁最重要的一步——沒有它，下面所有事情都做不了。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">A terminal-based AI agent</span><span class="t-zh">終端機型 AI agent</span></span>
+        <span class="step-d"><span class="t-en">Claude Code is the one this lesson is built around — install with <code>npm install -g @anthropic-ai/claude-code</code>, then run <code>claude</code> inside your project folder. The ChatGPT desktop app's agent mode can also open Terminal and drive edge-tts the same way — the prompts in this lesson work with either.</span><span class="t-zh">這堂課主要以 Claude Code 為例——執行 <code>npm install -g @anthropic-ai/claude-code</code> 安裝，再到你的專案資料夾裡執行 <code>claude</code> 就能開始。ChatGPT 桌面版的 agent 模式同樣能開終端機、操作 edge-tts，原理相通——這堂課的提示詞兩邊都適用。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Why edge-tts is free — and the catch.</strong><strong class="t-zh">edge-tts 為什麼免費——以及它的代價。</strong>
+        <span class="t-en"> It works by tapping into the same free "Read Aloud" feature built into the Microsoft Edge browser — that's why the voices sound this good at zero cost. It isn't an officially licensed API, though, so treat it as a great way to get started, not a guarantee that will never change. For heavy, long-term use, have a paid Azure Speech key as a plan B — the cost stays modest at classroom scale.</span>
+        <span class="t-zh"> 它是借用 Microsoft Edge 瀏覽器內建的免費「大聲朗讀」功能——這就是為什麼音質這麼好卻完全免費。但它不是正式授權的 API，適合當作起步的好選擇，不代表永遠不會變。長期大量使用的話，準備一個付費 Azure 語音金鑰當備案——教室規模的用量成本其實不高。</span>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:30px"><span class="t-en">Set up the project folder</span><span class="t-zh">建立專案資料夾</span></p>
+    <pre><code>mkdir my-audio-project
+cd my-audio-project
+mkdir audio manifest
+# list every word, sentence or question you want spoken —
+# copy it straight out of your existing materials
+claude</code></pre>
+  </div>
+</section>
+
+<!-- ===== Part C — generating clips & the lookup table ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part C</span>
+    <h2><span class="t-en">Generate the clips, and keep a lookup table</span><span class="t-zh">生成音檔，並保留一份查詢表</span></h2>
+    <p class="intro"><span class="t-en">Don't name files by line number or lesson order — the moment your materials get reordered or revised, the filenames stop matching. Name each file after a short hash of its own text instead: the same sentence always maps to the same file, and the same word repeated across ten lessons only ever gets generated once.</span><span class="t-zh">不要用行號或課程順序當檔名——教材一旦改版或重新排序，檔名馬上就對不上了。改用文字內容本身算出的一段短雜湊值當檔名：同一句話永遠對應同一個檔案，同一個單字在十課裡重複出現，也只會生成一次。</span></p>
+
+    <p class="prompt-label"><span class="t-en">Ask your agent</span><span class="t-zh">跟你的 agent 這樣說</span></p>
+    <pre><code>"For every phrase in phrases.txt:
+1. Generate an mp3 with edge-tts, voice en-US-AvaMultilingualNeural,
+   rate -8%, saved into audio/.
+2. Name each file after a short hash of its own text, and skip it
+   if that file already exists.
+3. Write manifest/lookup.json mapping every phrase to its filename."</code></pre>
+
+    <p style="margin:26px 0 14px;font-size:17px;color:var(--ink-2);line-height:1.65"><span class="t-en">edge-tts isn't the only option — worth knowing what else is out there, even though this lesson's workflow is built around it:</span><span class="t-zh">edge-tts 不是唯一選擇——雖然這堂課的流程是圍繞著它設計的，其他選項還是值得認識：</span></p>
+
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Tool</span><span class="t-zh">工具</span></th><th class="agentcol"><span class="t-en">Best for</span><span class="t-zh">適合用在</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th><span class="t-en">edge-tts via your agent</span><span class="t-zh">透過 agent 用 edge-tts</span></th><td class="agentcol"><span class="t-en">Free, batch-processes hundreds of phrases in one run, feeds directly into the rest of this workflow.</span><span class="t-zh">免費、一次能批次處理上百則短句，還能直接接上這堂課後面的整套流程。</span></td></tr>
+          <tr><th><span class="t-en">Browser "Read Aloud"</span><span class="t-zh">瀏覽器內建「大聲朗讀」</span></th><td class="agentcol"><span class="t-en">Instant, zero setup — fine for previewing one sentence, not for a whole course.</span><span class="t-zh">即時、免安裝——用來試聽一句話還行，不適合整套課程。</span></td></tr>
+          <tr><th><span class="t-en">Paid Azure / ElevenLabs API</span><span class="t-zh">付費 Azure / ElevenLabs API</span></th><td class="agentcol"><span class="t-en">Officially licensed, guaranteed-stable voices when you need production reliability at real scale.</span><span class="t-zh">正式授權、聲音穩定不會說變就變，適合需要長期大量正式使用的情況。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part D — where to host the files ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part D</span>
+    <h2><span class="t-en">Where the clips actually live</span><span class="t-zh">音檔實際放在哪裡</span></h2>
+    <p class="intro"><span class="t-en">Every clip needs a public URL your page can fetch. Two free options cover almost every classroom situation — which one to pick depends only on how many clips you'll eventually have.</span><span class="t-zh">每個音檔都需要一個網頁能抓得到的公開網址。兩個免費選項幾乎涵蓋所有教室情境——選哪個只看你最終大概會有多少則音檔。</span></p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-t"><span class="t-en">GitHub Release</span><span class="t-zh">GitHub Release</span></span>
+        <span class="step-d"><span class="t-en">No new account needed if your site already lives on GitHub — the <code>gh</code> command line uploads a whole folder in minutes. The catch: a hard cap of 1,000 files per release.</span><span class="t-zh">如果你的網站本來就放在 GitHub 上，完全不用開新帳號——用 <code>gh</code> 指令列幾分鐘就能上傳一整個資料夾。代價是：單一 release 最多 1,000 個檔案的硬上限。</span></span>
+      </li>
+      <li>
+        <span class="step-t"><span class="t-en">Cloudflare R2</span><span class="t-zh">Cloudflare R2</span></span>
+        <span class="step-d"><span class="t-en">No file-count limit and a generous free tier (10GB storage, zero bandwidth fees) — better once you're past a few hundred clips or expect to keep growing. Setup takes a bit longer: a separate account, and a credit card on file to enable R2, even if you never leave the free tier.</span><span class="t-zh">沒有檔案數量上限，免費額度也大方（10GB 儲存、零流量費）——一旦超過幾百則、或預期會持續擴充，就適合換這個。設定會多花一點時間：要開獨立帳號，而且啟用 R2 需要掛一張信用卡，即使全程用不到免費額度以外的錢也一樣。</span></span>
+      </li>
+    </ol>
+
+    <div class="callout" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9 6.7 19.6l1-5.8L3.5 9.7l5.9-.9z"/></svg>
+      <div>
+        <strong class="t-en">Start with GitHub Release; switch later if you need to.</strong><strong class="t-zh">先從 GitHub Release 開始，之後有需要再換就好。</strong>
+        <span class="t-en"> The rest of the pipeline — the manifest, the fallback logic, the prompts — stays exactly the same either way. Only the URL your page fetches from changes.</span>
+        <span class="t-zh"> 不管選哪一個，流程的其他部分——manifest、保底邏輯、指令詞——完全不用變，只有網頁抓檔案的那個網址會不一樣。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Part E — wiring it into the page ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part E</span>
+    <h2><span class="t-en">Wiring the 🔊 button — with a safety net</span><span class="t-zh">接上 🔊 按鈕——並留一個保底</span></h2>
+    <p class="intro"><span class="t-en">Every button follows the same three-step priority: check the lookup table, play the recording if it's there, and fall back to the device's own voice if it isn't. That way one missing clip never leaves a button silently dead.</span><span class="t-zh">每顆按鈕都照同一套三步驟優先序：先查查詢表，查得到就播錄音，查不到就退回裝置本身的語音。這樣一來，漏生成一個音檔也不會讓某顆按鈕完全沒反應。</span></p>
+
+    <p class="prompt-label"><span class="t-en">What your agent should build</span><span class="t-zh">請 agent 幫你寫出這樣的邏輯</span></p>
+    <pre><code>function say(text) {
+  const hash = manifest[text];
+  if (hash) {
+    playAudio(AUDIO_BASE + hash + ".mp3");   // found it — play the real recording
+  } else {
+    speechSynthesis.speak(text);             // not found — fall back to the device voice
+  }
+}</code></pre>
+
+    <p class="prompt-label" style="margin-top:30px"><span class="t-en">Ask your agent</span><span class="t-zh">跟你的 agent 這樣說</span></p>
+    <pre><code>"Every element with a data-say attribute should call say() with its
+own text when clicked. Load manifest/lookup.json once when the page
+opens, and cache it — don't fetch it again on every click."</code></pre>
+  </div>
+</section>
+
+<!-- ===== Part F — full workflow ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker">Part F</span>
+    <h2><span class="t-en">Putting it all together</span><span class="t-zh">全部串起來</span></h2>
+    <p class="intro"><span class="t-en">Here's the order that works best — each step hands the next one exactly what it needs.</span><span class="t-zh">照這個順序做效果最好——每一步都會準備好下一步需要的東西。</span></p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="fi" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>
+        <b><span class="t-en">List the phrases</span><span class="t-zh">列出要念的內容</span></b>
+        <em><span class="t-en">Pull every word, sentence and question worth narrating out of your materials.</span><span class="t-zh">從教材裡把每個值得配音的單字、例句、題目整理出來。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M6 11a6 6 0 0 0 12 0M12 19v3"/></svg></span>
+        <b><span class="t-en">Generate & hash</span><span class="t-zh">生成並算雜湊</span></b>
+        <em><span class="t-en">edge-tts produces the mp3; the content hash becomes its filename.</span><span class="t-zh">edge-tts 生成 mp3；內容雜湊值成為它的檔名。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="m20 9-4 3 4 3z"/></svg></span>
+        <b><span class="t-en">Upload the clips</span><span class="t-zh">上傳音檔</span></b>
+        <em><span class="t-en">To GitHub Release or Cloudflare R2 — wherever your page can reach them by URL.</span><span class="t-zh">傳到 GitHub Release 或 Cloudflare R2——只要網頁能用網址抓到就行。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-warm)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>
+        <b><span class="t-en">Wire the button</span><span class="t-zh">接上按鈕</span></b>
+        <em><span class="t-en">Click → check the manifest → play the recording, with the device voice as a fallback.</span><span class="t-zh">點擊 → 查 manifest → 播錄音，查不到就退回裝置語音當保底。</span></em>
+      </div>
+      <span class="arrow2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="node">
+        <span class="fi" style="background:var(--grad-brand)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <b><span class="t-en">Listen and confirm</span><span class="t-zh">實際聽過確認</span></b>
+        <em><span class="t-en">Tap a handful of buttons for real before you call it done.</span><span class="t-zh">上線前實際點過幾顆按鈕再收工。</span></em>
+      </div>
+    </div>
+
+    <p class="prompt-label" style="margin-top:34px"><span class="t-en">A full prompt you can copy and adapt</span><span class="t-zh">一份可直接複製套用的完整指令</span></p>
+    <pre><code>"I want to add narration audio to [page / lesson].
+
+1. Pull every word, example sentence and quiz question worth
+   narrating out of the page content.
+2. Generate an mp3 for each with edge-tts, voice
+   en-US-AvaMultilingualNeural, rate -8%. Name each file after a
+   short hash of its own text, and skip any that already exist.
+3. Write a manifest mapping each phrase to its filename.
+4. Upload every new clip to [GitHub Release / Cloudflare R2].
+5. Wire up every 🔊 button so it checks the manifest, plays the
+   recording if found, and falls back to speechSynthesis if not.
+6. List a few buttons for me to click and confirm before we're done."</code></pre>
+  </div>
+</section>
+
+<!-- ===== Cheat sheet ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Cheat sheet</span><span class="t-zh">速查表</span></span>
+    <h2><span class="t-en">Every word, one line each</span><span class="t-zh">每個詞，各一句話</span></h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th><span class="t-en">Term</span><span class="t-zh">術語</span></th><th class="agentcol"><span class="t-en">Plain English</span><span class="t-zh">白話說法</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th>TTS</th><td class="agentcol"><span class="t-en">Text-to-speech — any system that turns written text into spoken audio.</span><span class="t-zh">Text-to-speech，把文字轉成語音的任何系統。</span></td></tr>
+          <tr><th>edge-tts</th><td class="agentcol"><span class="t-en">A free command-line tool that generates neural voice mp3s from text.</span><span class="t-zh">免費的命令列工具，能從文字生成神經網路語音的 mp3 檔。</span></td></tr>
+          <tr><th><span class="t-en">Neural voice</span><span class="t-zh">神經網路語音</span></th><td class="agentcol"><span class="t-en">An AI-generated voice that sounds like a real person, not a device reading text.</span><span class="t-zh">AI 生成、聽起來像真人的語音，不是裝置在唸文字。</span></td></tr>
+          <tr><th>Manifest</th><td class="agentcol"><span class="t-en">A text-to-filename lookup table the page checks before playing anything.</span><span class="t-zh">網頁播放前會先查的「文字對應檔名」查詢表。</span></td></tr>
+          <tr><th><span class="t-en">Content hash</span><span class="t-zh">內容雜湊</span></th><td class="agentcol"><span class="t-en">A fixed code derived from the text itself, used as the filename — dedupes automatically.</span><span class="t-zh">從文字本身算出的固定代碼，當作檔名使用——自動去重複。</span></td></tr>
+          <tr><th><span class="t-en">Fallback voice</span><span class="t-zh">保底語音</span></th><td class="agentcol"><span class="t-en">The device's own built-in voice, used only when a real recording is missing.</span><span class="t-zh">裝置本身內建的語音，只有在真人錄音沒生成時才會用到。</span></td></tr>
+          <tr><th><span class="t-en">GitHub Release</span><span class="t-zh">GitHub Release</span></th><td class="agentcol"><span class="t-en">The fastest free place to host clips — capped at 1,000 files per release.</span><span class="t-zh">最快上手的免費存放空間——單一 release 上限 1,000 個檔案。</span></td></tr>
+          <tr><th>Cloudflare R2</th><td class="agentcol"><span class="t-en">A hosting option with no file limit and free bandwidth, for larger or growing libraries.</span><span class="t-zh">沒有檔案數量上限、免流量費的存放空間，適合規模較大或持續成長的教材庫。</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Quick check quiz ===== -->
+<section class="part">
+  <div class="wrap">
+    <span class="kicker"><span class="t-en">Quick check</span><span class="t-zh">小考</span></span>
+    <h2><span class="t-en">Eight questions, one page</span><span class="t-zh">八題小考，一頁搞定</span></h2>
+    <p class="intro"><span class="t-en">Answer every question, then check your score. This grades itself right here in your browser — nothing is saved or sent anywhere.</span><span class="t-zh">每一題都作答完，再檢查你的分數。這個測驗就在你的瀏覽器裡自動算分——什麼都不會被存起來或傳出去。</span></p>
+
+    <form id="quiz" class="quiz">
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 1</span><span class="t-zh">第 1 題</span></div>
+        <p class="qt"><span class="t-en">What does edge-tts actually do?</span><span class="t-zh">edge-tts 到底在做什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q1" value="a"><span><span class="t-en">It's the AI agent that decides what to narrate.</span><span class="t-zh">它是決定要念什麼的 AI agent。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="b"><span><span class="t-en">It hosts the finished mp3 files on the web.</span><span class="t-zh">它負責把完成的 mp3 檔放上網路。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="c"><span><span class="t-en">It's the free tool that actually generates the spoken audio from text.</span><span class="t-zh">它是真正把文字轉成語音的免費工具。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="d"><span><span class="t-en">It's a paid subscription for hosting quizzes.</span><span class="t-zh">它是付費的小考代管服務。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 2</span><span class="t-zh">第 2 題</span></div>
+        <p class="qt"><span class="t-en">Why name each audio file after a hash of its own text instead of its line number?</span><span class="t-zh">為什麼要用文字的雜湊值命名檔案，而不是用行號？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q2" value="a"><span><span class="t-en">Hashes make the file smaller.</span><span class="t-zh">雜湊值可以讓檔案變小。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="b"><span><span class="t-en">The same sentence always maps to the same file, so reorders don't break it and repeats auto-dedupe.</span><span class="t-zh">同一句話永遠對應同一個檔案，改順序不會壞掉，重複的內容也會自動去重複。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="c"><span><span class="t-en">edge-tts refuses to run without a hash in the filename.</span><span class="t-zh">檔名沒有雜湊值 edge-tts 就不會執行。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="d"><span><span class="t-en">It's required for the audio to play in a browser at all.</span><span class="t-zh">沒有雜湊值瀏覽器就完全播不出聲音。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="d">
+        <div class="qn"><span class="t-en">Question 3</span><span class="t-zh">第 3 題</span></div>
+        <p class="qt"><span class="t-en">Why give every 🔊 button a fallback to the device's own voice?</span><span class="t-zh">為什麼要幫每顆 🔊 按鈕都留一個退回裝置語音的保底？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q3" value="a"><span><span class="t-en">The device voice always sounds better.</span><span class="t-zh">裝置語音永遠比較好聽。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="b"><span><span class="t-en">It's required by edge-tts's license.</span><span class="t-zh">這是 edge-tts 授權條款要求的。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="c"><span><span class="t-en">It makes the manifest file smaller.</span><span class="t-zh">這樣能讓 manifest 檔案變小。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="d"><span><span class="t-en">So one missing clip never leaves a button silently dead.</span><span class="t-zh">這樣少生成一個音檔也不會讓某顆按鈕完全沒反應。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 4</span><span class="t-zh">第 4 題</span></div>
+        <p class="qt"><span class="t-en">What is GitHub Release's hard limit?</span><span class="t-zh">GitHub Release 的硬上限是什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q4" value="a"><span><span class="t-en">100 files total, ever.</span><span class="t-zh">總共只能有 100 個檔案。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="b"><span><span class="t-en">1,000 files per release.</span><span class="t-zh">單一 release 最多 1,000 個檔案。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="c"><span><span class="t-en">10GB of audio, no matter the file count.</span><span class="t-zh">不管檔案數量，總容量上限 10GB。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="d"><span><span class="t-en">There is no limit at all.</span><span class="t-zh">完全沒有任何上限。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="c">
+        <div class="qn"><span class="t-en">Question 5</span><span class="t-zh">第 5 題</span></div>
+        <p class="qt"><span class="t-en">What does Cloudflare R2 require that GitHub Release doesn't?</span><span class="t-zh">Cloudflare R2 需要什麼是 GitHub Release 不需要的？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q5" value="a"><span><span class="t-en">A separate paid monthly subscription.</span><span class="t-zh">另外付費的月費訂閱。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="b"><span><span class="t-en">A different audio file format.</span><span class="t-zh">不同的音檔格式。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="c"><span><span class="t-en">A credit card on file, even to stay on the free tier.</span><span class="t-zh">一張信用卡，就算全程用免費額度也要掛。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="d"><span><span class="t-en">Rewriting the manifest in a different language.</span><span class="t-zh">要用不同的語言重寫 manifest。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="a">
+        <div class="qn"><span class="t-en">Question 6</span><span class="t-zh">第 6 題</span></div>
+        <p class="qt"><span class="t-en">Why isn't edge-tts an "officially licensed" API?</span><span class="t-zh">為什麼 edge-tts 不是「正式授權」的 API？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q6" value="a"><span><span class="t-en">It taps into Edge browser's free "Read Aloud" feature via an unofficial channel.</span><span class="t-zh">它是透過非官方管道，借用 Edge 瀏覽器免費的「大聲朗讀」功能。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="b"><span><span class="t-en">It only works on Windows computers.</span><span class="t-zh">它只能在 Windows 電腦上跑。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="c"><span><span class="t-en">It was discontinued last year.</span><span class="t-zh">它去年已經停止維護了。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q6" value="d"><span><span class="t-en">It requires a paid Microsoft account.</span><span class="t-zh">它需要付費的 Microsoft 帳號。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="d">
+        <div class="qn"><span class="t-en">Question 7</span><span class="t-zh">第 7 題</span></div>
+        <p class="qt"><span class="t-en">What's the last step before calling the job done?</span><span class="t-zh">收工前的最後一步是什麼？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q7" value="a"><span><span class="t-en">Delete the manifest file.</span><span class="t-zh">刪掉 manifest 檔案。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="b"><span><span class="t-en">Switch to a paid TTS service, no matter the volume.</span><span class="t-zh">不管量多少，都換成付費 TTS 服務。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="c"><span><span class="t-en">Re-generate every clip a second time to be safe.</span><span class="t-zh">為求保險，把每個音檔都再重新生成一次。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q7" value="d"><span><span class="t-en">Tap a handful of buttons for real and confirm you can hear them.</span><span class="t-zh">實際點過幾顆按鈕，確認真的聽得到聲音。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-q" data-correct="b">
+        <div class="qn"><span class="t-en">Question 8</span><span class="t-zh">第 8 題</span></div>
+        <p class="qt"><span class="t-en">In the recommended order, what comes right after generating the clips?</span><span class="t-zh">在建議的流程裡，生成音檔之後緊接著是哪一步？</span></p>
+        <div class="quiz-opts">
+          <label class="quiz-opt"><input type="radio" name="q8" value="a"><span><span class="t-en">Immediately delete the phrase list.</span><span class="t-zh">馬上刪掉文字清單。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="b"><span><span class="t-en">Upload the clips somewhere with a public URL.</span><span class="t-zh">把音檔上傳到有公開網址的地方。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="c"><span><span class="t-en">Buy a domain name.</span><span class="t-zh">買一個網域名稱。</span></span></label>
+          <label class="quiz-opt"><input type="radio" name="q8" value="d"><span><span class="t-en">Switch your whole site to a different hosting company.</span><span class="t-zh">把整個網站換到別家代管公司。</span></span></label>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="submit" class="btn btn-primary"><span class="t-en">Check my answers</span><span class="t-zh">檢查我的答案</span></button>
+        <button type="button" id="quizReset" class="btn btn-ghost"><span class="t-en">Try again</span><span class="t-zh">重新作答</span></button>
+        <span id="quizScore" class="quiz-score"><span class="badge" id="quizBadge"></span><span id="quizMsg"></span></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Checklist ===== -->
+<section class="part">
+  <div class="wrap">
+    <div class="checklist">
+      <h3><span class="t-en">You did it — quick recap</span><span class="t-zh">你做到了——快速回顧</span></h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Install edge-tts and a terminal-based AI agent that can generate real narration</span><span class="t-zh">安裝 edge-tts 與能真正生成配音的終端機型 AI agent</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Generate real narration for hundreds of words and sentences automatically</span><span class="t-zh">自動生成上百則單字、例句的真人品質配音</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Name files by content hash and keep a manifest, so nothing goes stale or duplicates</span><span class="t-zh">用內容雜湊命名檔案並保留 manifest，避免過時或重複</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Pick GitHub Release or Cloudflare R2 based on how many clips you'll have</span><span class="t-zh">依音檔數量在 GitHub Release 與 Cloudflare R2 之間做選擇</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="t-en">Wire every 🔊 button with a fallback so it never stays silent</span><span class="t-zh">幫每顆 🔊 按鈕接上保底邏輯，永遠不會沒聲音</span></li>
+      </ul>
+    </div>
+    <div class="lesson-foot">
+      <a class="btn btn-ghost" href="lesson-7.html"><span class="t-en">← Lesson 7</span><span class="t-zh">← 第七課</span></a>
+      <a class="btn btn-primary" href="lessons.html"><span class="t-en">See all lessons →</span><span class="t-zh">看完整課程 →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span>AI4Teachers</a>
+    <span>© <span id="yr">2026</span> Luke Lin · <a href="responsible-ai.html"><span class="t-en">Responsible AI</span><span class="t-zh">負責任地使用 AI</span></a> · <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=(new Date().getFullYear());</script>
+<script src="script.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('quiz');
+  if (!form) return;
+  var questions = [].slice.call(form.querySelectorAll('.quiz-q'));
+  var scoreWrap = document.getElementById('quizScore');
+  var badge = document.getElementById('quizBadge');
+  var msg = document.getElementById('quizMsg');
+
+  var MESSAGES = [
+    { min: 8, en: "Perfect score — go install edge-tts and start narrating.", zh: "滿分——去裝 edge-tts，開始幫教材配音吧。" },
+    { min: 6, en: "Great work — just a couple to review.", zh: "很不錯——只有一兩題再看一下。" },
+    { min: 0, en: "Worth another read of the sections above.", zh: "建議把上面的內容再看一次。" }
+  ];
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var score = 0;
+    var allAnswered = true;
+
+    questions.forEach(function (q) {
+      var correct = q.getAttribute('data-correct');
+      var checked = q.querySelector('input:checked');
+      if (!checked) { allAnswered = false; return; }
+      q.classList.add('answered');
+      var opts = [].slice.call(q.querySelectorAll('.quiz-opt'));
+      opts.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        opt.classList.remove('is-correct', 'is-wrong');
+        if (input.value === correct) opt.classList.add('is-correct');
+        else if (input === checked) opt.classList.add('is-wrong');
+      });
+      if (checked.value === correct) score++;
+    });
+
+    if (!allAnswered) {
+      var isZh = document.documentElement.classList.contains('lang-zh');
+      alert(isZh ? '請先回答完所有題目。' : 'Please answer every question first.');
+      return;
+    }
+
+    badge.textContent = score + ' / ' + questions.length;
+    var m = MESSAGES.find(function (x) { return score >= x.min; });
+    var isZh = document.documentElement.classList.contains('lang-zh');
+    msg.textContent = isZh ? m.zh : m.en;
+    scoreWrap.classList.add('show');
+  });
+
+  document.getElementById('quizReset').addEventListener('click', function () {
+    form.reset();
+    questions.forEach(function (q) {
+      q.classList.remove('answered');
+      [].slice.call(q.querySelectorAll('.quiz-opt')).forEach(function (opt) {
+        opt.classList.remove('is-correct', 'is-wrong');
+      });
+    });
+    scoreWrap.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>
